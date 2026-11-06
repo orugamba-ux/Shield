@@ -4,8 +4,8 @@
 #include "lynx_version.h"
 
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "LYNX.manifest"
-1 ICON "LYNX.ico"
-2 ICON "LYNX_doc.ico"
+1 ICON "Shield.ico"
+2 ICON "Shield_doc.ico"
 
 1 VERSIONINFO
  FILEVERSION    LYNX_VERSION_MAJOR, LYNX_VERSION_MINOR, LYNX_VERSION_PATCH, 0
@@ -20,15 +20,15 @@ BEGIN
     BEGIN
         BLOCK "040904B0"
         BEGIN
-            VALUE "CompanyName",      "Ka1-S"
-            VALUE "FileDescription",  "LYNX SHARE digital audio workstation"
+            VALUE "CompanyName",      "Shield contributors"
+            VALUE "FileDescription",  "Shield digital audio workstation"
             VALUE "FileVersion",      LYNX_VERSION_STR
-            VALUE "InternalName",     "LYNX"
-            VALUE "LegalCopyright",   "Copyright (C) 2026 Ka1-S. Licensed under the GNU AGPL-3.0."
-            VALUE "OriginalFilename", "LYNX.exe"
-            VALUE "ProductName",      "LYNX SHARE"
+            VALUE "InternalName",     "Shield"
+            VALUE "LegalCopyright",   "Copyright (C) 2026 Ka1-S (LYNX SHARE) and the Shield contributors. Licensed under the GNU AGPL-3.0."
+            VALUE "OriginalFilename", "Shield.exe"
+            VALUE "ProductName",      "Shield"
             VALUE "ProductVersion",   LYNX_VERSION_STR
-            VALUE "Comments",         "https://github.com/Ka1-S/LYNX-SHARE"
+            VALUE "Comments",         "https://github.com/orugamba-ux/Shield"
         END
     END
     BLOCK "VarFileInfo"

@@ -99,7 +99,7 @@ juce::String instrumentName (InstrumentKind k)
         case InstrumentKind::directwave: return "DirectWave";
         case InstrumentKind::midiOut: return "MIDI Out";
         case InstrumentKind::patcher: return "Patcher";
-        case InstrumentKind::soundfont: return "LYNX Soundfont";
+        case InstrumentKind::soundfont: return "Shield Soundfont";
         case InstrumentKind::layer: return "Layer";
         case InstrumentKind::dashboard: return "Dashboard";
         case InstrumentKind::voltage: return "Voltage Controller";

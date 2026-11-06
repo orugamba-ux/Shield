@@ -294,7 +294,7 @@ TEST (compressor_rcomp_ranges_round150)
     CHECK (t (14, 0.75f) == "0.79:1" && t (14, 1.0f) == "0.50:1");
     CHECK (t (16, 0.0f) == "0.50 ms" && t (16, 0.5f) == "15.8 ms" && t (16, 1.0f) == "500.0 ms");
     CHECK (t (17, 0.0f) == "5.0 ms" && t (17, 0.5f) == "158 ms" && t (17, 1.0f) == "5000 ms");
-    CHECK (t (15, 0.0f) == "-30.0 dB" && t (15, 1.0f) == "+30.0 dB" && t (13, 0.0f) == "LYNX");
+    CHECK (t (15, 0.0f) == "-30.0 dB" && t (15, 1.0f) == "+30.0 dB" && t (13, 0.0f) == "Shield");
     auto p = makeEffectSlot (EffectKind::compressor).params;
     CHECK (p[13] == 0.0f); // older projects and new instances: LYNX's ranges
     // [EXEC] 1 kHz stairs, threshold −30 dB, Manual: below 1 : 1 the reference expands above the threshold —

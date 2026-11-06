@@ -2,7 +2,7 @@
 """Builds the MSIX package layout (the folder `makeappx pack /d` packs) for the Microsoft Store build (round 165n).
 
 Usage:
-  scripts/make-msix-layout.py --version 0.1.20[-alpha] --bin <folder with LYNX.exe> --out <layout folder>
+  scripts/make-msix-layout.py --version 0.1.20[-alpha] --bin <folder with Shield.exe> --out <layout folder>
                               [--identity-name N] [--publisher P] [--publisher-display D] [--display-name L]
                               [--test-identity]
                               [--extra file ...]
@@ -27,7 +27,7 @@ DEFAULT_NAME = "KA1WARE.LYNXSHARE"
 DEFAULT_PUBLISHER = "CN=BACBB786-A595-4AC3-9807-A70EAA268E4C"
 DEFAULT_DISPLAY = "KA1WARE"
 UNSIGNED_OID = "OID.2.25.311729368913984317654407730594956997722=1"
-APP_FILES = ("LYNX.exe", "lynx-asio.dll", "onnxruntime.dll")  # (lynx-asio32.dll is for registering with 32-bit hosts: not in the package)
+APP_FILES = ("Shield.exe", "lynx-asio.dll", "onnxruntime.dll")  # (lynx-asio32.dll is for registering with 32-bit hosts: not in the package)
 
 
 def msix_version(version, store_build=0):
@@ -54,7 +54,7 @@ def xml_escape(text):
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", required=True)
-    ap.add_argument("--bin", required=True, help="folder with LYNX.exe (and lynx-asio.dll)")
+    ap.add_argument("--bin", required=True, help="folder with Shield.exe (and lynx-asio.dll)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--identity-name", default=os.environ.get("MSIX_IDENTITY_NAME") or DEFAULT_NAME)
     ap.add_argument("--publisher", default=os.environ.get("MSIX_PUBLISHER") or DEFAULT_PUBLISHER)
@@ -81,7 +81,7 @@ def main(argv):
         src = os.path.join(a.bin, name)
         if os.path.exists(src):
             shutil.copy2(src, a.out)
-        elif name == "LYNX.exe":
+        elif name == "Shield.exe":
             raise SystemExit(f"missing {src}")
     for extra in a.extra:
         shutil.copy2(extra, a.out)

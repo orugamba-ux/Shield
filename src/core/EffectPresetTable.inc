@@ -65,7 +65,7 @@ Wide chorus        | V1 delay = 20 ms; V2 delay = 27 ms; V1 detune = +10 c; V2 d
 Stereo slap        | V1 delay = 78 ms; V2 delay = 100 ms; V1 detune = 0 c; V2 detune = 0 c; V1 feedback = 39 %; V2 feedback = 39 %
 Octave under       | V1 octave = on; V2 on = off; V1 pan = 0°; V1 gain = -12 dB; V1 delay = 10 ms; V1 detune = 0 c
 
-[LYNX Tune]
+[Shield Tune]
 keep = Key; Scale; Reference; Range; MIDI; C; C#; D; D#; E; F; F#; G; G#; A; A#; B
 Natural            | Retune = 50 ms; Humanize = 50 %; Flex-Tune = 20 %
 Pop vocal          | Retune = 20 ms; Humanize = 25 %

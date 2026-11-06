@@ -366,7 +366,7 @@ public:
         };
         openBackgrounds.onClick = [] { backgroundsFolder().startAsProcess(); };
         openBackgrounds.setTooltip (tr ("Open the Backgrounds folder: images put there show in the list (refreshed when this page opens)"));
-        styleNote (imageNote, tr ("Images you choose are copied into the Backgrounds folder next to LYNX.exe, so a portable LYNX SHARE keeps them, "
+        styleNote (imageNote, tr ("Images you choose are copied into the Backgrounds folder next to Shield.exe, so a portable Shield keeps them, "
                                   "and a saved theme preset keeps its image."));
 
         // Startup sound (issue #12): any audio file instead of LYNX's own sound
@@ -376,7 +376,7 @@ public:
                 previewStartupSound (juce::String::fromUTF8 (spec.startupSound.c_str()));
         };
         soundDefault.onClick = [this] { edit ([] (themes::Spec& s) { s.startupSound.clear(); }); };
-        styleNote (soundNote, tr ("Played when LYNX SHARE starts (if Settings › General › \"Play the startup sound\" is on). Default: LYNX SHARE's own sound."));
+        styleNote (soundNote, tr ("Played when Shield starts (if Settings › General › \"Play the startup sound\" is on). Default: Shield's own sound."));
 
         presetBox.onChange = [this] { choosePreset(); };
         importButton.onClick = [this] { importTheme(); };
@@ -603,7 +603,7 @@ private:
         }
         imageList.setTextWhenNothingSelected (backgroundFiles.isEmpty() ? tr ("(no images in the folder yet)") : tr ("Pick an image..."));
         imageList.setEnabled (! backgroundFiles.isEmpty());
-        soundName.setText (spec.startupSound.empty() ? tr ("LYNX SHARE's own sound") : juce::File (juce::String::fromUTF8 (spec.startupSound.c_str())).getFileName(),
+        soundName.setText (spec.startupSound.empty() ? tr ("Shield's own sound") : juce::File (juce::String::fromUTF8 (spec.startupSound.c_str())).getFileName(),
                            juce::dontSendNotification);
         soundDefault.setEnabled (! spec.startupSound.empty());
         removeImage.setEnabled (! spec.image.empty());
@@ -650,7 +650,7 @@ private:
                 safe->select (safe->selected);
             }
             else
-                juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Import theme"), tr ("This file is not a LYNX SHARE theme."));
+                juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Import theme"), tr ("This file is not a Shield theme."));
         });
     }
 
@@ -660,7 +660,7 @@ private:
         if (asPreset)
         {
             auto* window = new juce::AlertWindow (tr ("Save theme preset"), tr ("Name of the preset:"), juce::MessageBoxIconType::NoIcon);
-            window->addTextEditor ("name", spec.name == "LYNX" ? tr ("My theme") : juce::String::fromUTF8 (spec.name.c_str()));
+            window->addTextEditor ("name", spec.name == "Shield" ? tr ("My theme") : juce::String::fromUTF8 (spec.name.c_str()));
             window->addButton (tr ("Save"), 1, juce::KeyPress (juce::KeyPress::returnKey));
             window->addButton (tr ("Cancel"), 0, juce::KeyPress (juce::KeyPress::escapeKey));
             window->enterModalState (true, juce::ModalCallbackFunction::create ([safe, window] (int result) {
@@ -710,13 +710,13 @@ private:
             const std::unique_ptr<juce::AudioFormatReader> reader (formats.createReaderFor (fc.getResult()));
             if (reader == nullptr || reader->sampleRate <= 0.0)
             {
-                juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Startup sound"), tr ("LYNX SHARE can't read this audio file."));
+                juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Startup sound"), tr ("Shield can't read this audio file."));
                 return;
             }
             if ((double) reader->lengthInSamples / reader->sampleRate > 30.0)
             {
                 juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Startup sound"),
-                                                        tr ("Choose a sound of 30 seconds or less: it plays in full every time LYNX SHARE starts."));
+                                                        tr ("Choose a sound of 30 seconds or less: it plays in full every time Shield starts."));
                 return;
             }
             safe->edit ([path = fc.getResult().getFullPathName().toStdString()] (themes::Spec& s) { s.startupSound = path; });
@@ -756,7 +756,7 @@ void chooseWorkspaceImage (std::function<void (const juce::File&)> done)
             return;
         if (! juce::ImageFileFormat::loadFrom (fc.getResult()).isValid())
         {
-            juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Workspace image"), tr ("LYNX SHARE can't read this image (PNG, JPEG or GIF)."));
+            juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Workspace image"), tr ("Shield can't read this image (PNG, JPEG or GIF)."));
             return;
         }
         // kept in the Backgrounds folder (issue #12): a copy, unless it is there already (the same file under that

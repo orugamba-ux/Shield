@@ -12,7 +12,7 @@ AudioLogger::~AudioLogger()
 
 juce::File AudioLogger::defaultFolder()
 {
-    return lynx::platform::documentsFolder().getChildFile ("LYNX").getChildFile ("Audio logger");
+    return lynx::platform::documentsFolder().getChildFile ("Shield").getChildFile ("Audio logger");
 }
 
 bool AudioLogger::start (const juce::File& folder, double sampleRate)

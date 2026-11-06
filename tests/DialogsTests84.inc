@@ -186,7 +186,7 @@ TEST (export_mp3_encoder_frames)
     {
         lynx::Mp3Encoder enc;
         std::string error;
-        CHECK (enc.open (rate, rate, channels, kbps, error, "Night Drive", "LYNX"));
+        CHECK (enc.open (rate, rate, channels, kbps, error, "Night Drive", "Shield"));
         std::vector<float> l ((std::size_t) rate), r ((std::size_t) rate);
         for (std::size_t i = 0; i < l.size(); ++i)
         {

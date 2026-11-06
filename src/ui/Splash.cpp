@@ -236,10 +236,10 @@ void SplashScreen::paint (juce::Graphics& g)
         g.setOpacity (1.0f);
     }
 
-    // "LYNX SHARE" (v0.1.20 rename): "LYNX" big, "SHARE" under it in the accent colour, spaced out to the same
+    // Shield: "SHIELD" big, "DAW" under it in the accent colour, spaced out to the same
     // width; the letters slide in one after another
     {
-        const juce::String word ("LYNX"), word2 ("SHARE");
+        const juce::String word ("SHIELD"), word2 ("DAW");
         const juce::Font big (juce::FontOptions (78.0f, juce::Font::bold));
         const juce::Font small (juce::FontOptions (30.0f, juce::Font::bold));
         const auto left = 300.0f;

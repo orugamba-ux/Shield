@@ -184,7 +184,7 @@ TEST (report159_size_cap)
     in.version = "0.1.16";
     std::string big;
     for (int i = 0; i < 40000; ++i)
-        big += "LYNX.exe+0x" + std::to_string (100000 + i) + "  (frame " + std::to_string (i) + ")\n"; // ~1.4 MB
+        big += "Shield.exe+0x" + std::to_string (100000 + i) + "  (frame " + std::to_string (i) + ")\n"; // ~1.4 MB
     in.crashText = big;
     in.hangText = big;
     for (int i = 0; i < 400; ++i)
@@ -210,7 +210,7 @@ TEST (report159_github_url)
     CHECK (githubOsOption ("Windows 11") == "Windows 11" && githubOsOption ("Windows 10") == "Windows 10");
     CHECK (githubOsOption ("Mac OSX 15.1", "arm64") == "macOS (Apple silicon)" && githubOsOption ("Mac OSX 15.1", "x86_64") == "macOS (Intel)");
     CHECK (githubOsOption ("Linux", {}, true) == "Linux (AppImage)" && githubOsOption ("Linux") == "Linux (tar.gz)" && githubOsOption ("BeOS").empty());
-    CHECK (githubKindOption ("crash") == "LYNX SHARE closed (crash)" && githubKindOption ("hang") == "LYNX SHARE froze (not responding)"
+    CHECK (githubKindOption ("crash") == "Shield closed (crash)" && githubKindOption ("hang") == "Shield froze (not responding)"
            && githubKindOption ("manual") == "Other");
 
     IssueFields f;
@@ -220,7 +220,7 @@ TEST (report159_github_url)
     f.kind = githubKindOption ("crash");
     f.steps = "1. Open the editor\n2. LYNX closes";
     const auto url = githubIssueUrl (f);
-    CHECK (url.rfind ("https://github.com/Ka1-S/LYNX-SHARE/issues/new?template=bug_report.yml&", 0) == 0);
+    CHECK (url.rfind ("https://github.com/orugamba-ux/Shield/issues/new?template=bug_report.yml&", 0) == 0);
     CHECK (has (url, "&os=Windows%2011") && has (url, "&kind=LYNX%20SHARE%20closed%20%28crash%29") && has (url, "&version=0.1.16"));
     CHECK (has (url, "&steps=1.%20Open%20the%20editor%0A2.%20LYNX%20closes"));
     CHECK (! has (url, "&logs=")); // empty fields are left out
@@ -228,7 +228,7 @@ TEST (report159_github_url)
     // a huge log is cut to fit, with an ellipsis, never inside an escape or a character
     std::string log;
     for (int i = 0; i < 3000; ++i)
-        log += "ação LYNX.exe+0x" + std::to_string (i) + "\n";
+        log += "ação Shield.exe+0x" + std::to_string (i) + "\n";
     f.logs = log;
     f.plugins = std::string (5000, 'p');
     const auto cut = githubIssueUrl (f, 8000);
@@ -254,15 +254,15 @@ TEST (report174a_fatal_hang_is_crash)
                               "8: ntdll.dll+0x19f3d  (RtlRaiseException + 0x18d)\n"
                               "13: ntdll.dll+0x2796a  (RtlFreeHeap + 0x6da)\n"
                               "14: ucrtbase.dll+0x12d7b  (free_base + 0x1b)\n"
-                              "15: LYNX.exe+0x65a771\n";
+                              "15: Shield.exe+0x65a771\n";
     CHECK (hangIsFatalReport (dying));
     const std::string frozen = "LYNX UI thread not responding for 4012 ms (sample 1)\n"
                                "0: ntdll.dll+0x1628a4  (ZwWaitForSingleObject + 0x14)\n"
                                "1: KERNELBASE.dll+0x3a1f0  (WaitForSingleObjectEx + 0x9e)\n"
-                               "2: LYNX.exe+0x281b71\n";
+                               "2: Shield.exe+0x281b71\n";
     CHECK (! hangIsFatalReport (frozen));
     CHECK (! hangIsFatalReport (""));
-    CHECK (lynx::crashreport::githubKindOption ("crash") == "LYNX SHARE closed (crash)");
+    CHECK (lynx::crashreport::githubKindOption ("crash") == "Shield closed (crash)");
 }
 
 // Issue #32 (round 174a): a fault in a plugin's own editor window that LYNX caught (the editor closed, LYNX went on)

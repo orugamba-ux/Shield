@@ -1820,7 +1820,7 @@ void MainComponent::connectBrowser (BrowserComponent& b)
             return false;
         if (! mixer.loadPresetOnSelection (file))
             juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Open mixer track state"),
-                                                    tr ("This file is not a mixer track state LYNX SHARE can read."));
+                                                    tr ("This file is not a mixer track state Shield can read."));
         return true;
     };
     // the Browser's "Current project" items (REA_rodada115)
@@ -4047,7 +4047,7 @@ void MainComponent::timerCallback()
         PluginHost::settingsFolder().getChildFile ("plugin-crashes.log").appendText (lines[lines.size() - 1] + "\n");
         juce::AlertWindow::showMessageBoxAsync (
             juce::MessageBoxIconType::WarningIcon, tr ("Plugin crashed"),
-            tr ("The plugin \"{0}\" crashed and was switched off, so LYNX SHARE and your project kept running (the effect is bypassed, an "
+            tr ("The plugin \"{0}\" crashed and was switched off, so Shield and your project kept running (the effect is bypassed, an "
                 "instrument stays silent). Save your project; the plugin loads again the next time you open it.",
                 { names[names.size() - 1] }));
     }
@@ -4153,10 +4153,10 @@ void MainComponent::timerCallback()
             if (lynx::rt::shouldShowHint (PluginHost::settingsFolder().getChildFile ("realtime-hint-shown")))
                 juce::AlertWindow::showMessageBoxAsync (
                     juce::MessageBoxIconType::InfoIcon, tr ("Real-time priority"),
-                    tr ("The sound broke up, and Linux runs LYNX SHARE's audio thread at normal priority. Real-time priority makes dropouts much rarer:\n\n"
+                    tr ("The sound broke up, and Linux runs Shield's audio thread at normal priority. Real-time priority makes dropouts much rarer:\n\n"
                         "- install rtkit (package \"rtkit\"; most desktops already have it), or\n"
                         "- add yourself to the \"audio\" group with an rtprio limit in /etc/security/limits.d (as for JACK),\n\n"
-                        "then log out and in again. LYNX SHARE never needs root. Options > Audio settings shows the current state."));
+                        "then log out and in again. Shield never needs root. Options > Audio settings shows the current state."));
         }
     }
 
@@ -4196,7 +4196,7 @@ void MainComponent::updateTitle()
             liveState = " [" + (st == S::live ? tr ("LIVE") : st == S::reconnecting ? tr ("Reconnecting...") : st == S::waitingHost ? tr ("Waiting for the host...") : tr ("Connecting...")) + "]";
         }
         window->setName ((engine.isModified() ? "* " : "")
-                         + (projectName.isNotEmpty() ? "LYNX SHARE - " + projectName : juce::String ("LYNX SHARE")) + importedSuffix + liveState);
+                         + (projectName.isNotEmpty() ? "Shield - " + projectName : juce::String ("Shield")) + importedSuffix + liveState);
     }
 }
 
@@ -4655,7 +4655,7 @@ void MainComponent::saveToNewProjectFolder()
     // recordings go to <name>/Audio/Recorded). This session's takes still in the global recordings folder move along
     // (copied there, the project uses the copies; the originals are then offered for deletion as unused).
     const auto start = currentFile != juce::File() ? currentFile.getParentDirectory()
-                                                   : lynx::platform::documentsFolder().getChildFile ("LYNX/Projects");
+                                                   : lynx::platform::documentsFolder().getChildFile ("Shield/Projects");
     start.createDirectory();
     fileChooser = lynx::ui::makeFileChooser (tr ("Save to new project folder"),
                                                        start.getChildFile (projectName.isNotEmpty() ? juce::File::createLegalFileName (projectName) : juce::String ("untitled")),
@@ -4712,7 +4712,7 @@ void MainComponent::startSession()
 {
     // Like FL's backup on crash: a marker exists while LYNX runs; finding one at start means the last session
     // ended without closing (crash, power loss), so the newest backup written during it is offered.
-    sessionLock = std::make_unique<juce::InterProcessLock> ("LYNX-ui-session");
+    sessionLock = std::make_unique<juce::InterProcessLock> ("Shield-ui-session");
     if (! sessionLock->enter (0))
     {
         sessionLock.reset(); // another LYNX window is running: it owns the marker
@@ -4755,7 +4755,7 @@ void MainComponent::checkInterruptedTakes()
         names.add (juce::File (juce::String::fromUTF8 (j.wav.c_str())).getFileName());
     const auto folder = juce::File (juce::String::fromUTF8 (takes.front().wav.c_str())).getParentDirectory();
     auto* w = new juce::AlertWindow (tr ("Recordings recovered"),
-                                     tr ("LYNX SHARE was recording when it stopped. These takes were saved and repaired:\n{0}\n\nPut them on the Playlist "
+                                     tr ("Shield was recording when it stopped. These takes were saved and repaired:\n{0}\n\nPut them on the Playlist "
                                          "where they were recorded?", { names.joinIntoString ("\n") }),
                                      juce::MessageBoxIconType::InfoIcon);
     w->addButton (tr ("Put them on the Playlist"), 1, juce::KeyPress (juce::KeyPress::returnKey));
@@ -4795,7 +4795,7 @@ void MainComponent::checkPreviousSession (juce::Time sessionStart)
         return; // nothing was saved in that session
     const auto backup = folder.getChildFile (juce::String::fromUTF8 (name.c_str()) + ProjectFile::extension);
 
-    auto* w = new juce::AlertWindow (tr ("LYNX SHARE did not close properly"),
+    auto* w = new juce::AlertWindow (tr ("Shield did not close properly"),
                                      tr ("The last session ended unexpectedly. Open the newest backup it saved?\n{0}  ({1})",
                                          { backup.getFileName(), backup.getLastModificationTime().formatted ("%Y-%m-%d %H:%M") }),
                                      juce::MessageBoxIconType::WarningIcon);
@@ -4867,7 +4867,7 @@ void MainComponent::announceEditorCrash (const juce::String& plugin)
                        .withIconType (juce::MessageBoxIconType::WarningIcon)
                        .withTitle (tr ("Plugin crashed"))
                        .withMessage (tr ("{0} crashed. Save your project now (as a new file is safest).", { plugin }) + "\n\n"
-                                     + tr ("Its window was closed so that LYNX SHARE could keep running. The plugin may not work "
+                                     + tr ("Its window was closed so that Shield could keep running. The plugin may not work "
                                            "properly until the project is opened again."))
                        .withButton (tr ("Save as..."));
     if (offerSeparate)
@@ -5283,7 +5283,7 @@ void MainComponent::showMissingFiles (bool afterOpening)
                     auto it = std::find_if (info.plugins.begin(), info.plugins.end(), [&] (const MissingPlugin& p) { return p.name == name; });
                     if (it == info.plugins.end())
                         it = info.plugins.insert (info.plugins.end(),
-                                                  MissingPlugin { name, {}, TR_NOOP ("LYNX SHARE substitute: {0} (the original plugin is used again once it is installed). FL Studio plays a missing plugin's slot unprocessed: a substitute slot's menu › Bypass all LYNX SHARE substitutes of this project does the same"),
+                                                  MissingPlugin { name, {}, TR_NOOP ("Shield substitute: {0} (the original plugin is used again once it is installed). FL Studio plays a missing plugin's slot unprocessed: a substitute slot's menu › Bypass all Shield substitutes of this project does the same"),
                                                                   effectInfo (fx.kind).name });
                     const auto user = song.mixer[t].name.empty() ? (t == 0 ? std::string ("Master") : "Insert " + std::to_string (t)) : song.mixer[t].name;
                     if (std::find (it->usedBy.begin(), it->usedBy.end(), user) == it->usedBy.end())
@@ -5407,7 +5407,7 @@ void MainComponent::exportMidiFile()
 {
     // FL's File › Export › "MIDI file...": the arrangement's notes (or the current pattern's) as a Standard MIDI File
     const auto folder = currentFile.existsAsFile() ? currentFile.getParentDirectory() : juce::File::getSpecialLocation (juce::File::userMusicDirectory);
-    const auto name = projectName.isNotEmpty() ? projectName : juce::String ("LYNX SHARE");
+    const auto name = projectName.isNotEmpty() ? projectName : juce::String ("Shield");
     fileChooser = lynx::ui::makeFileChooser (tr ("Export MIDI file"), folder.getChildFile (name + ".mid"), "*.mid");
     juce::Component::SafePointer<MainComponent> safe (this);
     lynx::ui::launchChooser (fileChooser, juce::FileBrowserComponent::saveMode | juce::FileBrowserComponent::warnAboutOverwriting,
@@ -5471,7 +5471,7 @@ void MainComponent::save (bool askForFile)
                                   }
                                   // FL warns the same way: the backup folder is cleaned up as new backups arrive
                                   auto* w = new juce::AlertWindow (tr ("Save in the backup folder?"),
-                                                                   tr ("This folder keeps LYNX SHARE's automatic backups and old ones are deleted as new "
+                                                                   tr ("This folder keeps Shield's automatic backups and old ones are deleted as new "
                                                                        "ones arrive, so a project saved here can be lost. If you opened a backup, save it "
                                                                        "somewhere else."),
                                                                    juce::MessageBoxIconType::WarningIcon);
@@ -5942,12 +5942,12 @@ juce::PopupMenu MainComponent::getMenuForIndex (int barIndex, const juce::String
                 showImportReport();
         });
         menu.addItem (tr ("Built-in plugins (online list)..."), [] {
-            juce::URL ("https://github.com/Ka1-S/LYNX-SHARE/blob/main/docs/PLUGINS.md").launchInDefaultBrowser();
+            juce::URL ("https://github.com/orugamba-ux/Shield/blob/main/docs/PLUGINS.md").launchInDefaultBrowser();
         });
         menu.addItem (tr ("Report a problem..."), [this] { crashreporter::showManualReport (&engine.getDeviceManager()); });
         if (updater::offered()) // (not in the Store build: the Store updates it)
             menu.addItem (tr ("Check for updates..."), [] { updater::checkNow(); });
-        menu.addItem (tr ("About LYNX SHARE"), [] {
+        menu.addItem (tr ("About Shield"), [] {
             auto* window = makeAboutWindow().release();
             window->enterModalState (true, nullptr, true);
             keepAboveMainWindow (*window);
@@ -5970,12 +5970,20 @@ std::unique_ptr<juce::AlertWindow> MainComponent::makeAboutWindow()
     struct About final : juce::AlertWindow
     {
         About()
-            : juce::AlertWindow ("LYNX SHARE " JUCE_APPLICATION_VERSION_STRING,
+            : juce::AlertWindow ("Shield " JUCE_APPLICATION_VERSION_STRING,
                                  tr ("Lightweight C++/JUCE DAW with the FL Studio workflow.\n"
                                      "Independent implementation: no Image-Line code was copied."),
                                  juce::MessageBoxIconType::NoIcon)
         {
             addCustomComponent (&logo);
+            // Appropriate Legal Notices (GNU AGPL-3.0 sections 0, 5 and 13): Shield is a modified version of LYNX SHARE;
+            // the upstream copyright, the licence, the absence of warranty and where the source is are shown here.
+            // Kept untranslated on purpose so the legal text stays exact.
+            addTextBlock ("Shield is a modified version of LYNX SHARE.\n"
+                          "Copyright (C) 2026 Ka1-S (LYNX SHARE, https://github.com/Ka1-S/LYNX-SHARE).\n"
+                          "Modifications (C) 2026 the Shield contributors.\n\n"
+                          "Free software under the GNU Affero General Public License v3.0, WITHOUT ANY WARRANTY.\n"
+                          "Source code: https://github.com/orugamba-ux/Shield (see LICENSE and THIRD_PARTY.md).");
         }
         Logo logo;
     };
@@ -6002,7 +6010,7 @@ void MainComponent::showLanguageChoice (const juce::String& id)
     const juce::LocalisedStrings strings (table, false);
     auto say = [&] (const char* text) { return table.isEmpty() ? juce::String::fromUTF8 (text) : strings.translate (juce::String::fromUTF8 (text)); };
 
-    auto* window = new juce::AlertWindow (say (TR_NOOP ("Language")), say (TR_NOOP ("The new language is applied when LYNX SHARE restarts.")),
+    auto* window = new juce::AlertWindow (say (TR_NOOP ("Language")), say (TR_NOOP ("The new language is applied when Shield restarts.")),
                                           juce::MessageBoxIconType::InfoIcon);
     window->addButton (say (TR_NOOP ("Restart now")), 1, juce::KeyPress (juce::KeyPress::returnKey));
     window->addButton (say (TR_NOOP ("Later")), 0, juce::KeyPress (juce::KeyPress::escapeKey));
@@ -6189,7 +6197,7 @@ void MainComponent::showHelp()
 {
     juce::DialogWindow::LaunchOptions options;
     options.content.setOwned (makeHelpContent (&keyMap).release());
-    options.dialogTitle = tr ("LYNX SHARE shortcuts");
+    options.dialogTitle = tr ("Shield shortcuts");
     options.dialogBackgroundColour = theme::colour::bg2;
     options.useNativeTitleBar = true;
     options.resizable = true;
@@ -6275,7 +6283,7 @@ void MainComponent::showImportReport()
     if (const auto& matched = engine.getMatchedPlugins(); ! matched.isEmpty())
         text << tr ("Plugins found on this PC:") << "\n  " << matched.joinIntoString ("\n  ") << "\n\n";
     if (! missing.isEmpty())
-        text << tr ("Plugins not installed on this PC (or in a folder LYNX SHARE doesn't scan; Options > Setup wizard):") << "\n  "
+        text << tr ("Plugins not installed on this PC (or in a folder Shield doesn't scan; Options > Setup wizard):") << "\n  "
              << missing.joinIntoString ("\n  ") << "\n\n";
     if (const auto& lost = engine.getPluginsWithoutState(); ! lost.isEmpty())
         text << tr ("Plugins found but playing their default settings (the project saved them for the other format, VST2/VST3):") << "\n  "

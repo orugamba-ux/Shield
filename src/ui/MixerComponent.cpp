@@ -1812,7 +1812,7 @@ namespace
 {
 juce::File mixerStatesFolder()
 {
-    return lynx::platform::documentsFolder().getChildFile ("LYNX/Mixer states");
+    return lynx::platform::documentsFolder().getChildFile ("Shield/Mixer states");
 }
 
 std::unique_ptr<juce::FileChooser>& mixerStateChooser()
@@ -2201,7 +2201,7 @@ juce::PopupMenu MixerStrips::buildMenu (int t)
             lynx::ui::launchChooser (chooser, juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectFiles, [safe, targets] (const juce::FileChooser& fc) {
                 if (safe != nullptr && fc.getResult().existsAsFile() && ! mixerpresets::loadOnTracks (safe->engine, targets, fc.getResult()))
                     juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, tr ("Open mixer track state"),
-                                                            tr ("This file is not a mixer track state LYNX SHARE can read."));
+                                                            tr ("This file is not a mixer track state Shield can read."));
             });
         });
         file.addItem (tr ("Save mixer track state as...") + "\tCtrl+Shift+S", [this, t, trackName] {
@@ -2706,7 +2706,7 @@ juce::String addableEffectName (EffectKind kind)
     // LYNX's own pitch / frequency effects sit next to FL's look-alikes (Pitch Shifter, Frequency Shifter, Pitcher)
     // in the lists: tell them apart (round 162, issue #7 review)
     if (kind == EffectKind::pitchShift || kind == EffectKind::freqShift || kind == EffectKind::pitchCorrect)
-        return tr ("{0} (LYNX SHARE)", { name });
+        return tr ("{0} (Shield)", { name });
     if (const auto* e = natives::effectEngine (kind))
     {
         if (! natives::available (*e, flStudioAccess()))
@@ -3231,7 +3231,7 @@ void addItems (juce::PopupMenu& menu, AudioEngine& engine, bool newProjects)
         juce::PopupMenu chain;
         const std::pair<const char*, MasterChain> chains[] = { { TR_NOOP ("Empty (nothing on the Master)"), MasterChain::empty },
                                                                { TR_NOOP ("Soft clipper only"), MasterChain::clipper },
-                                                               { TR_NOOP ("LYNX SHARE default (limiter)"), MasterChain::lynxDefault } };
+                                                               { TR_NOOP ("Shield default (limiter)"), MasterChain::lynxDefault } };
         for (const auto& [label, c] : chains)
             chain.addItem (tr (label), true, d.master == c, [c = c] {
                 newProjectDefaults().master = c;
@@ -3806,7 +3806,7 @@ void EffectsPanel::paint (juce::Graphics& g)
                 g.setColour (playing ? colour::info : colour::textDisabled);
                 const auto keep = g.getCurrentFont();
                 g.setFont (font (type::caption, true));
-                textcache::drawText (g, "LYNX", badge, juce::Justification::centred);
+                textcache::drawText (g, "Shield", badge, juce::Justification::centred);
                 g.setFont (keep);
                 g.setColour (slot.enabled ? colour::textPrimary : colour::textDisabled);
             }
@@ -3933,7 +3933,7 @@ void EffectsPanel::paint (juce::Graphics& g)
         g.setColour (colour::info);
         g.setFont (font (type::caption));
         const auto original = juce::String::fromUTF8 (substituteOriginalName (slot).c_str());
-        textcache::drawText (g, engine.getSong().substitutesBypassed ? tr ("LYNX SHARE substitute for {0} (bypassed)", { original }) : tr ("LYNX SHARE substitute for {0}", { original }),
+        textcache::drawText (g, engine.getSong().substitutesBypassed ? tr ("Shield substitute for {0} (bypassed)", { original }) : tr ("Shield substitute for {0}", { original }),
                     10 + titleWidth + 10, titleY,
                     juce::jmax (0, titleRight - 20 - titleWidth), 20, juce::Justification::centredLeft, true);
     }
@@ -4784,7 +4784,7 @@ bool EffectsPanel::dropPreset (const juce::File& file, juce::Point<int> position
     if (! fx)
     {
         juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::InfoIcon, tr ("Preset"),
-                                                tr ("LYNX SHARE can't build an effect from this preset."));
+                                                tr ("Shield can't build an effect from this preset."));
         return false;
     }
 
@@ -4976,7 +4976,7 @@ void EffectsPanel::showAddMenu (int row)
             equivalents.addItem (juce::String::fromUTF8 (entry.product.c_str()) + juce::String::fromUTF8 (" \xe2\x86\x92 ") + juce::String::fromUTF8 (effectInfo (entry.effect).name),
                                  [place, entry] { place (makeSubstituteSlot (entry)); });
     if (equivalents.getNumItems() > 0)
-        menu.addSubMenu (tr ("LYNX SHARE equivalents"), equivalents);
+        menu.addSubMenu (tr ("Shield equivalents"), equivalents);
 
     juce::PopupMenu plugins;
     addPluginItems (plugins, engine, false, [this, place] (PluginRef ref) {
@@ -5130,7 +5130,7 @@ void EffectsPanel::showSlotMenu (int slot)
         menu.addSubMenu (hasSpare ? tr ("A/B compare (B stored)") : tr ("A/B compare"), ab);
     }
     if ((*slots())[(std::size_t) slot].isSubstitute()) // A/B of every substitute of the project at once (round 113)
-        menu.addItem (tr ("Bypass all LYNX SHARE substitutes of this project"), true, engine.getSong().substitutesBypassed, [this] {
+        menu.addItem (tr ("Bypass all Shield substitutes of this project"), true, engine.getSong().substitutesBypassed, [this] {
             engine.editSong ([] (Song& song) { song.substitutesBypassed = ! song.substitutesBypassed; });
             repaint();
         });
@@ -5395,7 +5395,7 @@ void showMenu (AudioEngine& engine, int track, juce::Component* target, std::fun
         for (const auto& [point, label] : points)
             menu.addItem (tr (label), true, mt.recordSource == point, [&engine, track, point = point] { engine.setInsertRecordSource (track, point); });
         // LYNX extra: the dry device input as a second take beside a processed one (DI + amp, for re-amping)
-        menu.addItem (tr ("Also record the dry input as a second take (LYNX)"), mt.recordSource != RecordSource::externalInput,
+        menu.addItem (tr ("Also record the dry input as a second take (Shield)"), mt.recordSource != RecordSource::externalInput,
                       mt.recordDryToo && mt.recordSource != RecordSource::externalInput,
                       [&engine, track, on = mt.recordDryToo] { engine.setInsertRecordDryToo (track, ! on); });
     }

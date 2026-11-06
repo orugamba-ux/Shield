@@ -339,19 +339,20 @@ if(LYNX_BUILD_APP)
     endif()
 
     juce_add_gui_app(LYNX
-        PRODUCT_NAME "LYNX"
-        COMPANY_NAME "Ka1-S"
-        COMPANY_COPYRIGHT "Copyright (C) 2026 Ka1-S. Licensed under the GNU AGPL-3.0."
-        DESCRIPTION "LYNX SHARE digital audio workstation"
+        # Shield: a modified version of LYNX SHARE (Ka1-S); the upstream copyright stays, AGPL-3.0 section 5
+        PRODUCT_NAME "Shield"
+        COMPANY_NAME "Shield contributors"
+        COMPANY_COPYRIGHT "Copyright (C) 2026 Ka1-S (LYNX SHARE) and the Shield contributors. Licensed under the GNU AGPL-3.0."
+        DESCRIPTION "Shield digital audio workstation (based on LYNX SHARE)"
         # macOS bundle (Info.plist, .icns made from the 1024 px badge); ignored elsewhere
-        BUNDLE_ID "com.ka1-s.lynx"
-        ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/resources/lynx_badge.png"
-        ICON_SMALL "${CMAKE_CURRENT_SOURCE_DIR}/resources/lynx_icon_256.png"
+        BUNDLE_ID "io.github.orugamba-ux.shield"
+        ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/resources/shield_badge.png"
+        ICON_SMALL "${CMAKE_CURRENT_SOURCE_DIR}/resources/shield_icon_256.png"
         MICROPHONE_PERMISSION_ENABLED TRUE
-        MICROPHONE_PERMISSION_TEXT "LYNX SHARE records audio from your microphone or audio interface when you arm a track and press Record."
+        MICROPHONE_PERMISSION_TEXT "Shield records audio from your microphone or audio interface when you arm a track and press Record."
         DOCUMENT_EXTENSIONS lynx flp mid
         HARDENED_RUNTIME_ENABLED FALSE
-        PLIST_TO_MERGE "<plist><dict><key>CFBundleName</key><string>LYNX SHARE</string><key>CFBundleDisplayName</key><string>LYNX SHARE</string><key>LSMinimumSystemVersion</key><string>11.0</string><key>NSHighResolutionCapable</key><true/></dict></plist>")
+        PLIST_TO_MERGE "<plist><dict><key>CFBundleName</key><string>Shield</string><key>CFBundleDisplayName</key><string>Shield</string><key>LSMinimumSystemVersion</key><string>11.0</string><key>NSHighResolutionCapable</key><true/></dict></plist>")
 
     target_sources(LYNX PRIVATE
         src/Main.cpp

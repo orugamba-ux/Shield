@@ -11,6 +11,7 @@
 #include "core/Effects.h"
 #include "core/FruityBasicFx.h"
 #include "core/GrossBeat.h"
+#include "core/ShieldNames.h"
 #include "core/EffectPresetTable.inc"
 #include "core/EffectBanks168r.inc" // round 168r: LYNX's banks for the FL effects and the simple built-ins
 
@@ -67,8 +68,9 @@ std::optional<double> numberIn (const std::string& text)
 
 constexpr int grid = 2000;
 
-EffectKind kindNamed (const std::string& name)
+EffectKind kindNamed (const std::string& oldOrNewName)
 {
+    const auto name = currentEngineName (oldOrNewName); // Shield: "LYNX Tune" -> "Shield Tune"
     // the exact name first: LYNX's "Frequency shifter" and FL's "Frequency Shifter" differ only in case (round 168r)
     for (int k = 0; k <= (int) lastEffectKind; ++k)
         if (name == effectInfo ((EffectKind) k).name)
@@ -424,7 +426,7 @@ std::optional<Loaded> fromText (EffectKind kind, const std::string& text)
             continue;
         const auto key = trim (line.substr (0, eq)), value = trim (line.substr (eq + 1));
         if (key == "engine")
-            sameEngine = folded (value) == folded (effectInfo (kind).name);
+            sameEngine = folded (currentEngineName (value)) == folded (effectInfo (kind).name); // Shield: LYNX presets too
         else if (key == "name")
             loaded.name = value;
         else if (key == sendSpanKey)

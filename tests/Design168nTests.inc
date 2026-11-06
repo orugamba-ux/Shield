@@ -193,5 +193,5 @@ TEST (design168n_banks_play_clean)
             CHECK (categories.count (category) == 1);
     }
     CHECK (banks::indexOfPath (banks::pathOf (17)) == 17 && banks::indexOfPath ("C:/x.fst") == -1 && banks::indexOfPath ("lynxbank:") == -1);
-    CHECK (banks::relativeOf (banks::bankOf (InstrumentKind::poizone)[1]) == "LYNX/Bass/Acid Line");
+    CHECK (banks::relativeOf (banks::bankOf (InstrumentKind::poizone)[1]) == "Shield/Bass/Acid Line");
 }

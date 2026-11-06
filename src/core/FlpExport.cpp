@@ -291,15 +291,15 @@ std::string instrumentName (InstrumentKind k)
 {
     switch (k)
     {
-        case InstrumentKind::kick: return "LYNX Kick";
-        case InstrumentKind::snare: return "LYNX Snare";
-        case InstrumentKind::hat: return "LYNX Hat";
-        case InstrumentKind::clap: return "LYNX Clap";
-        case InstrumentKind::synth: return "LYNX Synth";
+        case InstrumentKind::kick: return "Shield Kick";
+        case InstrumentKind::snare: return "Shield Snare";
+        case InstrumentKind::hat: return "Shield Hat";
+        case InstrumentKind::clap: return "Shield Clap";
+        case InstrumentKind::synth: return "Shield Synth";
         case InstrumentKind::sampler: return "Sampler (multi-sample / slices)";
         case InstrumentKind::controller: return "Envelope Controller";
         case InstrumentKind::patcher: return "Patcher";
-        case InstrumentKind::soundfont: return "LYNX Soundfont";
+        case InstrumentKind::soundfont: return "Shield Soundfont";
         case InstrumentKind::vfx: return "VFX note processor";
         default: return "instrument";
     }

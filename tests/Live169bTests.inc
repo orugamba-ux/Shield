@@ -644,7 +644,7 @@ TEST (live169b_invite_code_and_encryption)
     const Invite invite { "2syq75e66t", newSecret() };
     CHECK (invite.secret.size() == 16 && newSecret() != invite.secret);
     const auto code = formatCode (invite);
-    CHECK (code.size() == 36 && code.rfind ("LYNX-2SYQ7-5E66T-", 0) == 0);
+    CHECK (code.size() == 36 && code.rfind ("Shield-2SYQ7-5E66T-", 0) == 0);
     auto parsed = parseCode (code);
     CHECK (parsed && parsed->room == invite.room && parsed->secret == invite.secret);
     // pasted with spaces, lower case, inside a link
@@ -653,7 +653,7 @@ TEST (live169b_invite_code_and_encryption)
         ch = ch == '-' ? ' ' : (char) std::tolower ((unsigned char) ch);
     CHECK (parseCode (loose) && parseCode (loose)->secret == invite.secret);
     CHECK (parseCode ("https://lynx-share.com/join#" + code) && parseCode ("https://lynx-share.com/join#" + code)->room == invite.room);
-    CHECK (! parseCode ("LYNX-ABC") && ! parseCode (code + "X") && ! parseCode ("LYNX-2SYQ7-5E66T-!!!!-AAAA-AAAA-AAAA"));
+    CHECK (! parseCode ("LYNX-ABC") && ! parseCode (code + "X") && ! parseCode ("Shield-2SYQ7-5E66T-!!!!-AAAA-AAAA-AAAA"));
 
     const auto keys = derive (invite);
     const auto again = derive (*parsed);

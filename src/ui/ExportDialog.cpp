@@ -1035,7 +1035,7 @@ void bounceInsertToAudio (AudioEngine& engine, int track)
 
     engine.capturePluginStates();
     const auto name = juce::String::fromUTF8 (song.mixer[(std::size_t) track].name.c_str());
-    const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("LYNX/Renders");
+    const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("Shield/Renders");
     folder.createDirectory();
     const auto file = folder.getNonexistentChildFile (juce::File::createLegalFileName (name), ".wav");
 
@@ -1064,7 +1064,7 @@ namespace
 // FL's default render folder (FUN_011bf050): LYNX renders into Music/LYNX/Renders
 juce::File renderFolder()
 {
-    const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("LYNX/Renders");
+    const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("Shield/Renders");
     folder.createDirectory();
     return folder;
 }
@@ -1103,7 +1103,7 @@ void explain (quickrender::Result r)
 void showClipRenderWindow (AudioEngine& engine, const juce::String& title, std::shared_ptr<ClipRenderMode> mode)
 {
     juce::DialogWindow::LaunchOptions options;
-    options.content.setOwned (fitContentToScreen (std::make_unique<ExportPanel> (engine, juce::File(), "LYNX SHARE", false, -1, std::vector<int> {}, std::move (mode))).release());
+    options.content.setOwned (fitContentToScreen (std::make_unique<ExportPanel> (engine, juce::File(), "Shield", false, -1, std::vector<int> {}, std::move (mode))).release());
     options.dialogTitle = title;
     options.dialogBackgroundColour = theme::colour::bg2;
     options.useNativeTitleBar = true;
@@ -1392,7 +1392,7 @@ void exportAllPlaylistTracks (AudioEngine& engine, const juce::String& projectNa
             song.loopStart = song.loopEnd = 0; // FL clears the time selection for the other two
         std::vector<TrackExportThread::Item> items;
         int skipped = 0;
-        const auto name = projectName.isNotEmpty() ? projectName.toStdString() : std::string ("LYNX SHARE");
+        const auto name = projectName.isNotEmpty() ? projectName.toStdString() : std::string ("Shield");
         juce::Array<juce::File> taken; // (two tracks of the same name get two files)
         for (auto t : quickrender::exportTracks (song, groups))
         {
@@ -1487,7 +1487,7 @@ void exportProjectBones (AudioEngine& engine, const juce::File& suggestedFolder,
             return;
         engineRef->capturePluginStates();
         const auto& song = engineRef->getSong();
-        const auto base = juce::String::fromUTF8 (quickrender::safeFileName (projectName.toStdString(), "LYNX SHARE").c_str());
+        const auto base = juce::String::fromUTF8 (quickrender::safeFileName (projectName.toStdString(), "Shield").c_str());
         auto dir = folder.getChildFile (base);
         if (! dir.createDirectory())
         {
@@ -1509,21 +1509,21 @@ void exportProjectBones (AudioEngine& engine, const juce::File& suggestedFolder,
 
 std::unique_ptr<juce::Component> makeExportPanel (AudioEngine& engine, int format)
 {
-    auto panel = std::make_unique<ExportPanel> (engine, juce::File(), "LYNX SHARE", false);
+    auto panel = std::make_unique<ExportPanel> (engine, juce::File(), "Shield", false);
     panel->setFormatForSnapshot (format);
     return panel;
 }
 
 std::unique_ptr<juce::Component> makeExportPanelForTracks (AudioEngine& engine, const std::vector<int>& tracks)
 {
-    return std::make_unique<ExportPanel> (engine, juce::File(), "LYNX SHARE", false, 0, tracks);
+    return std::make_unique<ExportPanel> (engine, juce::File(), "Shield", false, 0, tracks);
 }
 
 void showExportDialogForTracks (AudioEngine& engine, const juce::File& suggestedFolder, const juce::String& suggestedName,
                                 const std::vector<int>& tracks, std::function<void (const std::vector<juce::File>&)> afterRender)
 {
     juce::DialogWindow::LaunchOptions options;
-    auto panel = std::make_unique<ExportPanel> (engine, suggestedFolder, suggestedName.isNotEmpty() ? suggestedName : "LYNX SHARE", true, -1, tracks);
+    auto panel = std::make_unique<ExportPanel> (engine, suggestedFolder, suggestedName.isNotEmpty() ? suggestedName : "Shield", true, -1, tracks);
     panel->afterRender = std::move (afterRender);
     options.content.setOwned (fitContentToScreen (std::move (panel)).release());
     options.dialogTitle = tr ("Render mixer tracks to audio files");
@@ -1544,7 +1544,7 @@ void showMasterDialog (AudioEngine& engine, const juce::File& suggestedFolder, c
         return;
     }
     juce::DialogWindow::LaunchOptions options;
-    auto panel = std::make_unique<ExportPanel> (engine, suggestedFolder, (projectName.isNotEmpty() ? projectName : juce::String ("LYNX SHARE")) + " (mastered)", true);
+    auto panel = std::make_unique<ExportPanel> (engine, suggestedFolder, (projectName.isNotEmpty() ? projectName : juce::String ("Shield")) + " (mastered)", true);
     panel->enableMaster();
     options.content.setOwned (fitContentToScreen (std::move (panel)).release());
     options.dialogTitle = tr ("Master");
@@ -1559,7 +1559,7 @@ void showMasterDialog (AudioEngine& engine, const juce::File& suggestedFolder, c
 void showExportDialog (AudioEngine& engine, const juce::File& suggestedFolder, const juce::String& suggestedName, int format)
 {
     juce::DialogWindow::LaunchOptions options;
-    options.content.setOwned (fitContentToScreen (std::make_unique<ExportPanel> (engine, suggestedFolder, suggestedName.isNotEmpty() ? suggestedName : "LYNX SHARE", true, format)).release());
+    options.content.setOwned (fitContentToScreen (std::make_unique<ExportPanel> (engine, suggestedFolder, suggestedName.isNotEmpty() ? suggestedName : "Shield", true, format)).release());
     options.dialogTitle = tr ("Export audio");
     options.dialogBackgroundColour = theme::colour::bg2;
     options.useNativeTitleBar = true;

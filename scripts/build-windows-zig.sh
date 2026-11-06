@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Cross build of LYNX.exe (Windows x64) from Linux/WSL using Zig (clang + MinGW-w64).
+# Cross build of Shield.exe (Windows x64) from Linux/WSL using Zig (clang + MinGW-w64).
 # Needs neither Visual Studio nor CMake. The official build is still CMakeLists.txt.
 #
 # Variables: ZIG (path to zig), JUCE_DIR (JUCE 8 checkout), OUT (output folder), JOBS
@@ -34,7 +34,7 @@ MODULES=(juce_core juce_data_structures juce_events juce_graphics juce_gui_basic
     echo '#define JUCE_PLUGINHOST_VST3 1'
     echo '#define JUCE_ASIO 1'
     echo '#define JUCE_USE_MP3AUDIOFORMAT 0' # MP3: src/engine/Mp3Format (minimp3), round 157b
-    echo '#define JUCE_APPLICATION_NAME_STRING "LYNX"'
+    echo '#define JUCE_APPLICATION_NAME_STRING "Shield"'
     echo "#define JUCE_APPLICATION_VERSION_STRING \"$VERSION\""
     for m in "${MODULES[@]}"; do echo "#define JUCE_MODULE_AVAILABLE_$m 1"; done
 } > "$OUT/JuceConfig.h.new"
@@ -321,13 +321,13 @@ echo "Linking..."
 # bisect step without that branch) must never be linked in
 APP_OBJECTS=()
 for src in "${APP_SOURCES[@]}"; do APP_OBJECTS+=("$OUT/app/$(echo "$src" | tr / _).o"); done
-"$ZIG" c++ -target "$TARGET" -O2 -o "$OUT/LYNX.exe" "$OUT"/juce/*.o "${APP_OBJECTS[@]}" "$OUT"/wavpack/*.o "$OUT"/vorbis/*.o "$OUT"/lame/*.o "$OUT"/pocketpy/*.o "$OUT"/monocypher/*.o "$OUT/LYNX.res" \
+"$ZIG" c++ -target "$TARGET" -O2 -o "$OUT/Shield.exe" "$OUT"/juce/*.o "${APP_OBJECTS[@]}" "$OUT"/wavpack/*.o "$OUT"/vorbis/*.o "$OUT"/lame/*.o "$OUT"/pocketpy/*.o "$OUT"/monocypher/*.o "$OUT/LYNX.res" \
     -Wl,--subsystem,windows \
     -lole32 -loleaut32 -luuid -lwinmm -lws2_32 -lshlwapi -lversion -lwininet -limm32 -lcomdlg32 \
     -lgdi32 -luser32 -lcomctl32 -lshell32 -ladvapi32 -lrpcrt4 -ldbghelp -lsetupapi -luxtheme -ldwmapi \
     -ld2d1 -ldcomp -ldwrite -ldxgi -ld3d11 -ldxguid -lwsock32 -lopengl32 -lpropsys -lmfplat -lmfuuid -lksuser -lavrt -lwinhttp
 
-ls -la "$OUT/LYNX.exe"
+ls -la "$OUT/Shield.exe"
 
-# LYNX ASIO driver (REA round 97), shipped next to LYNX.exe
+# LYNX ASIO driver (REA round 97), shipped next to Shield.exe
 OUT="$OUT" ZIG="$ZIG" scripts/build-lynx-asio.sh

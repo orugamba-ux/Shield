@@ -339,7 +339,7 @@ public:
        #else
         const auto pid = (int) ::getpid();
        #endif
-        baseName = "LYNX-sandbox-" + juce::String (pid) + "-" + juce::String (++counter);
+        baseName = "Shield-sandbox-" + juce::String (pid) + "-" + juce::String (++counter);
         created = channel.create (baseName);
     }
 

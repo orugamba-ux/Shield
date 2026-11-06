@@ -439,7 +439,7 @@ TEST (lynx_tune_transparency_and_realtime_round95)
 TEST (lynx_tune_slot_and_project_round95)
 {
     auto slot = lynx::makeEffectSlot (lynx::EffectKind::lynxTune);
-    CHECK (std::string (lynx::effectInfo (lynx::EffectKind::lynxTune).name) == "LYNX Tune");
+    CHECK (std::string (lynx::effectInfo (lynx::EffectKind::lynxTune).name) == "Shield Tune");
     CHECK ((int) lynx::effectInfo (lynx::EffectKind::lynxTune).params.size() == lynx::lynxtune::count);
     CHECK (lynx::formatEffectParam (lynx::EffectKind::lynxTune, lynx::lynxtune::scale, slot.params[lynx::lynxtune::scale], 120.0) == "Major");
     CHECK (lynx::formatEffectParam (lynx::EffectKind::lynxTune, lynx::lynxtune::retune, slot.params[lynx::lynxtune::retune], 120.0) == "20 ms");

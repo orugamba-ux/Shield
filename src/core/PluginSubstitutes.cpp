@@ -1,5 +1,6 @@
 #include "core/PluginSubstitutes.h"
 #include "core/VoiceMatch.h"
+#include "core/ShieldNames.h"
 
 #include <algorithm>
 #include <cctype>
@@ -614,7 +615,7 @@ names = Heatwave; VM Revival; SSL Fusion Vintage Drive; SSL Native X-Saturator v
 [complete-access-tuners]
 product = pitch correction (Slate MetaTune)
 vendor = Complete Access (role)
-lynx = LYNX Tune
+lynx = Shield Tune
 names = MetaTune
 
 [waves-s1-imager]
@@ -721,11 +722,11 @@ translate = soundtoys-panman
 [soundtoys-littlealterboy]
 product = Little AlterBoy
 vendor = Soundtoys
-lynx = LYNX Tune
+lynx = Shield Tune
 # [DATA] VST2 unique ID from real projects
 vst2 = StLa
 names = Little AlterBoy; LittleAlterBoy; AlterBoy
-# round 136 (REA_rodada136 §3): LYNX Tune as the voice shifter — Quantize = chromatic snapping at the fastest retune,
+# round 136 (REA_rodada136 §3): Shield Tune as the voice shifter — Quantize = chromatic snapping at the fastest retune,
 # Transpose = every note bypassed (pitch shift only), the formant shift, the measured Drive stage and the mix. Its
 # state is encoded (not decoded here); her 52 saved states are known by the hash of the encoded preset; any other
 # state: her most used one (Quantize, formant +1.2 st, drive 4.6). (Round 135's Voice Shift engine — the same role as
@@ -733,11 +734,11 @@ names = Little AlterBoy; LittleAlterBoy; AlterBoy
 preset = Scale=0; Retune=0; Humanize=0; Formant preserve=1; Formant shift=0.585714; Transpose=0.5; Mix=1; Drive stage=1; Drive=0.46; Output=0.5
 translate = soundtoys-littlealterboy
 
-# ---------------------------------------------------------------- vocal pitch correction -> LYNX Tune (round 95)
+# ---------------------------------------------------------------- vocal pitch correction -> Shield Tune (round 95)
 [antares-auto-tune]
 product = Auto-Tune Pro
 vendor = Antares
-lynx = LYNX Tune
+lynx = Shield Tune
 # [DATA] VST3 class ID from FL wrapper records of real projects (round 98). Round 113: the state's key and scale are
 # read (autoTuneProKey); round 120: its retune speed, humanize and flex-tune too (measured on the official trial);
 # without a key the project's key (another readable pitch corrector) or, failing that, a gentle chromatic correction
@@ -771,10 +772,10 @@ translate = waves-doubler
 [waves-tune]
 product = Waves Tune Real-Time
 vendor = Waves
-lynx = LYNX Tune
+lynx = Shield Tune
 waves = WavesTune Real-Time; Waves Tune Real-Time; WavesTune
 names = WavesTune Real-Time; Waves Tune Real-Time
-# round 120: its saved scale (root + note statuses) and its Note Transition time (= LYNX Tune's retune, measured)
+# round 120: its saved scale (root + note statuses) and its Note Transition time (= Shield Tune's retune, measured)
 translate = waves-tune
 preset = Scale=0; Retune=0.3536; Humanize=0.5
 mix = 1
@@ -830,7 +831,7 @@ std::string matchKey (const std::string& name)
 
 std::optional<EffectKind> effectKindNamed (const std::string& name)
 {
-    const auto wanted = lowerAscii (trim (name));
+    const auto wanted = lowerAscii (currentEngineName (trim (name))); // Shield: "LYNX Tune" -> "Shield Tune"
     for (int k = 0; k <= (int) lastEffectKind; ++k) // the last EffectKind: extend when one is appended
     {
         const auto kind = (EffectKind) k;

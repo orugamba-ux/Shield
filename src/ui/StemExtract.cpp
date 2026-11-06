@@ -32,13 +32,13 @@ juce::File modelFolder()
     if (platform::profileOverride() != juce::File())
         return platform::settingsFile ("models"); // (a test profile keeps everything inside it)
    #if JUCE_WINDOWS
-    return juce::File::getSpecialLocation (juce::File::windowsLocalAppData).getChildFile ("LYNX").getChildFile ("models");
+    return juce::File::getSpecialLocation (juce::File::windowsLocalAppData).getChildFile ("Shield").getChildFile ("models");
    #elif JUCE_MAC
     return platform::settingsFile ("models"); // ~/Library/Application Support/LYNX (Caches may be purged)
    #else
     const auto xdg = juce::SystemStats::getEnvironmentVariable ("XDG_DATA_HOME", {});
     const auto data = xdg.startsWithChar ('/') ? juce::File (xdg) : juce::File::getSpecialLocation (juce::File::userHomeDirectory).getChildFile (".local/share");
-    return data.getChildFile ("LYNX").getChildFile ("models");
+    return data.getChildFile ("Shield").getChildFile ("models");
    #endif
 }
 
@@ -80,7 +80,7 @@ struct Runtime
         const auto path = runtimeFile();
         if (! path.existsAsFile())
         {
-            error = tr ("Stem extraction needs ONNX Runtime ({0}), which comes with LYNX SHARE's installer and zip, but it is missing next to the program. Install LYNX SHARE with the installer, or unpack the whole zip.", { path.getFileName() });
+            error = tr ("Stem extraction needs ONNX Runtime ({0}), which comes with Shield's installer and zip, but it is missing next to the program. Install Shield with the installer, or unpack the whole zip.", { path.getFileName() });
             return false;
         }
         const auto getBase = library.open (path.getFullPathName()) ? (const OrtApiBase* (ORT_API_CALL*) (void) noexcept) library.getFunction ("OrtGetApiBase") : nullptr;
@@ -120,7 +120,7 @@ public:
         api = runtime.api;
 
         OrtSessionOptions* options = nullptr;
-        auto ok = check (api->CreateEnv (ORT_LOGGING_LEVEL_ERROR, "LYNX", &env), error)
+        auto ok = check (api->CreateEnv (ORT_LOGGING_LEVEL_ERROR, "Shield", &env), error)
                && check (api->CreateCpuMemoryInfo (OrtArenaAllocator, OrtMemTypeDefault, &memory), error)
                && check (api->CreateRunOptions (&runOptions), error)
                && check (api->CreateSessionOptions (&options), error)
@@ -597,7 +597,7 @@ void extractStemsFromClip (AudioEngine& engine, int clipIndex, std::function<voi
     }
 
     // the first time: the source and the licence, before anything is downloaded
-    const auto text = tr ("Extracting stems needs the HT-Demucs model. It isn't part of LYNX SHARE: it is downloaded once ({0} MB) and kept in {1}.", { juce::String (modelBytes / 1000000), modelFolder().getFullPathName() })
+    const auto text = tr ("Extracting stems needs the HT-Demucs model. It isn't part of Shield: it is downloaded once ({0} MB) and kept in {1}.", { juce::String (modelBytes / 1000000), modelFolder().getFullPathName() })
                     + "\n\n" + tr ("Source: {0} (ONNX export of Demucs v4 by Meta AI Research)", { juce::String (modelPage) })
                     + "\n\n" + tr ("Licence: the Demucs code is MIT. The licence of the trained weights is not clear, as the authors say: the training data includes MUSDB18-HQ, parts of which were for research use only. Decide for yourself whether that fits your use, commercial use above all.");
     juce::AlertWindow::showOkCancelBox (juce::MessageBoxIconType::QuestionIcon, tr ("Extract stems from sample"), text, tr ("Download"), tr ("Cancel"), nullptr,

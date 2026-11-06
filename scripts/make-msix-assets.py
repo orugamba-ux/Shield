@@ -3,8 +3,8 @@
 
 Usage: scripts/make-msix-assets.py   (needs Pillow; the PNGs are committed, so a release build does not run this)
 
-Every logo comes from resources/lynx_badge.png (the app icon: a round dark badge, so it needs no plate) and the
-project-file logo from the largest image in resources/LYNX_doc.ico. Scale and target-size variants follow
+Every logo comes from resources/shield_badge.png (the app icon: a round dark badge, so it needs no plate) and the
+project-file logo from the largest image in resources/Shield_doc.ico. Scale and target-size variants follow
 Microsoft's tile/icon asset guidelines; makepri (in the release workflow) indexes them into resources.pri.
 """
 import os
@@ -18,11 +18,11 @@ TARGETS = (16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 256)
 
 
 def badge():
-    return Image.open(os.path.join(ROOT, "resources", "lynx_badge.png")).convert("RGBA")
+    return Image.open(os.path.join(ROOT, "resources", "shield_badge.png")).convert("RGBA")
 
 
 def doc_icon():
-    ico = Image.open(os.path.join(ROOT, "resources", "LYNX_doc.ico"))
+    ico = Image.open(os.path.join(ROOT, "resources", "Shield_doc.ico"))
     best = max(ico.info.get("sizes", {ico.size}), key=lambda s: s[0])
     ico.size = best
     return ico.convert("RGBA")

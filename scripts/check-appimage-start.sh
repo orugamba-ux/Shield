@@ -32,5 +32,5 @@ if ! kill -0 "$APID" 2> /dev/null; then
 fi
 wins="$(DISPLAY="$DISP" xwininfo -root -children 2> /dev/null | grep -E '^ +0x[0-9a-f]+ "[^"]+"' || true)"
 echo "--- top-level windows"; echo "$wins"
-grep -q '"LYNX' <<< "$wins" || { echo "ERROR: no LYNX window after $WAIT s"; exit 1; }
+grep -q '"Shield' <<< "$wins" || { echo "ERROR: no Shield window after $WAIT s"; exit 1; }
 echo "OK: LYNX is running after $WAIT s with its window"

@@ -78,7 +78,7 @@ void start (Context c)
 {
     auto* w = new juce::AlertWindow (tr ("Start live session"),
                                      tr ("Up to {0} people join you and edit this project together over the internet, each on their own computer. "
-                                         "Everything is end-to-end encrypted with the invite code: the LYNX SHARE relay only passes it on.",
+                                         "Everything is end-to-end encrypted with the invite code: the Shield relay only passes it on.",
                                          { juce::String (3) }),
                                      juce::MessageBoxIconType::NoIcon);
     w->addTextEditor ("me", myName(), tr ("Your name"));
@@ -195,7 +195,7 @@ void offerResume (Context c)
     const auto when = info->saved.toString (true, true, false, true);
     juce::AlertWindow::showOkCancelBox (
         juce::MessageBoxIconType::QuestionIcon, tr ("Resume live session"),
-        tr ("LYNX SHARE closed during your live session ({0}, {1} people invited). Resume it? The people in it reconnect by themselves.",
+        tr ("Shield closed during your live session ({0}, {1} people invited). Resume it? The people in it reconnect by themselves.",
             { when, juce::String (info->guests) }),
         tr ("Resume"), tr ("End it"), nullptr, juce::ModalCallbackFunction::create ([c, journal] (int r) {
             auto o = optionsFor (c, myName());

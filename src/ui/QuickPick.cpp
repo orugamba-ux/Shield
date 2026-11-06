@@ -74,7 +74,7 @@ std::vector<GeneratorEntry> generatorEntries (AudioEngine& engine, bool withUnav
     builtIn ("Fruity Video Player", "Fruity Video Player", 1, InstrumentKind::videoplayer,
              [] (ChannelDef& c) { c.pluginState = video::write (video::Settings {}); });
     builtIn ("Patcher", tr ("Patcher"), 2, InstrumentKind::patcher);
-    add ("LYNX Soundfont", "LYNX Soundfont", tr ("built-in"), 0, 2, InstrumentKind::soundfont, [] { return std::optional<ChannelDef> (sf::makeChannel()); });
+    add ("Shield Soundfont", "Shield Soundfont", tr ("built-in"), 0, 2, InstrumentKind::soundfont, [] { return std::optional<ChannelDef> (sf::makeChannel()); });
 
     // FL's own instrument engines (round 142)
     const auto& fl = flStudioAccess();

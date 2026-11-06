@@ -25,7 +25,7 @@ lynx::Song richSong()
     s.beatsPerBar = 3;
     s.swing = 0.25f;
     s.info.title = "Export test";
-    s.info.author = "LYNX";
+    s.info.author = "Shield";
 
     ChannelDef sampler;
     sampler.name = "Loop";
@@ -292,7 +292,7 @@ TEST (flpexport171e_song_round_trips_through_the_importer)
     const auto back = importFlp (project, fx171e::importOptions());
 
     CHECK (back.bpm == 128.0 && back.beatsPerBar == 3 && fx171e::near (back.swing, 0.25, 0.01));
-    CHECK (back.info.title == "Export test" && back.info.author == "LYNX");
+    CHECK (back.info.title == "Export test" && back.info.author == "Shield");
     CHECK (back.channels.size() == song.channels.size());
     if (back.channels.size() == song.channels.size())
     {

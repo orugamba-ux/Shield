@@ -118,7 +118,7 @@ juce::String wsUrlFor (juce::String relay, const juce::String& room)
     return relay + "/v1/rooms/" + room + "/ws";
 }
 
-std::string userAgent() { return utf8 ("LYNX-SHARE/" + juce::String (JUCE_APPLICATION_VERSION_STRING)); }
+std::string userAgent() { return utf8 ("Shield/" + juce::String (JUCE_APPLICATION_VERSION_STRING)); }
 
 juce::File engineFiles()
 {
@@ -407,9 +407,9 @@ void LiveSessionManager::start (const Options& o)
         else if (status == 429)
             error = tr ("Too many sessions were opened from this connection. Try again in a while.");
         else if (status == 503)
-            error = tr ("The LYNX SHARE relay is full. Try again in a few minutes.");
+            error = tr ("The Shield relay is full. Try again in a few minutes.");
         else
-            error = tr ("Could not reach the LYNX SHARE relay ({0}).", { status == 0 ? tr ("no connection") : juce::String (status) });
+            error = tr ("Could not reach the Shield relay ({0}).", { status == 0 ? tr ("no connection") : juce::String (status) });
         const std::lock_guard<std::mutex> g (roomLock);
         roomAnswer = { true, room, hostTok, error };
     });
@@ -455,7 +455,7 @@ void LiveSessionManager::join (const juce::String& code, const Options& o)
         return setState (State::ended, tr ("Live sessions need a newer libcurl on this computer ({0})", { str (why) }));
     const auto parsed = livecrypto::parseCode (utf8 (code));
     if (! parsed)
-        return setState (State::ended, tr ("That is not a LYNX SHARE invite code."));
+        return setState (State::ended, tr ("That is not a Shield invite code."));
     invite = *parsed;
     keys = livecrypto::derive (invite);
     roomId = str (invite.room);
@@ -972,7 +972,7 @@ void LiveSessionManager::handleMessage (int from, const juce::var& m)
     if (t == "deny")
     {
         const auto reason = m["reason"].toString();
-        juce::String why = reason == "version" ? tr ("The host uses another version of LYNX SHARE ({0}). Update both to the same version.", { m["version"].toString() })
+        juce::String why = reason == "version" ? tr ("The host uses another version of Shield ({0}). Update both to the same version.", { m["version"].toString() })
                          : reason == "full"    ? tr ("The session is full.")
                                                : tr ("The host did not let you in.");
         return end (why, false);

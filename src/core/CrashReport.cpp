@@ -756,9 +756,9 @@ bool editorFaultCatchable (std::uint32_t code) noexcept
 std::string githubKindOption (std::string_view kind)
 {
     if (kind == "crash" || kind == "unclean")
-        return "LYNX SHARE closed (crash)";
+        return "Shield closed (crash)";
     if (kind == "hang")
-        return "LYNX SHARE froze (not responding)";
+        return "Shield froze (not responding)";
     return "Other";
 }
 

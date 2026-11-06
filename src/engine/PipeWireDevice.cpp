@@ -200,7 +200,7 @@ struct Connection
             return false;
 
         api.threadLoopLock (loop);
-        core = api.contextConnect (context, api.propertiesNew (PW_KEY_APP_NAME, "LYNX", nullptr), 0);
+        core = api.contextConnect (context, api.propertiesNew (PW_KEY_APP_NAME, "Shield", nullptr), 0);
         if (core == nullptr)
         {
             api.threadLoopUnlock (loop);
@@ -695,9 +695,9 @@ private:
         auto* props = api.propertiesNew (PW_KEY_MEDIA_TYPE, "Audio",
                                          PW_KEY_MEDIA_CATEGORY, isPlayback ? "Playback" : "Capture",
                                          PW_KEY_MEDIA_ROLE, "Production",
-                                         PW_KEY_APP_NAME, "LYNX",
-                                         PW_KEY_NODE_NAME, "LYNX",
-                                         PW_KEY_NODE_DESCRIPTION, isPlayback ? "LYNX" : "LYNX (input)",
+                                         PW_KEY_APP_NAME, "Shield",
+                                         PW_KEY_NODE_NAME, "Shield",
+                                         PW_KEY_NODE_DESCRIPTION, isPlayback ? "Shield" : "LYNX (input)",
                                          nullptr);
         api.propertiesSet (props, PW_KEY_NODE_LATENCY, prefs::pipewireLatency (block, rate).c_str());
         api.propertiesSet (props, "node.rate", ("1/" + std::to_string (rate)).c_str());

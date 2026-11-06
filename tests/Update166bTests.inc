@@ -63,9 +63,9 @@ TEST (update166b_parses_the_release_list_and_picks_the_newest)
         return;
     CHECK (releases[0].draft && releases[0].version.text() == "0.1.23-alpha");
     const auto& r = releases[1];
-    CHECK (r.tag == "v0.1.22-alpha" && r.name == "LYNX SHARE 0.1.22-alpha" && r.prerelease && ! r.draft);
-    CHECK (r.page == "https://github.com/Ka1-S/LYNX-SHARE/releases/tag/v0.1.22-alpha");
-    CHECK (r.assets.size() == 9 && r.assets[2].size == 30000000 && r.assets[2].url == "https://github.com/d/LYNX-0.1.22-alpha-setup-x64.exe");
+    CHECK (r.tag == "v0.1.22-alpha" && r.name == "Shield 0.1.22-alpha" && r.prerelease && ! r.draft);
+    CHECK (r.page == "https://github.com/orugamba-ux/Shield/releases/tag/v0.1.22-alpha");
+    CHECK (r.assets.size() == 9 && r.assets[2].size == 30000000 && r.assets[2].url == "https://github.com/d/Shield-0.1.22-alpha-setup-x64.exe");
     CHECK (r.body.find ("\xE2\x80\x94") != std::string::npos);     // —
     CHECK (r.body.find ("Caf\xC3\xA9 \xF0\x9F\x8C\xB6") != std::string::npos); // é and a surrogate pair
     CHECK (releases[2].body.empty()); // "body": null
@@ -106,7 +106,7 @@ TEST (update166b_flavour_detection_and_method)
     CHECK (detectFlavour (f) == Flavour::macos);
     f.os = "linux";
     CHECK (detectFlavour (f) == Flavour::linuxTarball);
-    f.appImagePath = "/home/u/LYNX-0.1.20-alpha-x86_64.AppImage";
+    f.appImagePath = "/home/u/Shield-0.1.20-alpha-x86_64.AppImage";
     CHECK (detectFlavour (f) == Flavour::linuxAppImage);
     f.forced = "Portable";
     CHECK (detectFlavour (f) == Flavour::windowsPortable);
@@ -133,11 +133,11 @@ TEST (update166b_asset_choice_per_flavour)
         return;
     const auto& assets = releases[1].assets;
     auto name = [&] (Flavour f) { const auto i = assetFor (f, assets); return i < 0 ? std::string ("-") : assets[(std::size_t) i].name; };
-    CHECK (name (Flavour::windowsInstaller) == "LYNX-0.1.22-alpha-setup-x64.exe");
-    CHECK (name (Flavour::windowsPortable) == "LYNX-0.1.22-alpha-windows-x64.zip");
-    CHECK (name (Flavour::macos) == "LYNX-0.1.22-alpha-macos-universal.dmg");
-    CHECK (name (Flavour::linuxAppImage) == "LYNX-0.1.22-alpha-x86_64.AppImage"); // not the .zsync
-    CHECK (name (Flavour::linuxTarball) == "LYNX-0.1.22-alpha-linux-x86_64.tar.gz");
+    CHECK (name (Flavour::windowsInstaller) == "Shield-0.1.22-alpha-setup-x64.exe");
+    CHECK (name (Flavour::windowsPortable) == "Shield-0.1.22-alpha-windows-x64.zip");
+    CHECK (name (Flavour::macos) == "Shield-0.1.22-alpha-macos-universal.dmg");
+    CHECK (name (Flavour::linuxAppImage) == "Shield-0.1.22-alpha-x86_64.AppImage"); // not the .zsync
+    CHECK (name (Flavour::linuxTarball) == "Shield-0.1.22-alpha-linux-x86_64.tar.gz");
     CHECK (name (Flavour::store) == "-");
     CHECK (checksumsAsset (assets) == 8);
     CHECK (assetFor (Flavour::windowsInstaller, releases[2].assets) == -1 && checksumsAsset (releases[2].assets) == -1);
@@ -146,19 +146,19 @@ TEST (update166b_asset_choice_per_flavour)
 TEST (update166b_checksum_verification)
 {
     using namespace lynx::update;
-    const std::string data = "LYNX SHARE setup";
+    const std::string data = "Shield setup";
     const auto actual = lynx::sha256Hex (reinterpret_cast<const std::uint8_t*> (data.data()), data.size());
     std::string upper = actual;
     for (auto& c : upper)
         c = (char) std::toupper ((unsigned char) c);
-    const auto sums = std::string (64, 'a') + "  LYNX-0.1.22-alpha-windows-x64.zip\n" + upper + "  LYNX-0.1.22-alpha-setup-x64.exe\r\n"
-                      + std::string (64, 'b') + " *LYNX.exe\nnot a line\n" + std::string (63, 'c') + "  short.txt\n";
-    const auto expected = checksumFor (sums, "LYNX-0.1.22-alpha-setup-x64.exe");
+    const auto sums = std::string (64, 'a') + "  Shield-0.1.22-alpha-windows-x64.zip\n" + upper + "  Shield-0.1.22-alpha-setup-x64.exe\r\n"
+                      + std::string (64, 'b') + " *Shield.exe\nnot a line\n" + std::string (63, 'c') + "  short.txt\n";
+    const auto expected = checksumFor (sums, "Shield-0.1.22-alpha-setup-x64.exe");
     CHECK (expected == actual); // (lower case)
     CHECK (checksumMatches (expected, actual) && checksumMatches (expected, upper));
-    CHECK (checksumFor (sums, "LYNX.exe") == std::string (64, 'b')); // binary-mode '*'
-    CHECK (checksumFor (sums, "short.txt").empty() && checksumFor (sums, "missing.exe").empty() && checksumFor (sums, "LYNX").empty());
-    const std::string tampered = "LYNX SHARE setuP";
+    CHECK (checksumFor (sums, "Shield.exe") == std::string (64, 'b')); // binary-mode '*'
+    CHECK (checksumFor (sums, "short.txt").empty() && checksumFor (sums, "missing.exe").empty() && checksumFor (sums, "Shield").empty());
+    const std::string tampered = "Shield setuP";
     CHECK (! checksumMatches (expected, lynx::sha256Hex (reinterpret_cast<const std::uint8_t*> (tampered.data()), tampered.size())));
     // the streaming hash (files) equals the one-shot one for every length around the block and padding edges
     std::string bytes;
@@ -208,12 +208,12 @@ TEST (update166b_skip_version_and_settings)
 TEST (update166b_release_notes_as_text)
 {
     using namespace lynx::update;
-    const auto lines = releaseNotes ("# LYNX SHARE 0.1.22\r\n\r\nThe **update**\nbutton: see [the docs](https://x).\n\n\n"
+    const auto lines = releaseNotes ("# Shield 0.1.22\r\n\r\nThe **update**\nbutton: see [the docs](https://x).\n\n\n"
                                      "## New\n- A `bar` ![shot](a.png)\n  continues here\n  - nested <b>bold</b>\n1. first\n\n"
                                      "| Item | Where |\n|---|:---:|\n| Bar | Main window |\n\n---\n```\ncode **stays**\n```\n> quote <https://lynx-share.com>\n\\*not bold\\*\n");
     using K = NoteLine::Kind;
     std::vector<std::pair<K, std::string>> want {
-        { K::heading, "LYNX SHARE 0.1.22" }, { K::blank, "" }, { K::text, "The update button: see the docs." }, { K::blank, "" },
+        { K::heading, "Shield 0.1.22" }, { K::blank, "" }, { K::text, "The update button: see the docs." }, { K::blank, "" },
         { K::heading, "New" }, { K::bullet, "A bar continues here" }, { K::bullet, "nested bold" }, { K::bullet, "1. first" }, { K::blank, "" },
         { K::text, "Item  \xC2\xB7  Where" }, { K::blank, "" }, { K::text, "Bar  \xC2\xB7  Main window" }, { K::blank, "" },
         { K::text, "code **stays**" }, { K::text, "quote https://lynx-share.com *not bold*" } };
@@ -239,6 +239,6 @@ TEST (update166b_release_notes_as_text)
     CHECK (alert.size() == 3 && alert[0].text == "Intro" && alert[1].text == "Still an alpha." && alert[2].text == "More.");
     CHECK (releaseNotes (">").empty() && releaseNotes ("> [!NOTE]").empty());
     // a line of HTML only (the logo at the top of the release notes) leaves no empty line
-    const auto logo = releaseNotes ("<p align=\"center\"><img src=\"x.png\" width=\"96\"></p>\n\n**LYNX SHARE 0.1.20 alpha**: text");
-    CHECK (logo.size() == 1 && logo[0].text == "LYNX SHARE 0.1.20 alpha: text");
+    const auto logo = releaseNotes ("<p align=\"center\"><img src=\"x.png\" width=\"96\"></p>\n\n**Shield 0.1.20 alpha**: text");
+    CHECK (logo.size() == 1 && logo[0].text == "Shield 0.1.20 alpha: text");
 }

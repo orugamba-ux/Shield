@@ -396,7 +396,7 @@ juce::File SampleLibrary::cacheFolder()
 {
     // (under a test profile, LYNX_PROFILE_DIR: inside it)
     const auto profile = platform::profileOverride();
-    auto folder = (profile != juce::File() ? profile.getChildFile ("cache") : juce::File::getSpecialLocation (juce::File::tempDirectory)).getChildFile ("LYNX-cache");
+    auto folder = (profile != juce::File() ? profile.getChildFile ("cache") : juce::File::getSpecialLocation (juce::File::tempDirectory)).getChildFile ("Shield-cache");
     folder.createDirectory();
     return folder;
 }

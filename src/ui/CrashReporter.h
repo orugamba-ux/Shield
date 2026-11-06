@@ -54,7 +54,7 @@ void retryPending();
 void shutdown();
 // Synchronous upload, for `LYNX.exe --send-test-report` (returns "" on success, else the error)
 juce::String sendNow (const juce::String& json);
-juce::String endpoint(); // https://lynx-share.com/api/crash.php (LYNX_CRASH_ENDPOINT overrides, for tests)
+juce::String endpoint(); // Shield: empty unless LYNX_CRASH_ENDPOINT is set (no upload to the upstream server)
 
 // Keeps the session file's "info.audio" line up to date with the open audio device.
 void watchAudioDevice (juce::AudioDeviceManager& devices);

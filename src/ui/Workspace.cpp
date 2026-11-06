@@ -482,7 +482,7 @@ class DetachedPanelWindow final : public juce::DocumentWindow, private juce::Tim
 {
 public:
     DetachedPanelWindow (Workspace& w, Panel p, PanelFrame& frame, juce::Rectangle<int> screenBounds)
-        : juce::DocumentWindow ("LYNX SHARE - " + frame.getTitle(), theme::colour::bg2, DocumentWindow::closeButton | DocumentWindow::maximiseButton),
+        : juce::DocumentWindow ("Shield - " + frame.getTitle(), theme::colour::bg2, DocumentWindow::closeButton | DocumentWindow::maximiseButton),
           owner (w),
           panel (p)
     {
@@ -637,7 +637,7 @@ void Workspace::setTitle (Panel panel, const juce::String& title)
     frames[(std::size_t) panel]->setTitle (title);
 
     if (auto& w = windows[(std::size_t) panel])
-        w->setName ("LYNX SHARE - " + title);
+        w->setName ("Shield - " + title);
 }
 
 void Workspace::setTitleTooltip (Panel panel, const juce::String& tooltip)

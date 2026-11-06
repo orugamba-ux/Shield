@@ -147,6 +147,6 @@ juce::File extractZip (const juce::File& zipFile, const juce::File& destinationR
 
 juce::File defaultExtractRoot()
 {
-    return lynx::platform::documentsFolder().getChildFile ("LYNX/Projects/Unpacked");
+    return lynx::platform::documentsFolder().getChildFile ("Shield/Projects/Unpacked");
 }
 } // namespace lynx::ProjectPackage

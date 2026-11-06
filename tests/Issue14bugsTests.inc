@@ -134,9 +134,9 @@ TEST (issue14_pitch_audit_of_the_instruments)
     std::vector<std::pair<std::string, ChannelDef>> list;
     {
         ChannelDef synth;
-        synth.name = "LYNX Synth";
+        synth.name = "Shield Synth";
         synth.instrument = InstrumentKind::synth;
-        list.emplace_back ("LYNX Synth", synth);
+        list.emplace_back ("Shield Synth", synth);
     }
     // (round 169l2: the Default preset the audit was written with, not the Plugin database patch of a new channel)
     for (const auto& e : natives::instrumentEngines())

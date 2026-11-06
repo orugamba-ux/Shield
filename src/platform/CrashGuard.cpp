@@ -718,7 +718,7 @@ std::string symbolizeOwnFrames (const std::string& text)
         if (end == std::string::npos)
             end = text.size();
         auto line = text.substr (start, end - start);
-        if (const auto at = line.find ("LYNX.exe+0x"); at != std::string::npos && line.find ("  (") == std::string::npos)
+        if (const auto at = line.find ("Shield.exe+0x"); at != std::string::npos && line.find ("  (") == std::string::npos)
         {
             const auto offset = std::strtoull (line.c_str() + at + 11, nullptr, 16);
             if (const auto symbol = symbolOf ((DWORD64) (base + offset)); ! symbol.empty())

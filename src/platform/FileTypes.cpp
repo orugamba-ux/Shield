@@ -40,7 +40,7 @@ juce::File appDir()
 
 juce::File entryFile() { return dataHome().getChildFile ("applications").getChildFile (entryName); }
 juce::File mimeFile() { return dataHome().getChildFile ("mime/packages/lynx-mime.xml"); }
-juce::File iconFile() { return dataHome().getChildFile ("icons/hicolor/256x256/apps/lynx.png"); }
+juce::File iconFile() { return dataHome().getChildFile ("icons/hicolor/256x256/apps/shield.png"); }
 
 // the Exec= value for one path: quoted with ", \\, ` and $ escaped, then backslashes doubled again (the desktop file's
 // own string escaping) and % doubled (field codes)
@@ -68,7 +68,7 @@ bool writeEntry (const juce::File& appImage)
 {
     auto text = appDir().getChildFile (entryName).loadFileAsString();
     if (text.isEmpty())
-        text = "[Desktop Entry]\nType=Application\nName=LYNX SHARE\nIcon=lynx\nTerminal=false\nCategories=AudioVideo;Audio;Midi;Music;Sequencer;\n"
+        text = "[Desktop Entry]\nType=Application\nName=Shield\nIcon=shield\nTerminal=false\nCategories=AudioVideo;Audio;Midi;Music;Sequencer;\n"
                "MimeType=application/x-lynx-project;\n";
     juce::StringArray lines;
     lines.addLines (text);
@@ -81,7 +81,7 @@ bool writeEntry (const juce::File& appImage)
     lines.add (marker);
 
     const auto ok = entryFile().getParentDirectory().createDirectory() && entryFile().replaceWithText (lines.joinIntoString ("\n") + "\n");
-    if (const auto icon = appDir().getChildFile ("lynx.png"); icon.existsAsFile() && iconFile().getParentDirectory().createDirectory())
+    if (const auto icon = appDir().getChildFile ("shield.png"); icon.existsAsFile() && iconFile().getParentDirectory().createDirectory())
         icon.copyFileTo (iconFile());
     if (const auto mime = appDir().getChildFile ("usr/share/mime/packages/lynx-mime.xml"); mime.existsAsFile() && mimeFile().getParentDirectory().createDirectory())
         mime.copyFileTo (mimeFile());
@@ -119,7 +119,7 @@ bool setAppImageMenuEntry (bool on)
     entryFile().deleteFile();
     mimeFile().deleteFile();
     // the icon stays when the .tar.gz's install.sh put LYNX in the menu too (it uses the same icon file)
-    if (! dataHome().getChildFile ("applications/lynx.desktop").existsAsFile())
+    if (! dataHome().getChildFile ("applications/shield.desktop").existsAsFile())
         iconFile().deleteFile();
     refreshDesktopDatabases();
     return true;
@@ -148,7 +148,7 @@ void registerFileTypes()
     using juce::WindowsRegistry;
     const auto exe = juce::File::getSpecialLocation (juce::File::currentExecutableFile).getFullPathName();
     const juce::String classes = "HKEY_CURRENT_USER\\Software\\Classes\\";
-    const juce::String progId = "LYNX.Project";
+    const juce::String progId = "Shield.Project";
     const auto command = "\"" + exe + "\" \"%1\"";
     const auto icon = "\"" + exe + "\",-2"; // resource id 2 in resources/LYNX.rc: the project-file icon
 
@@ -162,7 +162,7 @@ void registerFileTypes()
     // Online Sessions' packages (round 168a): a project a friend sent, or a part sent back
     WindowsRegistry::setValue (classes + ".lynxpack\\", progId);
     WindowsRegistry::setValue (classes + ".lynxpack\\Content Type", juce::String ("application/x-lynx-package"));
-    WindowsRegistry::setValue (classes + progId + "\\", juce::String ("LYNX SHARE Project"));
+    WindowsRegistry::setValue (classes + progId + "\\", juce::String ("Shield Project"));
     WindowsRegistry::setValue (classes + progId + "\\DefaultIcon\\", icon);
     WindowsRegistry::setValue (classes + progId + "\\shell\\open\\command\\", command);
     // Explorer caches icons per type: tell it the association changed

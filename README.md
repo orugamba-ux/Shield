@@ -1,4 +1,17 @@
 <p align="center">
+  <img src="resources/shield_icon_256.png" alt="Shield icon: a shield with imigongo patterns over two crossed spears" width="128" height="128">
+</p>
+
+<h1 align="center">Shield</h1>
+
+> **Shield is a modified version of [LYNX SHARE](https://github.com/Ka1-S/LYNX-SHARE)** by Ka1-S, released under the
+> same [GNU AGPL-3.0](LICENSE). It has a new name, a new icon and renamed built-in plugins; [SHIELD.md](SHIELD.md) lists
+> what changed and how to build. Everything below is the upstream LYNX SHARE README, kept for its documentation.
+> Its download links, store badge and website are upstream's, not Shield's.
+
+---
+
+<p align="center">
   <img src="docs/img/logo.png" alt="LYNX SHARE logo" width="128" height="128">
 </p>
 

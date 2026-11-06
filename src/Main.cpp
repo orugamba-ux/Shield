@@ -1275,8 +1275,8 @@ public:
             const auto i = args.indexOf ("--menu-entry");
             const auto on = args[i + 1].unquoted() != "off";
             const auto ok = lynx::runningAsAppImage() && lynx::setAppImageMenuEntry (on);
-            std::fprintf (ok ? stdout : stderr, "%s\n", ok ? (on ? "LYNX SHARE added to the applications menu" : "LYNX SHARE removed from the applications menu")
-                                                         : "only the LYNX SHARE AppImage on Linux can do this");
+            std::fprintf (ok ? stdout : stderr, "%s\n", ok ? (on ? "Shield added to the applications menu" : "Shield removed from the applications menu")
+                                                         : "only the Shield AppImage on Linux can do this");
             setApplicationReturnValue (ok ? 0 : 1);
             quit();
             return;
@@ -1298,7 +1298,7 @@ public:
                 if (! files.isEmpty())
                     (juce::String (pattern).startsWith ("crash") ? session.crashFile : session.hangFile) = files[0];
             }
-            session.steps = { "00:00:01 test report (LYNX.exe --send-test-report)", "00:00:02 opening project " + out.getFileName() };
+            session.steps = { "00:00:01 test report (Shield.exe --send-test-report)", "00:00:02 opening project " + out.getFileName() };
             auto input = lynx::crashreporter::makeInput (session, session.crashFile.existsAsFile() ? "crash" : "manual", nullptr);
             input.test = true;
             const auto json = lynx::crashreporter::buildJson (input, false);
@@ -1665,7 +1665,7 @@ public:
 
     void createMainWindow()
     {
-        mainWindow = std::make_unique<MainWindow> ("LYNX SHARE", *engine); // the brand; getApplicationName() stays "LYNX" (an id: instance lock, X11 WM_CLASS, ALSA client)
+        mainWindow = std::make_unique<MainWindow> ("Shield", *engine); // the brand; getApplicationName() stays "LYNX" (an id: instance lock, X11 WM_CLASS, ALSA client)
         lynx::setMainWindowForOwnership (mainWindow.get());
         lynx::applyRenderingChoice (*mainWindow); // (GPU rendering off: GDI; round 157a)
         lynx::startRenderingWatch();
@@ -1688,7 +1688,7 @@ public:
             return;
         }
         auto message = lynx::tr ("The last session ended without closing normally. Last step: {0}. Backup copies of your project are in "
-                                 "LYNX SHARE's autosave folder; details in crash-history.log.",
+                                 "Shield's autosave folder; details in crash-history.log.",
                                  { uncleanLastStep });
         uncleanLastStep.clear();
         const auto cause = uncleanCause();
@@ -1702,7 +1702,7 @@ public:
         {
             lynx::setGpuRenderingEnabled (false);
             message << "\n\n"
-                    << lynx::tr ("The crash was in the graphics driver ({0}). LYNX SHARE now draws its windows without the GPU; you can turn GPU "
+                    << lynx::tr ("The crash was in the graphics driver ({0}). Shield now draws its windows without the GPU; you can turn GPU "
                                  "rendering back on in Options > General settings (after a driver update, for example).",
                                  { cause.driverModule });
         }
@@ -1749,10 +1749,10 @@ public:
         if (separatePlugin.isNotEmpty())
         {
             juce::AlertWindow::showOkCancelBox (
-                juce::MessageBoxIconType::WarningIcon, lynx::tr ("LYNX SHARE closed unexpectedly"),
+                juce::MessageBoxIconType::WarningIcon, lynx::tr ("Shield closed unexpectedly"),
                 message + "\n\n"
                     + lynx::tr ("It happened while the window of {0} was opening{1}. Run {0} in a separate process from now on? If it "
-                                "crashes again, only the plugin stops and LYNX SHARE keeps running (Plugin wrapper menu: \"Always run in a "
+                                "crashes again, only the plugin stops and Shield keeps running (Plugin wrapper menu: \"Always run in a "
                                 "separate process\").",
                                 { separatePlugin, cause.gpuDriver ? lynx::tr (" (in the graphics driver, {0})", { cause.driverModule }) : juce::String() }),
                 lynx::tr ("Run separately"), lynx::tr ("No"), nullptr,
@@ -1762,7 +1762,7 @@ public:
                 }));
             return;
         }
-        juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, lynx::tr ("LYNX SHARE closed unexpectedly"), message);
+        juce::AlertWindow::showMessageBoxAsync (juce::MessageBoxIconType::WarningIcon, lynx::tr ("Shield closed unexpectedly"), message);
     }
 
     // --opentime: after the start-up file was handed to the window
@@ -3073,7 +3073,7 @@ private:
                         const auto text = hang.loadFileAsString();
                         const auto frames = juce::StringArray::fromLines (text).size() - 2;
                        #if JUCE_WINDOWS
-                        const auto hangOk = lynx::crashguard::lastHangFile() != before && hang.existsAsFile() && text.contains ("LYNX.exe+0x") && frames >= 3;
+                        const auto hangOk = lynx::crashguard::lastHangFile() != before && hang.existsAsFile() && text.contains ("Shield.exe+0x") && frames >= 3;
                        #else
                         const auto hangOk = lynx::crashguard::lastHangFile() != before && hang.existsAsFile() && frames >= 3;
                        #endif
@@ -4879,7 +4879,7 @@ private:
             drag->framePainted (now, area);
         });
         run->text << "project: " << project.getFullPathName() << "\n"
-                   << "LYNX " << getApplicationVersion() << ", " << juce::SystemStats::getOperatingSystemName() << ", "
+                   << "Shield " << getApplicationVersion() << ", " << juce::SystemStats::getOperatingSystemName() << ", "
                    << juce::SystemStats::getCpuModel() << ", window " << mainWindow->getWidth() << "x" << mainWindow->getHeight()
                    << ", scale " << juce::String (juce::Desktop::getInstance().getDisplays().getPrimaryDisplay() != nullptr
                                                      ? juce::Desktop::getInstance().getDisplays().getPrimaryDisplay()->scale : 1.0, 2)
@@ -5036,7 +5036,7 @@ private:
                 const auto s = engine->getRtStats().snapshot();
                 juce::String text;
                 text << "project: " << project.getFullPathName() << "\n"
-                     << "LYNX " << getApplicationVersion() << ", " << juce::SystemStats::getOperatingSystemName() << ", "
+                     << "Shield " << getApplicationVersion() << ", " << juce::SystemStats::getOperatingSystemName() << ", "
                      << juce::SystemStats::getNumCpus() << " logical CPUs (" << juce::SystemStats::getNumPhysicalCpus() << " cores), "
                      << juce::SystemStats::getCpuModel() << "\n"
                      << "load " << juce::String (loadMs / 1000.0, 1) << " s, played " << juce::String (seconds, 0) << " s\n"
@@ -6712,7 +6712,7 @@ private:
             for (const auto& c : std::vector<EditorCpuRun::Case> { { K::facetEq, "Facet EQ", 2, demo }, { K::crestCompressor, "Crest Compressor", 1, demo },
                                                                   { K::apexLimiter, "Apex Limiter", 1, demo }, { K::prismMultiband, "Prism Multiband", 1, demo },
                                                                   { K::epochVerb, "Epoch Verb", 0, demo }, { K::glowLeveler, "Glow Leveler", 0, demo },
-                                                                  { K::fruityLimiter, "Fruity Limiter", 0, demo }, { K::lynxTune, "LYNX Tune", 0, demo } })
+                                                                  { K::fruityLimiter, "Fruity Limiter", 0, demo }, { K::lynxTune, "Shield Tune", 0, demo } })
                 editorCpu->cases.push_back (c);
         editorCpu->done = [this] { juce::MessageManager::callAsync ([this] { editorCpu.reset(); quit(); }); };
         editorCpu->start();
@@ -7602,7 +7602,7 @@ private:
                         png.writeImageToStream (image, *stream);
                 };
                 own (eq, "Facet EQ.png", true);
-                own (lynx::makeEffectSlot (lynx::EffectKind::lynxTune), "LYNX Tune.png", false);
+                own (lynx::makeEffectSlot (lynx::EffectKind::lynxTune), "Shield Tune.png", false);
                 {
                     // round 128: the ADVANCED page, with E bypassed and A removed on the keyboard and a created vibrato
                     auto tune = lynx::makeEffectSlot (lynx::EffectKind::lynxTune);
@@ -7616,9 +7616,9 @@ private:
                     tune.params[lynx::lynxtune::throatLength] = lynx::lynxtune::throatValue (80.0);
                     tune.params[lynx::lynxtune::transposeInScale] = 1.0f;
                     tune.params[lynx::lynxtune::scaleTranspose] = lynx::lynxtune::scaleTransposeValue (2);
-                    own (tune, "LYNX Tune-p2.png", false, 1);
+                    own (tune, "Shield Tune-p2.png", false, 1);
                 }
-                own (lynx::makeEffectSlot (lynx::EffectKind::lynxTune), "LYNX Tune-p3.png", false, 2); // round 135w: Real-time
+                own (lynx::makeEffectSlot (lynx::EffectKind::lynxTune), "Shield Tune-p3.png", false, 2); // round 135w: Real-time
                 lynx::setNativeEditorDemo (false);
             }
 
@@ -8695,7 +8695,7 @@ private:
             auto item = [this] (juce::PopupMenu& m, int id, const char* text, bool enabled = true) {
                 m.addItem (text, enabled, false, [this, id] { picked = id; });
             };
-            menu.addSectionHeader ("LYNX SHARE");
+            menu.addSectionHeader ("Shield");
             item (menu, 1, "Echoform");
             item (menu, 2, "EQ");
             item (menu, 3, "Halo");
@@ -9296,8 +9296,8 @@ private:
             {
                 // the Settings pages, with credits like a project imported from FL would carry
                 offline.editSong ([] (lynx::Song& s) {
-                    s.info = { "Night Drive", "LYNX SHARE demo", "Synthwave", "https://lynx-share.com",
-                               "Made with LYNX SHARE.\nDrums and bass from the Channel Rack, pads from the Browser.", false };
+                    s.info = { "Night Drive", "Shield demo", "Synthwave", "https://lynx-share.com",
+                               "Made with Shield.\nDrums and bass from the Channel Rack, pads from the Browser.", false };
                 }, false);
                 saveWindow (lynx::makeSettingsPanel (offline, lynx::SettingsPage::project), "-settings-project.png");
                 saveWindow (lynx::makeSettingsPanel (offline, lynx::SettingsPage::info), "-settings-info.png");

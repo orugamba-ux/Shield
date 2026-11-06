@@ -299,7 +299,7 @@ public:
                 }
                 case T::surface:
                 {
-                    auto l = std::make_unique<juce::Label> (juce::String {}, tr ("(Control Surface presets are not available in LYNX SHARE)"));
+                    auto l = std::make_unique<juce::Label> (juce::String {}, tr ("(Control Surface presets are not available in Shield)"));
                     l->setFont (theme::font (theme::type::caption));
                     l->setColour (juce::Label::textColourId, theme::colour::textDisabled);
                     editor = std::move (l);
@@ -1966,7 +1966,7 @@ private:
     juce::PopupMenu scriptMenu()
     {
         juce::PopupMenu menu;
-        menu.addSectionHeader ("LYNX SHARE");
+        menu.addSectionHeader ("Shield");
         std::map<juce::String, juce::PopupMenu> own;
         for (const auto& b : ae::script::builtins())
         {
@@ -2569,7 +2569,7 @@ private:
     // key on the path, so nothing stale is ever shown)
     juce::File writeEditFile()
     {
-        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("LYNX/Edits");
+        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("Shield/Edits");
         folder.createDirectory();
         const auto file = folder.getNonexistentChildFile (safeTitle() + " (edit)", ".wav");
         if (! writeWav (file, bits))
@@ -2732,7 +2732,7 @@ private:
         part.title = doc.title;
         if (doc.hasLoop() && doc.loopStart >= range.start && doc.loopEnd <= range.end)
             ae::setLoop (part, { doc.loopStart - range.start, doc.loopEnd - range.start });
-        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("LYNX/Edits");
+        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("Shield/Edits");
         folder.createDirectory();
         const auto file = folder.getNonexistentChildFile (safeTitle() + " (part)", ".wav");
         const auto bytes = ae::encodeWav (part, bits);

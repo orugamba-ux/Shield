@@ -1,11 +1,11 @@
-# Release build of LYNX SHARE for Windows, macOS and Linux.
+# Release build of Shield for Windows, macOS and Linux.
 #
 # Every published binary comes from this workflow, built from the tagged source on GitHub-hosted
 # runners, so anyone can trace a binary back to the commit and the run that produced it
 # (a requirement of the SignPath Foundation code signing program; see docs/CODE_SIGNING.md).
 #
 #   version  (ubuntu)   reads the version (CMakeLists.txt) and the package label
-#   build    (ubuntu)   cross-compiles LYNX.exe with Zig 0.14.1 + JUCE 8.0.4 (scripts/build-windows-zig.sh)
+#   build    (ubuntu)   cross-compiles Shield.exe with Zig 0.14.1 + JUCE 8.0.4 (scripts/build-windows-zig.sh)
 #   sign     (ubuntu)   SignPath signing request; skipped until the repository variable SIGNPATH_ENABLED is 'true'
 #   package  (windows)  runs the self-test on the (signed) exe, builds Demo.lynx, the portable zip, the per-user
 #                       installer (NSIS, resources/installer/LYNX.nsi) and the Microsoft Store package (MSIX,
@@ -67,10 +67,10 @@ jobs:
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "label=$label" >> "$GITHUB_OUTPUT"
-          echo "LYNX $version (package label $label)"
+          echo "Shield $version (package label $label)"
 
   build:
-    name: Build LYNX.exe
+    name: Build Shield.exe
     needs: version
     runs-on: ubuntu-24.04
     outputs:
@@ -104,37 +104,37 @@ jobs:
         run: |
           ZIG="$HOME/opt/zig-x86_64-linux-$ZIG_VERSION/zig" JUCE_DIR="$HOME/opt/juce-$JUCE_VERSION" OUT=build-win \
             ./scripts/build-windows-zig.sh 2>&1 | grep -v '^1 warning generated\.$'
-          sha256sum build-win/LYNX.exe
+          sha256sum build-win/Shield.exe
           ./scripts/fetch-onnxruntime.sh windows build-win
 
-      - name: Upload unsigned LYNX.exe
+      - name: Upload unsigned Shield.exe
         id: upload
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-unsigned
+          name: Shield-unsigned
           path: |
-            build-win/LYNX.exe
+            build-win/Shield.exe
             build-win/lynx-asio.dll
             build-win/lynx-asio32.dll
             build-win/onnxruntime.dll
           if-no-files-found: error
 
-      # the build's symbols (round 157a): a user's crash / hang file lists LYNX.exe+offset frames; with this LYNX.pdb
-      # next to the same LYNX.exe, `LYNX.exe --symbolize <file> <out>` names them (signing does not change the offsets)
+      # the build's symbols (round 157a): a user's crash / hang file lists Shield.exe+offset frames; with this Shield.pdb
+      # next to the same Shield.exe, `Shield.exe --symbolize <file> <out>` names them (signing does not change the offsets)
       - name: Upload symbols
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-symbols
-          path: build-win/LYNX.pdb
+          name: Shield-symbols
+          path: build-win/Shield.pdb
           retention-days: 90
           if-no-files-found: warn
 
   # ---------------------------------------------------------------------------------------------
-  # SignPath code signing: PLACEHOLDER, disabled until the SignPath Foundation approves LYNX.
+  # SignPath code signing: PLACEHOLDER, disabled until the SignPath Foundation approves Shield.
   # To enable (docs/CODE_SIGNING.md):
   #   repository secret    SIGNPATH_API_TOKEN        API token of the SignPath CI user (submitter role)
   #   repository variable  SIGNPATH_ORGANIZATION_ID  organization id shown in the SignPath web app
-  #   repository variable  SIGNPATH_PROJECT_SLUG     project slug (default: LYNX)
+  #   repository variable  SIGNPATH_PROJECT_SLUG     project slug (default: Shield)
   #   repository variable  SIGNPATH_POLICY_SLUG      signing policy slug (default: release-signing)
   #   repository variable  SIGNPATH_ENABLED          'true' to switch this job on
   # ---------------------------------------------------------------------------------------------
@@ -153,19 +153,19 @@ jobs:
         with:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
           organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
-          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'LYNX' }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'Shield' }}
           signing-policy-slug: ${{ vars.SIGNPATH_POLICY_SLUG || 'release-signing' }}
           github-artifact-id: ${{ needs.build.outputs.artifact-id }}
           wait-for-completion: true
           wait-for-completion-timeout-in-seconds: 10800   # a release request waits up to 3 h for manual approval
           output-artifact-directory: signed
 
-      - name: Upload signed LYNX.exe
+      - name: Upload signed Shield.exe
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-signed
+          name: Shield-signed
           path: |
-            signed/LYNX.exe
+            signed/Shield.exe
             signed/lynx-asio.dll
             signed/lynx-asio32.dll
             signed/onnxruntime.dll
@@ -182,19 +182,19 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Download LYNX.exe
+      - name: Download Shield.exe
         uses: actions/download-artifact@v8
         with:
-          name: ${{ needs.sign.result == 'success' && 'LYNX-signed' || 'LYNX-unsigned' }}
+          name: ${{ needs.sign.result == 'success' && 'Shield-signed' || 'Shield-unsigned' }}
           path: bin
 
       - name: Check version resource and signature
         shell: pwsh
         run: |
-          $exe = Get-Item bin\LYNX.exe
+          $exe = Get-Item bin\Shield.exe
           $v = $exe.VersionInfo
           $v | Format-List ProductName, CompanyName, FileVersion, ProductVersion, LegalCopyright
-          if ($v.ProductName -ne 'LYNX SHARE' -or $v.ProductVersion -ne $env:VERSION) { throw "version resource mismatch" }
+          if ($v.ProductName -ne 'Shield' -or $v.ProductVersion -ne $env:VERSION) { throw "version resource mismatch" }
           $sig = Get-AuthenticodeSignature $exe.FullName
           "Authenticode: $($sig.Status) $($sig.SignerCertificate.Subject)"
           if ('${{ needs.sign.result }}' -eq 'success' -and $sig.Status -ne 'Valid') { throw "signed build is not validly signed" }
@@ -202,46 +202,46 @@ jobs:
       - name: Self-test
         shell: pwsh
         run: |
-          $p = Start-Process bin\LYNX.exe -ArgumentList '--selftest', "$PWD\selftest.txt", "$PWD\selftest-demo.lynx" -Wait -PassThru
+          $p = Start-Process bin\Shield.exe -ArgumentList '--selftest', "$PWD\selftest.txt", "$PWD\selftest-demo.lynx" -Wait -PassThru
           Get-Content selftest.txt
           if ($p.ExitCode -ne 0 -or -not (Select-String -Path selftest.txt -Pattern '^result=OK' -Quiet)) { throw "self-test failed (exit $($p.ExitCode))" }
 
       # every built-in effect / instrument window opened as the mixer and Channel rack open them, with old-project and
-      # random states; fails on a crash or a frozen UI (round 157a: the Parametric EQ froze LYNX when opened)
+      # random states; fails on a crash or a frozen UI (round 157a: the Parametric EQ froze Shield when opened)
       - name: Editor windows test
         shell: pwsh
         run: |
-          $p = Start-Process bin\LYNX.exe -ArgumentList '--opentest', "$PWD\opentest.txt" -Wait -PassThru
+          $p = Start-Process bin\Shield.exe -ArgumentList '--opentest', "$PWD\opentest.txt" -Wait -PassThru
           Get-Content opentest.txt -Tail 5
           if ($p.ExitCode -ne 0 -or -not (Select-String -Path opentest.txt -Pattern '^result=OK' -Quiet)) { Get-Content opentest.txt | Select-String -Pattern 'FAIL|HANG'; throw "editor windows test failed (exit $($p.ExitCode))" }
 
       - name: Portable package and installer
         shell: pwsh
         run: |
-          $name = "LYNX-$env:LABEL-windows-x64"
+          $name = "Shield-$env:LABEL-windows-x64"
           New-Item -ItemType Directory -Force "pkg\$name" | Out-Null
-          $p = Start-Process bin\LYNX.exe -ArgumentList '--showcase', "$PWD\pkg\$name\Demo.lynx" -Wait -PassThru
+          $p = Start-Process bin\Shield.exe -ArgumentList '--showcase', "$PWD\pkg\$name\Demo.lynx" -Wait -PassThru
           if (-not (Test-Path "pkg\$name\Demo.lynx")) { throw "showcase did not write Demo.lynx (exit $($p.ExitCode))" }
-          Copy-Item bin\LYNX.exe, bin\onnxruntime.dll, LICENSE, THIRD_PARTY.md, PRIVACY.md "pkg\$name\"
+          Copy-Item bin\Shield.exe, bin\onnxruntime.dll, LICENSE, THIRD_PARTY.md, PRIVACY.md "pkg\$name\"
           # LYNX ASIO driver and its registration helpers (REA round 97)
           if (Test-Path bin\lynx-asio.dll) { Copy-Item bin\lynx-asio.dll, "asio\Register LYNX ASIO.bat", "asio\Unregister LYNX ASIO.bat" "pkg\$name\" }
           if (Test-Path bin\lynx-asio32.dll) { Copy-Item bin\lynx-asio32.dll "pkg\$name\" }  # 32-bit hosts (round 106)
           New-Item -ItemType Directory -Force dist | Out-Null
           Compress-Archive -Path "pkg\$name" -DestinationPath "dist\$name.zip"
-          Copy-Item bin\LYNX.exe dist\
+          Copy-Item bin\Shield.exe dist\
           # per-user installer (NSIS is preinstalled on GitHub's Windows images)
           $nsis = (Get-Command makensis -ErrorAction SilentlyContinue).Source
           if (-not $nsis) { $nsis = "${env:ProgramFiles(x86)}\NSIS\makensis.exe" }
           if (-not (Test-Path $nsis)) { choco install nsis -y --no-progress; $nsis = "${env:ProgramFiles(x86)}\NSIS\makensis.exe" }
-          & $nsis -V2 -INPUTCHARSET UTF8 "-DVERSION=$env:VERSION" "-DSTAGE=$PWD\pkg\$name" "-DOUTFILE=$PWD\dist\LYNX-$env:LABEL-setup-x64.exe" `
-            "-DICON=$PWD\resources\LYNX.ico" resources\installer\LYNX.nsi
+          & $nsis -V2 -INPUTCHARSET UTF8 "-DVERSION=$env:VERSION" "-DSTAGE=$PWD\pkg\$name" "-DOUTFILE=$PWD\dist\Shield-$env:LABEL-setup-x64.exe" `
+            "-DICON=$PWD\resources\Shield.ico" resources\installer\LYNX.nsi
           if ($LASTEXITCODE -ne 0) { throw "makensis failed ($LASTEXITCODE)" }
           # the installer installs and uninstalls cleanly (per user, into a scratch folder)
           $inst = "$env:RUNNER_TEMP\lynx-inst"
-          Start-Process "dist\LYNX-$env:LABEL-setup-x64.exe" -ArgumentList '/S', "/D=$inst" -Wait
-          if (-not (Test-Path "$inst\LYNX.exe")) { throw "installer did not install LYNX.exe" }
+          Start-Process "dist\Shield-$env:LABEL-setup-x64.exe" -ArgumentList '/S', "/D=$inst" -Wait
+          if (-not (Test-Path "$inst\Shield.exe")) { throw "installer did not install Shield.exe" }
           Start-Process "$inst\Uninstall.exe" -ArgumentList '/S', "_?=$inst" -Wait
-          if (Test-Path "$inst\LYNX.exe") { throw "uninstaller left LYNX.exe" }
+          if (Test-Path "$inst\Shield.exe") { throw "uninstaller left Shield.exe" }
 
       # Microsoft Store package (round 165n, docs/STORE.md): an unsigned .msix the Store signs after certification.
       # Its identity comes from Partner Center (Product identity) through repository variables; placeholders until then.
@@ -258,7 +258,7 @@ jobs:
           $sdk = Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.*\x64\makeappx.exe" | Sort-Object { [version]$_.Directory.Parent.Name } | Select-Object -Last 1
           if (-not $sdk) { throw "Windows SDK (makeappx) not found" }
           $tools = $sdk.DirectoryName; "Windows SDK tools: $tools"
-          $demo = "pkg\LYNX-$env:LABEL-windows-x64\Demo.lynx"
+          $demo = "pkg\Shield-$env:LABEL-windows-x64\Demo.lynx"
           function Pack($layout, $out, [switch]$test) {
             $a = @('scripts\make-msix-layout.py', '--version', $env:VERSION, '--bin', 'bin', '--out', $layout, '--extra', $demo, 'LICENSE', 'THIRD_PARTY.md', 'PRIVACY.md')
             if ($test) { $a += '--test-identity' }
@@ -271,12 +271,12 @@ jobs:
             if ($LASTEXITCODE -ne 0) { throw "makeappx pack failed" }
           }
           New-Item -ItemType Directory -Force msix | Out-Null
-          Pack 'msix\store' "dist\LYNX-$env:LABEL-store.msix"
-          Pack 'msix\test' 'msix\LYNX-test.msix' -test
-          Get-Item "dist\LYNX-$env:LABEL-store.msix", 'msix\LYNX-test.msix' | Format-Table Name, Length
+          Pack 'msix\store' "dist\Shield-$env:LABEL-store.msix"
+          Pack 'msix\test' 'msix\Shield-test.msix' -test
+          Get-Item "dist\Shield-$env:LABEL-store.msix", 'msix\Shield-test.msix' | Format-Table Name, Length
 
       # the package installed for real (the test identity carries Windows' "unsigned" publisher OID, so it installs
-      # without a certificate) and LYNX run inside it: package identity, settings folder on the real disk (what
+      # without a certificate) and Shield run inside it: package identity, settings folder on the real disk (what
       # Explorer opens), the self-test; then removed
       - name: MSIX install test
         shell: pwsh
@@ -284,7 +284,7 @@ jobs:
         run: |
           # the package depends on Microsoft's VC++ runtime framework (onnxruntime.dll): the Store installs it, here we do
           Invoke-WebRequest https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile msix\vclibs.appx
-          Add-AppxPackage -Path msix\LYNX-test.msix -AllowUnsigned -DependencyPath msix\vclibs.appx
+          Add-AppxPackage -Path msix\Shield-test.msix -AllowUnsigned -DependencyPath msix\vclibs.appx
           $pkg = Get-AppxPackage | Where-Object { $_.Name -eq ([xml](Get-Content msix\test\AppxManifest.xml)).Package.Identity.Name } | Select-Object -First 1
           if (-not $pkg) { throw "package not installed" }
           "installed: $($pkg.PackageFullName) at $($pkg.InstallLocation)"
@@ -293,9 +293,9 @@ jobs:
             if (-not (Test-Path $alias)) { throw "execution alias lynx.exe missing" }
             $p = Start-Process $alias -ArgumentList '--packageinfo', "$PWD\packageinfo.txt" -Wait -PassThru
             Get-Content packageinfo.txt
-            if (-not (Select-String -Path packageinfo.txt -Pattern '^packaged=yes' -Quiet)) { throw "LYNX did not run with the package identity" }
+            if (-not (Select-String -Path packageinfo.txt -Pattern '^packaged=yes' -Quiet)) { throw "Shield did not run with the package identity" }
             if (-not (Select-String -Path packageinfo.txt -Pattern '^result=OK' -Quiet)) { throw "packageinfo failed (exit $($p.ExitCode))" }
-            $probe = "$env:LOCALAPPDATA\Packages\$($pkg.PackageFamilyName)\LocalCache\Roaming\LYNX\package-probe.txt"
+            $probe = "$env:LOCALAPPDATA\Packages\$($pkg.PackageFamilyName)\LocalCache\Roaming\Shield\package-probe.txt"
             if (-not (Test-Path $probe)) { throw "the settings folder is not on the real disk: $probe" }
             "seen from outside the package: $probe"
             $p = Start-Process $alias -ArgumentList '--selftest', "$PWD\msix-selftest.txt", "$PWD\msix-selftest.lynx" -Wait -PassThru
@@ -308,7 +308,7 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-${{ env.LABEL }}-windows-x64
+          name: Shield-${{ env.LABEL }}-windows-x64
           path: dist/*
           if-no-files-found: error
 
@@ -354,14 +354,14 @@ jobs:
           cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DFETCHCONTENT_SOURCE_DIR_JUCE="$RUNNER_TEMP/juce" \
             -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
           cmake --build build --target LYNX -- -k 0
-          sha256sum build/LYNX_artefacts/Release/LYNX
+          sha256sum build/LYNX_artefacts/Release/Shield
 
       - name: Runs on glibc ${{ env.MAX_GLIBC }} without the system's libstdc++
-        run: ./scripts/check-linux-compat.sh build/LYNX_artefacts/Release/LYNX "$MAX_GLIBC"
+        run: ./scripts/check-linux-compat.sh build/LYNX_artefacts/Release/Shield "$MAX_GLIBC"
 
       - name: Self-test and demo project
         run: |
-          bin=build/LYNX_artefacts/Release/LYNX
+          bin=build/LYNX_artefacts/Release/Shield
           xvfb-run -a "$bin" --selftest "$PWD/selftest.txt" "$PWD/selftest-demo.lynx" || true
           cat selftest.txt
           grep -q '^result=OK' selftest.txt
@@ -372,17 +372,17 @@ jobs:
           test -s Demo.lynx
 
       - name: Package
-        run: ./scripts/package-linux.sh build/LYNX_artefacts/Release/LYNX "$LABEL" dist Demo.lynx
+        run: ./scripts/package-linux.sh build/LYNX_artefacts/Release/Shield "$LABEL" dist Demo.lynx
 
       # The catalog runs the AppImage offline for ~11 s and expects a window: start it without network (when the
       # container allows a network namespace), check that it is still running and shows a top-level window.
       - name: AppImage starts offline and shows its window
-        run: REQUIRE_OFFLINE=1 ./scripts/check-appimage-start.sh "dist/LYNX-$LABEL-x86_64.AppImage"
+        run: REQUIRE_OFFLINE=1 ./scripts/check-appimage-start.sh "dist/Shield-$LABEL-x86_64.AppImage"
 
       - name: Upload package
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-${{ env.LABEL }}-linux-x86_64
+          name: Shield-${{ env.LABEL }}-linux-x86_64
           path: dist/*
           if-no-files-found: error
 
@@ -410,11 +410,11 @@ jobs:
           cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DFETCHCONTENT_SOURCE_DIR_JUCE="$RUNNER_TEMP/juce" \
             -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
           cmake --build build --target LYNX -- -k 0
-          lipo -info build/LYNX_artefacts/Release/LYNX.app/Contents/MacOS/LYNX
+          lipo -info build/LYNX_artefacts/Release/Shield.app/Contents/MacOS/Shield
 
       - name: Self-test and demo project
         run: |
-          bin=build/LYNX_artefacts/Release/LYNX.app/Contents/MacOS/LYNX
+          bin=build/LYNX_artefacts/Release/Shield.app/Contents/MacOS/Shield
           "$bin" --selftest "$PWD/selftest.txt" "$PWD/selftest-demo.lynx" || true
           cat selftest.txt
           grep -q '^result=OK' selftest.txt
@@ -422,12 +422,12 @@ jobs:
           test -s Demo.lynx
 
       - name: Package
-        run: ./scripts/package-macos.sh build/LYNX_artefacts/Release/LYNX.app "$LABEL" dist Demo.lynx
+        run: ./scripts/package-macos.sh build/LYNX_artefacts/Release/Shield.app "$LABEL" dist Demo.lynx
 
       - name: Upload package
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-${{ env.LABEL }}-macos-universal
+          name: Shield-${{ env.LABEL }}-macos-universal
           path: dist/*
           if-no-files-found: error
 
@@ -444,13 +444,13 @@ jobs:
       - name: Download the packages
         uses: actions/download-artifact@v8
         with:
-          pattern: LYNX-${{ env.LABEL }}-*
+          pattern: Shield-${{ env.LABEL }}-*
           path: dist
           merge-multiple: true
 
       # The in-app updater (src/core/UpdateCheck.cpp, round 166b) picks the release files by these names: keep them stable.
-      # LYNX-<label>-setup-x64.exe, LYNX-<label>-windows-x64.zip, LYNX-<label>-macos-universal.dmg (any *.dmg),
-      # LYNX-<label>-x86_64.AppImage (+ .zsync, named by the AppImage's update information), LYNX-<label>-linux-x86_64.tar.gz,
+      # Shield-<label>-setup-x64.exe, Shield-<label>-windows-x64.zip, Shield-<label>-macos-universal.dmg (any *.dmg),
+      # Shield-<label>-x86_64.AppImage (+ .zsync, named by the AppImage's update information), Shield-<label>-linux-x86_64.tar.gz,
       # and SHA256SUMS.txt, which every download is checked against (no SHA256SUMS.txt line = no update from that file).
       - name: SHA256SUMS
         run: |
@@ -462,7 +462,7 @@ jobs:
       - name: Upload all files
         uses: actions/upload-artifact@v7
         with:
-          name: LYNX-${{ env.LABEL }}-all
+          name: Shield-${{ env.LABEL }}-all
           path: dist/*
           if-no-files-found: error
 
@@ -474,18 +474,19 @@ jobs:
         run: |
           tag="$GITHUB_REF_NAME"
           if ! gh release view "$tag" > /dev/null 2>&1; then
-            gh release create "$tag" --draft --prerelease --title "LYNX SHARE ${tag#v}" \
+            gh release create "$tag" --draft --prerelease --title "Shield ${tag#v}" \
               --notes "Built from \`$GITHUB_SHA\` by [this workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
           fi
           gh release upload "$tag" dist/* --clobber
 
-  # Microsoft Store (round 168y): the release's LYNX-<label>-store.msix as a new submission of product 9NQRFBFDCX6N. The
+  # Microsoft Store (round 168y): the release's Shield-<label>-store.msix as a new submission of product 9NQRFBFDCX6N. The
   # msstore CLI clones the last published submission (listings, pricing, "What's new" untouched), replaces its package
   # with this one and commits it to certification. A pending (unpublished) submission is deleted first.
   store:
     name: Microsoft Store submission
     needs: [version, publish]
-    if: ${{ !cancelled() && needs.publish.result == 'success' }}
+    # Shield: off. 9NQRFBFDCX6N is the upstream LYNX SHARE Store product; Shield has no Store listing of its own.
+    if: ${{ false }}
     runs-on: windows-2025
     env:
       LABEL: ${{ needs.version.outputs.label }}
@@ -518,7 +519,7 @@ jobs:
         if: steps.creds.outputs.run == 'true'
         uses: actions/download-artifact@v8
         with:
-          name: LYNX-${{ env.LABEL }}-windows-x64
+          name: Shield-${{ env.LABEL }}-windows-x64
           path: store
 
       - name: Microsoft Store CLI
@@ -536,7 +537,7 @@ jobs:
           MSSTORE_CLIENT_SECRET: ${{ secrets.MSSTORE_CLIENT_SECRET }}
           MSSTORE_SELLER_ID: ${{ secrets.MSSTORE_SELLER_ID }}
         run: |
-          $msix = Get-Item "store\LYNX-$env:LABEL-store.msix" -ErrorAction Stop
+          $msix = Get-Item "store\Shield-$env:LABEL-store.msix" -ErrorAction Stop
           Write-Host "Store package: $($msix.Name) ($($msix.Length) bytes)"
           # (the secrets go in from the environment, never in the script text; GitHub masks them in the log)
           msstore reconfigure --tenantId $env:MSSTORE_TENANT_ID --sellerId $env:MSSTORE_SELLER_ID `

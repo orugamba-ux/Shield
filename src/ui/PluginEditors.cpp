@@ -1835,8 +1835,8 @@ public:
                 if (b == tbBypass) return tr ("Bypass mode: a key switches its note between corrected and passed as sung");
                 if (b == tbRemove) return tr ("Remove mode: a key cycles its note: legal, illegal (to the nearest note), illegal pitch up, illegal pitch down");
                 if (b == tbReset) return tr ("Reset scale: every note of the scale legal again, nothing bypassed");
-                if (b == tbSend) return tr ("Send: copy this key, scale and keyboard to every other LYNX Tune whose Receive is on");
-                if (b == tbReceive) return tr ("Receive: take the scale another LYNX Tune sends (switching it on takes the last one sent)");
+                if (b == tbSend) return tr ("Send: copy this key, scale and keyboard to every other Shield Tune whose Receive is on");
+                if (b == tbReceive) return tr ("Receive: take the scale another Shield Tune sends (switching it on takes the last one sent)");
                 if (b == tbGroup) return tr ("Group octaves: on = a key edits its note in every octave; off = each key keeps its own status");
                 if (b >= tbRange0 && b < tbZoomOut) return tr ("Range preset: notes sung outside the range pass uncorrected (Generic: the whole keyboard)");
                 if (b == tbZoomOut || b == tbZoomIn) return tr ("Keyboard view: show more / fewer octaves");
@@ -4754,7 +4754,7 @@ private:
         if (isRhythmEdit (item)) // round 144
             return { tr ("Rhythm taps: drag up / down = level, sideways = time; double-click = add or remove a tap; right-click = patterns"), {}, false, false };
         if (isRhythmPatterns (item))
-            return { tr ("Load a tap pattern (LYNX SHARE's own), or go back to even spacing"), {}, false, false };
+            return { tr ("Load a tap pattern (Shield's own), or go back to even spacing"), {}, false, false };
         if (isWaveShaperGraph (item)) // round 165
             return { wsHint (item, p), {}, false, true };
         if (isMaximusCurve (item)) // round 168x

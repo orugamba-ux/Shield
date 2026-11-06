@@ -73,7 +73,7 @@ ImageFit imageFitFromId (const std::string& id);
 // A theme: what a .lynxtheme file holds and what Options › Theme edits.
 struct Spec
 {
-    std::string name = "LYNX";
+    std::string name = "Shield";
     std::uint32_t accent = defaultAccent;
     std::uint32_t background = defaultBackground;
     std::uint32_t workspace = 0;     // the workspace backdrop's colour; 0 = automatic (the theme's deepest surface)

@@ -16,7 +16,7 @@
 namespace lynx::store
 {
 // The application id in AppxManifest.xml (<Application Id="LYNX">): "shell:AppsFolder\<family>!LYNX" starts it.
-inline constexpr const char* applicationId = "LYNX";
+inline constexpr const char* applicationId = "Shield";
 
 // The settings folder of a packaged LYNX: <LocalAppData>\Packages\<family>\LocalCache\Roaming\LYNX — where Windows
 // redirects %APPDATA%\LYNX for this package. Empty when either part is missing.

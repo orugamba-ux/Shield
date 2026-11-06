@@ -1079,7 +1079,7 @@ private:
     void drawHost (juce::Graphics& g, const PatcherDoc& d, bool input) const
     {
         const auto n = input ? patchFromHost : patchToHost;
-        drawBox (g, nodeBounds (d, n), input ? tr ("From LYNX SHARE") : tr ("To LYNX SHARE"), selectedNode == n, true, false);
+        drawBox (g, nodeBounds (d, n), input ? tr ("From Shield") : tr ("To Shield"), selectedNode == n, true, false);
     }
 
     void drawNode (juce::Graphics& g, const PatcherDoc& d, int n) const
@@ -1447,7 +1447,7 @@ public:
             builtIn ("Drum", kind, juce::String (effectNameOf (kind)));
         builtIn ("MIDI", InstrumentKind::midiOut, "MIDI Out", [] (ChannelDef& c) { midictl::writeMidiOut (c.pluginState, midictl::MidiOutSettings {}); });
         builtIn ("Misc", InstrumentKind::layer, tr ("Layer")); // round 165c: plays the generators on its Children pin
-        builtIn ("Misc", InstrumentKind::soundfont, "LYNX Soundfont", [] (ChannelDef& c) { c = sf::makeChannel(); });
+        builtIn ("Misc", InstrumentKind::soundfont, "Shield Soundfont", [] (ChannelDef& c) { c = sf::makeChannel(); });
         builtIn ("Visual", InstrumentKind::videoplayer, "Fruity Video Player", [] (ChannelDef& c) { c.pluginState = video::write (video::Settings {}); });
         builtIn ("Patcher", InstrumentKind::patcher, "Patcher");
         builtIn ("Synth classic", InstrumentKind::synth, tr ("Synth"));
@@ -1934,7 +1934,7 @@ public:
         const auto host = input ? patchFromHost : patchToHost;
         auto touches = [host] (const PatchWire& w) { return w.from == host || w.to == host; };
         juce::PopupMenu menu;
-        menu.addSectionHeader (input ? tr ("From LYNX SHARE") : tr ("To LYNX SHARE"));
+        menu.addSectionHeader (input ? tr ("From Shield") : tr ("To Shield"));
         menu.addItem (tr ("Disconnect all"), std::any_of (d->wires.begin(), d->wires.end(), touches), false, [this, touches] {
             edit ([touches] (PatcherDoc& doc) { std::erase_if (doc.wires, touches); });
         });

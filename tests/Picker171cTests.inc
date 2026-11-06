@@ -6,11 +6,11 @@
 TEST (picker171c_tabs_lynx_first_az_installed_last)
 {
     using lynx::pickerview::orderTabs;
-    const auto fx = orderTabs ({ "Misc", "Installed", "Delay reverb", "LYNX SHARE", "dynamics", "Controller", "Misc" }, "LYNX SHARE", "Installed");
+    const auto fx = orderTabs ({ "Misc", "Installed", "Delay reverb", "Shield", "dynamics", "Controller", "Misc" }, "Shield", "Installed");
     CHECK (fx.size() == 6);
-    CHECK (fx.size() == 6 && fx[0] == "LYNX SHARE" && fx[1] == "Controller" && fx[2] == "Delay reverb" && fx[3] == "dynamics" && fx[4] == "Misc"
+    CHECK (fx.size() == 6 && fx[0] == "Shield" && fx[1] == "Controller" && fx[2] == "Delay reverb" && fx[3] == "dynamics" && fx[4] == "Misc"
            && fx[5] == "Installed");
-    CHECK (orderTabs ({}, "LYNX SHARE", "Installed").empty());
+    CHECK (orderTabs ({}, "Shield", "Installed").empty());
 }
 
 TEST (picker171c_categories_are_round_170b_folders)

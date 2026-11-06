@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=Application
-Name=LYNX SHARE
+Name=Shield
 GenericName=Digital Audio Workstation
 GenericName[pt_BR]=Estação de trabalho de áudio digital
 Comment=A lightweight DAW, fully open source
 Comment[pt_BR]=Uma DAW leve e totalmente open-source
-Exec=LYNX %F
-Icon=lynx
+Exec=Shield %F
+Icon=shield
 Terminal=false
 Categories=AudioVideo;Audio;Midi;Music;Sequencer;
 Keywords=DAW;music;audio;MIDI;sequencer;FL Studio;flp;

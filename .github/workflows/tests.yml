@@ -79,9 +79,9 @@ jobs:
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == Linux ]]; then
-            bin=build/LYNX_artefacts/Release/LYNX; run=(xvfb-run -a)
+            bin=build/LYNX_artefacts/Release/Shield; run=(xvfb-run -a)
           else
-            bin=build/LYNX_artefacts/Release/LYNX.app/Contents/MacOS/LYNX; run=()
+            bin=build/LYNX_artefacts/Release/Shield.app/Contents/MacOS/Shield; run=()
           fi
           "${run[@]}" "$bin" --selftest "$PWD/selftest.txt" "$PWD/selftest-demo.lynx" || true
           cat selftest.txt
@@ -94,9 +94,9 @@ jobs:
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == Linux ]]; then
-            bin=build/LYNX_artefacts/Release/LYNX; run=(xvfb-run -a)
+            bin=build/LYNX_artefacts/Release/Shield; run=(xvfb-run -a)
           else
-            bin=build/LYNX_artefacts/Release/LYNX.app/Contents/MacOS/LYNX; run=()
+            bin=build/LYNX_artefacts/Release/Shield.app/Contents/MacOS/Shield; run=()
           fi
           mkdir -p editor-pictures
           "${run[@]}" "$bin" --gfxprobe "$PWD/editor-pictures/gfxprobe.txt" || true

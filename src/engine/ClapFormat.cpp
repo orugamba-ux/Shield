@@ -795,8 +795,8 @@ private:
         clap_host_t h {};
         h.clap_version = CLAP_VERSION;
         h.host_data = this;
-        h.name = "LYNX";
-        h.vendor = "LYNX";
+        h.name = "Shield";
+        h.vendor = "Shield";
         h.url = "";
         h.version = JUCE_APPLICATION_VERSION_STRING;
         h.get_extension = [] (const clap_host_t* hh, const char* id) -> const void* {

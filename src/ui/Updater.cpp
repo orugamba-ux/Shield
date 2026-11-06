@@ -36,7 +36,7 @@ juce::File updateFolder()
 {
     const auto profile = platform::profileOverride();
     const auto base = profile != juce::File() ? profile.getChildFile ("Temp") : juce::File::getSpecialLocation (juce::File::tempDirectory);
-    return base.getChildFile ("LYNX-update");
+    return base.getChildFile ("Shield-update");
 }
 
 juce::File downloadsFolder()
@@ -76,7 +76,7 @@ update::Version runningVersion()
 
 juce::String overrideUrl() { return env ("LYNX_UPDATE_URL"); }
 
-juce::String userAgent() { return "LYNX-SHARE/" + juce::String (JUCE_APPLICATION_VERSION_STRING) + " (update check)"; }
+juce::String userAgent() { return "Shield/" + juce::String (JUCE_APPLICATION_VERSION_STRING) + " (update check)"; }
 
 #if JUCE_LINUX || JUCE_BSD
 juce::File findInPath (const juce::String& program)
@@ -433,7 +433,7 @@ void check (bool manual)
             {
                 if (manual)
                     message (juce::MessageBoxIconType::InfoIcon, tr ("Check for updates"),
-                             tr ("You're up to date: LYNX SHARE {0} is the newest version.", { fromUtf8 (running.text()) }));
+                             tr ("You're up to date: Shield {0} is the newest version.", { fromUtf8 (running.text()) }));
                 c.sendChangeMessage();
                 return;
             }
@@ -561,7 +561,7 @@ void installAndRestart (const juce::File& setup)
     c.host.confirmDiscard ([setup] {
         auto& c = controller();
         const auto exe = juce::File::getSpecialLocation (juce::File::currentExecutableFile);
-        const auto helper = updateFolder().getChildFile ("LYNX-updater.exe");
+        const auto helper = updateFolder().getChildFile ("Shield-updater.exe");
         helper.deleteFile();
         if (! exe.copyFileTo (helper))
         {
@@ -818,7 +818,7 @@ void afterStart()
         }
         else
             message (juce::MessageBoxIconType::WarningIcon, tr ("Update"),
-                     tr ("The update could not be installed ({0}). This version of LYNX SHARE is still installed; details in {1}.",
+                     tr ("The update could not be installed ({0}). This version of Shield is still installed; details in {1}.",
                          { detail, folder.getChildFile ("update.log").getFullPathName() }));
     }
     folder.getChildFile ("installing.txt").deleteFile();
@@ -832,7 +832,7 @@ void afterStart()
         const auto phase = controller().phase;
         if (phase == Phase::idle || phase == Phase::checking || phase == Phase::available || phase == Phase::updated
             || phase == Phase::failed || phase == Phase::saved)
-            folder.getChildFile ("LYNX-updater.exe").deleteFile();
+            folder.getChildFile ("Shield-updater.exe").deleteFile();
     });
 }
 
@@ -850,7 +850,7 @@ bool runApplyHelper (const juce::StringArray& args)
         log (juce::String ("helper: ") + (ok ? "installed" : "FAILED") + (detail.isNotEmpty() ? " (" + detail + ")" : juce::String()));
         resultFile.replaceWithText ("result=" + juce::String (ok ? "ok" : "failed") + "\ndetail=" + detail + "\n");
         // LYNX SHARE starts again (the old one when the installation failed: it shows why)
-        const auto exe = folder.getChildFile ("LYNX.exe");
+        const auto exe = folder.getChildFile ("Shield.exe");
         if (exe.existsAsFile())
             exe.startAsProcess (juce::File::isAbsolutePath (project) ? project.quoted() : juce::String());
     };
@@ -867,12 +867,12 @@ bool runApplyHelper (const juce::StringArray& args)
             CloseHandle (process);
             if (waited == WAIT_TIMEOUT)
             {
-                finish (false, "LYNX SHARE did not close");
+                finish (false, "Shield did not close");
                 return true;
             }
         }
     // plugin sandbox / scan child processes of LYNX.exe end a moment later: wait until the exe can be replaced
-    const auto exe = folder.getChildFile ("LYNX.exe");
+    const auto exe = folder.getChildFile ("Shield.exe");
     for (int i = 0; i < 150 && exe.existsAsFile(); ++i)
     {
         auto h = CreateFileW (exe.getFullPathName().toWideCharPointer(), GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -998,7 +998,7 @@ void UpdateBar::refresh()
     switch (c.phase)
     {
         case Phase::available:
-            text = tr ("LYNX SHARE {0} is available", { v });
+            text = tr ("Shield {0} is available", { v });
             notesButton.setButtonText (tr ("What's new"));
             notesButton.setVisible (true);
             updateButton.setButtonText (update::methodFor (flavour()) == update::Method::openPage ? tr ("Download...") : tr ("Update"));
@@ -1007,27 +1007,27 @@ void UpdateBar::refresh()
             break;
         case Phase::downloading:
             progress = c.progress.load();
-            text = progress >= 0.0f ? tr ("Downloading LYNX SHARE {0}... {1}%", { v, juce::String (juce::roundToInt (progress * 100.0f)) })
-                                    : tr ("Downloading LYNX SHARE {0}...", { v });
+            text = progress >= 0.0f ? tr ("Downloading Shield {0}... {1}%", { v, juce::String (juce::roundToInt (progress * 100.0f)) })
+                                    : tr ("Downloading Shield {0}...", { v });
             otherButton.setButtonText (tr ("Cancel"));
             otherButton.setVisible (true);
             closeButton.setVisible (false);
             break;
         case Phase::working:
-            text = tr ("Updating the AppImage to LYNX SHARE {0}...", { v });
+            text = tr ("Updating the AppImage to Shield {0}...", { v });
             otherButton.setButtonText (tr ("Cancel"));
             otherButton.setVisible (true);
             closeButton.setVisible (false);
             break;
         case Phase::ready:
-            text = installer ? tr ("LYNX SHARE {0} is downloaded and ready to install", { v }) : tr ("LYNX SHARE {0} is ready", { v });
+            text = installer ? tr ("Shield {0} is downloaded and ready to install", { v }) : tr ("Shield {0} is ready", { v });
             notesButton.setButtonText (tr ("What's new"));
             notesButton.setVisible (true);
             updateButton.setButtonText (installer ? tr ("Install and restart") : tr ("Restart now"));
             updateButton.setVisible (true);
             break;
         case Phase::saved:
-            text = tr ("LYNX SHARE {0} was saved to {1}", { v, c.result.getParentDirectory().getFullPathName() });
+            text = tr ("Shield {0} was saved to {1}", { v, c.result.getParentDirectory().getFullPathName() });
             otherButton.setButtonText (tr ("Show in folder"));
             otherButton.setVisible (true);
             break;
@@ -1039,7 +1039,7 @@ void UpdateBar::refresh()
             otherButton.setVisible (true);
             break;
         case Phase::updated:
-            text = tr ("LYNX SHARE was updated to {0}", { v });
+            text = tr ("Shield was updated to {0}", { v });
             notesButton.setButtonText (tr ("What's new"));
             notesButton.setVisible (! c.release.body.empty());
             break;
@@ -1063,7 +1063,7 @@ void UpdateBar::showForSnapshot (int state)
     c.release = {};
     c.release.version = update::parseVersion ("0.1.22-alpha");
     c.release.body = "## New\n- The Update button";
-    c.result = downloadsFolder().getChildFile ("LYNX-0.1.22-alpha-windows-x64.zip");
+    c.result = downloadsFolder().getChildFile ("Shield-0.1.22-alpha-windows-x64.zip");
     c.error = tr ("the download is damaged (its checksum does not match)");
     c.progress = 0.42f;
     c.phase = state == 1 ? Phase::downloading : state == 2 ? Phase::failed : state == 3 ? Phase::ready : Phase::available;
@@ -1164,7 +1164,7 @@ class NotesPanel final : public juce::Component
 public:
     explicit NotesPanel (const update::Release& r) : notes (update::releaseNotes (r.body))
     {
-        title.setText (r.name.empty() ? "LYNX SHARE " + versionText (r) : fromUtf8 (r.name), juce::dontSendNotification);
+        title.setText (r.name.empty() ? "Shield " + versionText (r) : fromUtf8 (r.name), juce::dontSendNotification);
         title.setFont (theme::font (theme::type::title + 3.0f, true));
         title.setColour (juce::Label::textColourId, theme::colour::textPrimary);
         addAndMakeVisible (title);
@@ -1239,7 +1239,7 @@ void showReleaseNotes()
     const auto& release = controller().release;
     juce::DialogWindow::LaunchOptions options;
     options.content.setOwned (fitContentToScreen (std::make_unique<NotesPanel> (release)).release());
-    options.dialogTitle = tr ("What's new in LYNX SHARE {0}", { versionText (release) });
+    options.dialogTitle = tr ("What's new in Shield {0}", { versionText (release) });
     options.dialogBackgroundColour = theme::colour::bg2;
     options.useNativeTitleBar = true;
     options.resizable = true;
@@ -1254,7 +1254,7 @@ void showReleaseNotes()
 std::unique_ptr<juce::Component> makeReleaseNotesForSnapshot()
 {
     update::Release r;
-    r.name = "LYNX SHARE 0.1.22-alpha";
+    r.name = "Shield 0.1.22-alpha";
     r.version = update::parseVersion ("0.1.22-alpha");
     r.body = "## New\n- **In-app updates**: a bar shows when a new version is out; *Update* installs it.\n"
              "  - Windows installer: downloads, checks and installs it, then restarts.\n- Help › Check for updates...\n\n"

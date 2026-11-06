@@ -994,7 +994,7 @@ private:
             return;
         const auto out = newtonefx::renderedSource (sample, savedState);
         const juce::File src (juce::String::fromUTF8 (samplePath.c_str()));
-        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("LYNX/Edits");
+        const auto folder = juce::File::getSpecialLocation (juce::File::userMusicDirectory).getChildFile ("Shield/Edits");
         folder.createDirectory();
         const auto title = src.getFileNameWithoutExtension().isNotEmpty() ? src.getFileNameWithoutExtension() : juce::String ("Dragged sample");
         const auto file = folder.getNonexistentChildFile (juce::File::createLegalFileName (title), ".wav");
