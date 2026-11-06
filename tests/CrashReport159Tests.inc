@@ -221,7 +221,7 @@ TEST (report159_github_url)
     f.steps = "1. Open the editor\n2. LYNX closes";
     const auto url = githubIssueUrl (f);
     CHECK (url.rfind ("https://github.com/orugamba-ux/Shield/issues/new?template=bug_report.yml&", 0) == 0);
-    CHECK (has (url, "&os=Windows%2011") && has (url, "&kind=LYNX%20SHARE%20closed%20%28crash%29") && has (url, "&version=0.1.16"));
+    CHECK (has (url, "&os=Windows%2011") && has (url, "&kind=Shield%20closed%20%28crash%29") && has (url, "&version=0.1.16"));
     CHECK (has (url, "&steps=1.%20Open%20the%20editor%0A2.%20LYNX%20closes"));
     CHECK (! has (url, "&logs=")); // empty fields are left out
 

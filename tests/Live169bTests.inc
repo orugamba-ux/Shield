@@ -644,7 +644,7 @@ TEST (live169b_invite_code_and_encryption)
     const Invite invite { "2syq75e66t", newSecret() };
     CHECK (invite.secret.size() == 16 && newSecret() != invite.secret);
     const auto code = formatCode (invite);
-    CHECK (code.size() == 36 && code.rfind ("Shield-2SYQ7-5E66T-", 0) == 0);
+    CHECK (code.size() == 36 && code.rfind ("LYNX-2SYQ7-5E66T-", 0) == 0);
     auto parsed = parseCode (code);
     CHECK (parsed && parsed->room == invite.room && parsed->secret == invite.secret);
     // pasted with spaces, lower case, inside a link

@@ -27,12 +27,14 @@ PROTECT = [
     r"LYNX preset", r"LYNX theme", r"LYNX visualizer", r"LYNX-SF-INDEX", r"LYNX-ABCDE",
     r"LYNXvp1", r"LYNX\|RComp", r"LYNX\.LYNX_8wekyb3d8bbwe", r"X-LYNX-", r"LYNX_[A-Za-z0-9_]+",
     r"\"LYNX-\"",  # live-session invite-code prefix (LiveCrypto, LiveSessionUi)
+    r"LYNX-[0-9A-Z]{5}-[0-9A-Z]{5}-",  # an invite code itself ("LYNX-2SYQ7-5E66T-..."; tests)
 ]
 
 COMMON = [
     (r"https://api\.github\.com/repos/Ka1-S/LYNX-SHARE", f"https://api.github.com/repos/{NEW_REPO}"),
     (r"https://github\.com/Ka1-S/LYNX-SHARE/", f"https://github.com/{NEW_REPO}/"),
     (r"LYNX SHARE", "Shield"),
+    (r"LYNX%20SHARE", "Shield"),  # URL-encoded (GitHub issue links)
     (r"(?<![/.])LYNX-SHARE/", "Shield/"),  # HTTP user agent
     (r"\bLYNX(\.exe|\.pdb|\.app)\b", r"Shield\1"),
     (r"\bLYNX-(updater|update|cache|sandbox-|ui-session|plugin-thumbs-|symbols|only)", r"Shield-\1"),

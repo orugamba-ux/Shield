@@ -6,23 +6,23 @@ namespace
 {
 // a trimmed copy of GitHub's /releases answer: a draft, two prereleases, a tag that is no version, escapes
 const char* updateFixture = R"json([
-  {"url":"x","html_url":"https://github.com/Ka1-S/LYNX-SHARE/releases/tag/v0.1.23-alpha","tag_name":"v0.1.23-alpha",
-   "name":"LYNX SHARE 0.1.23-alpha","draft":true,"prerelease":true,"body":"draft","assets":[]},
-  {"html_url":"https://github.com/Ka1-S/LYNX-SHARE/releases/tag/v0.1.22-alpha","tag_name":"v0.1.22-alpha",
-   "name":"LYNX SHARE 0.1.22-alpha","draft":false,"prerelease":true,"id":12345678,"author":{"login":"Ka1-S","id":1},
+  {"url":"x","html_url":"https://github.com/orugamba-ux/Shield/releases/tag/v0.1.23-alpha","tag_name":"v0.1.23-alpha",
+   "name":"Shield 0.1.23-alpha","draft":true,"prerelease":true,"body":"draft","assets":[]},
+  {"html_url":"https://github.com/orugamba-ux/Shield/releases/tag/v0.1.22-alpha","tag_name":"v0.1.22-alpha",
+   "name":"Shield 0.1.22-alpha","draft":false,"prerelease":true,"id":12345678,"author":{"login":"Ka1-S","id":1},
    "body":"## New\r\n- **Update** button — see [the docs](https://x/y)\r\n- Café 🌶\r\n\r\n## Fixes\r\n* `crash` fixed\r\n",
    "assets":[
-     {"name":"LYNX-0.1.22-alpha-linux-x86_64.tar.gz","size":40000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-linux-x86_64.tar.gz"},
-     {"name":"LYNX-0.1.22-alpha-macos-universal.dmg","size":50000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-macos-universal.dmg"},
-     {"name":"LYNX-0.1.22-alpha-setup-x64.exe","size":30000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-setup-x64.exe"},
-     {"name":"LYNX-0.1.22-alpha-store.msix","size":30000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-store.msix"},
-     {"name":"LYNX-0.1.22-alpha-windows-x64.zip","size":30000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-windows-x64.zip"},
-     {"name":"LYNX-0.1.22-alpha-x86_64.AppImage","size":60000000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-x86_64.AppImage"},
-     {"name":"LYNX-0.1.22-alpha-x86_64.AppImage.zsync","size":200000,"browser_download_url":"https://github.com/d/LYNX-0.1.22-alpha-x86_64.AppImage.zsync"},
-     {"name":"LYNX.exe","size":90000000,"browser_download_url":"https://github.com/d/LYNX.exe"},
+     {"name":"Shield-0.1.22-alpha-linux-x86_64.tar.gz","size":40000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-linux-x86_64.tar.gz"},
+     {"name":"Shield-0.1.22-alpha-macos-universal.dmg","size":50000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-macos-universal.dmg"},
+     {"name":"Shield-0.1.22-alpha-setup-x64.exe","size":30000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-setup-x64.exe"},
+     {"name":"Shield-0.1.22-alpha-store.msix","size":30000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-store.msix"},
+     {"name":"Shield-0.1.22-alpha-windows-x64.zip","size":30000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-windows-x64.zip"},
+     {"name":"Shield-0.1.22-alpha-x86_64.AppImage","size":60000000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-x86_64.AppImage"},
+     {"name":"Shield-0.1.22-alpha-x86_64.AppImage.zsync","size":200000,"browser_download_url":"https://github.com/d/Shield-0.1.22-alpha-x86_64.AppImage.zsync"},
+     {"name":"Shield.exe","size":90000000,"browser_download_url":"https://github.com/d/Shield.exe"},
      {"name":"SHA256SUMS.txt","size":900,"browser_download_url":"https://github.com/d/SHA256SUMS.txt"}]},
   {"html_url":"h","tag_name":"nightly","name":"not a version","draft":false,"prerelease":true,"body":"","assets":[]},
-  {"html_url":"https://github.com/Ka1-S/LYNX-SHARE/releases/tag/v0.1.21-alpha","tag_name":"v0.1.21-alpha","name":"LYNX SHARE 0.1.21-alpha",
+  {"html_url":"https://github.com/orugamba-ux/Shield/releases/tag/v0.1.21-alpha","tag_name":"v0.1.21-alpha","name":"Shield 0.1.21-alpha",
    "draft":false,"prerelease":true,"body":null,"assets":[]},
   {"html_url":"h","tag_name":"v0.1.20-alpha","draft":false,"prerelease":true,"body":"old","assets":[], "reactions":{"+1":3}, "x":[1,2.5e3,-4,true,false,null]}
 ])json";

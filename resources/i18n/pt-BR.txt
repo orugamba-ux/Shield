@@ -87,7 +87,7 @@ countries: br
 "Nothing to report (no .flp imported in this session, or everything was converted)." = "Nada a relatar (nenhum .flp importado nesta sessão, ou tudo foi convertido)."
 "About Shield" = "Sobre o Shield"
 "Built-in plugins (online list)..." = "Plugins nativos (lista online)..."
-"Lightweight C++/JUCE DAW with the FL Studio workflow.\nIndependent implementation: no Image-Line code was copied." = "DAW leve em C++/JUCE com o fluxo de trabalho do FL Studio.\nImplementação independente: nenhum código da Image-Line foi copiado."
+"A lightweight music production studio: channel rack, piano roll, playlist and mixer.\nOpens FL Studio projects. Independent implementation: no Image-Line code was copied." = "Um estúdio de produção musical leve: channel rack, piano roll, playlist e mixer.\nAbre projetos do FL Studio. Implementação independente: nenhum código da Image-Line foi copiado."
 "The new language is applied when Shield restarts." = "O novo idioma é aplicado quando o Shield reinicia."
 "Restart now" = "Reiniciar agora"
 "Later" = "Depois"
@@ -1531,7 +1531,7 @@ countries: br
 "Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers de baixa latência. Shield ASIO, FL Studio ASIO e ASIO4ALL funcionam com qualquer dispositivo; o driver ASIO de um fabricante funciona com o próprio dispositivo."
 "Shield ASIO (built in)" = "Shield ASIO (embutido)"
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para outros programas, execute \"Register Shield ASIO\" na pasta do Shield uma vez."
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para usá-lo em outros programas, instale o Shield pelo lynx-share.com (o instalador o registra)."
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield with its setup program (the installer registers it)." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para usá-lo em outros programas, instale o Shield com o programa de instalação (o instalador o registra)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Buffers menores respondem mais rápido quando você toca; maiores dão mais folga à CPU (menos estalos)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Com a gravação ligada, a entrada da placa de som vira um clipe na Playlist (o dispositivo de entrada acima)."
 "{0} samples ({1} ms)" = "{0} amostras ({1} ms)"
@@ -4646,7 +4646,7 @@ countries: br
 "Ask after a crash or freeze" = "Perguntar depois de uma falha ou travamento"
 "Always send" = "Sempre enviar"
 "Never send" = "Nunca enviar"
-"A report holds Shield's version, your system and audio device, the crash or freeze file and the last steps, without your name, file names or projects. It goes to lynx-share.com only with your consent (Help > Report a problem... sends one by hand)." = "Um relatório contém a versão do Shield, seu sistema e dispositivo de áudio, o arquivo da falha ou do travamento e os últimos passos, sem seu nome, nomes de arquivos ou projetos. Ele vai para lynx-share.com só com o seu consentimento (Ajuda > Relatar um problema... envia um manualmente)."
+"A report holds Shield's version, your system and audio device, the crash or freeze file and the last steps, without your name, file names or projects. Shield has no report server yet, so nothing is uploaded; Help > Report a problem... opens a GitHub issue for it." = "Um relatório contém a versão do Shield, seu sistema e dispositivo de áudio, o arquivo da falha ou do travamento e os últimos passos, sem seu nome, nomes de arquivos ou projetos. O Shield ainda não tem servidor de relatórios, então nada é enviado; Ajuda > Relatar um problema... abre uma issue no GitHub para ele."
 
 # Linux audio: native PipeWire driver and real-time priority (round 161)
 "PipeWire (native)" = "PipeWire (nativo)"

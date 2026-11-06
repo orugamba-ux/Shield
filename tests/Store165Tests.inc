@@ -11,7 +11,7 @@ TEST (store165_packaged_settings_folder)
            == "C:\\Users\\ana\\AppData\\Local\\Packages\\F_x\\LocalCache\\Roaming\\LYNX");
     CHECK (st::packagedSettingsFolder ("", "F_x").empty());
     CHECK (st::packagedSettingsFolder ("C:\\L", "").empty());
-    CHECK (st::appsFolderTarget ("LYNX.LYNX_abc123") == "shell:AppsFolder\\LYNX.LYNX_abc123!LYNX");
+    CHECK (st::appsFolderTarget ("LYNX.LYNX_abc123") == "shell:AppsFolder\\LYNX.LYNX_abc123!Shield");
 }
 
 TEST (store165_migration_keeps_preferences_not_caches)

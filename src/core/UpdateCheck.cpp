@@ -562,7 +562,7 @@ int assetFor (Flavour f, const std::vector<Asset>& assets)
         case Flavour::unknown: return -1;
     }
     for (int i = 0; i < (int) assets.size(); ++i)
-        if (endsWith (assets[(std::size_t) i].name, suffix) && lower (assets[(std::size_t) i].name).rfind ("lynx", 0) == 0)
+        if (endsWith (assets[(std::size_t) i].name, suffix) && lower (assets[(std::size_t) i].name).rfind ("shield", 0) == 0)
             return i;
     return -1;
 }
