@@ -800,13 +800,13 @@ private:
 // =====================================================================================================================
 const EffectInfo& quellInfo()
 {
-    static const EffectInfo info { "Quell Denoiser", { { "Amount", 0.3f }, { "Listen", 0.0f }, { "Output", 0.5f }, { "Matched", 0.0f } } };
+    static const EffectInfo info { "Calm Denoiser", { { "Amount", 0.3f }, { "Listen", 0.0f }, { "Output", 0.5f }, { "Matched", 0.0f } } };
     return info;
 }
 
 const EffectInfo& geminiInfo()
 {
-    static const EffectInfo info { "Gemini Doubler",
+    static const EffectInfo info { "Twin Doubler",
                                    { { "Output", 1.0f }, { "Direct", 1.0f }, { "Direct gain", 1.0f }, { "Direct pan", 0.5f },
                                      // round 165 [EXEC]: the 17.1 trials' fresh instance — Align off, both shelves on (low 0 dB at
                                      // 101 Hz, high +4.1 dB at 1306 Hz); only new instances change (projects keep their values)

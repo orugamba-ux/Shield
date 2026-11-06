@@ -159,7 +159,7 @@ private:
     }
     juce::Rectangle<float> loudnessArea() const { return bodyArea().withTrimmedLeft (bodyArea().getWidth() - 196.0f).reduced (6.0f, 8.0f); }
 
-    juce::String title() const override { return "Apex Limiter"; }
+    juce::String title() const override { return "Bulwark Limiter"; }
     juce::String gestures() const override { return tr ("Drag GAIN on the left  -  drag the red ceiling line  -  wheel on the display: gain"); }
     bool usesHistory() const override { return true; }
     float grDb() const override { return liveMeter (0) * 30.0f; }
@@ -610,7 +610,7 @@ private:
     }
     float lpPos() const { return v (P ("Low-pass freq.")) >= 0.999f ? 1.0f : freqPos (mixsuite::hush::lowPassHz (v (P ("Low-pass freq.")))); }
 
-    juce::String title() const override { return "Hush De-esser"; }
+    juce::String title() const override { return "Whisper De-esser"; }
     juce::String gestures() const override { return tr ("Drag the threshold line or the meter's arrow  -  drag the frequency slider") ; }
     bool usesHistory() const override { return true; }
     float grDb() const override { return liveMeter (0) * 30.0f; }
@@ -1059,7 +1059,7 @@ private:
     static constexpr float scH = 170.0f;
     int scDrag = -1;
 
-    juce::String title() const override { return "Crest Compressor"; }
+    juce::String title() const override { return "Spearhead Compressor"; }
     juce::String gestures() const override { return tr ("Drag the dashed threshold line  -  KNEE on the left: the curve  -  SIDE CHAIN: the detector"); }
     bool usesHistory() const override { return true; }
     float grDb() const override { return liveMeter (0) * 30.0f; }
@@ -1357,7 +1357,7 @@ private:
     static constexpr float expertH = 240.0f;
     int filterDrag = -1;
 
-    juce::String title() const override { return "Sentry Gate"; }
+    juce::String title() const override { return "Gatekeeper"; }
     juce::String gestures() const override { return tr ("Drag the dashed threshold  -  EXPERT: side chain and filters"); }
     bool usesHistory() const override { return true; }
     float grDb() const override { return liveMeter (0) * 30.0f; }
@@ -1610,7 +1610,7 @@ private:
     float dragX0[dyn::prism::bands - 1] {};
     float dragLo0 = 0.0f, dragHi0 = 0.0f; // round 150: the free band's edges when its drag started
 
-    juce::String title() const override { return "Prism Multiband"; }
+    juce::String title() const override { return "Mosaic Multiband"; }
     juce::String gestures() const override { return tr ("Drag a node: range (up / down), band (left / right)  -  drag an edge: crossover  -  double-click: new band  -  wheel: threshold"); }
     bool usesSpectrum() const override { return analyzer > 0; }
 
@@ -2328,7 +2328,7 @@ private:
     bool powered (int b) const { return v (xp (b, 0)) >= 0.5f; }
     mixsuite::ember::BandState state (int b) const { return mixsuite::ember::bandState (v (xp (b, 1))); }
 
-    juce::String title() const override { return "Ember Saturator"; }
+    juce::String title() const override { return "Forge Saturator"; }
     juce::String gestures() const override { return tr ("Double-click: split a band  -  drag a band's handle: drive  -  drag a line: crossover"); }
     bool usesSpectrum() const override { return true; }
 
@@ -2764,7 +2764,7 @@ private:
     enum { idLink = 1, idPower };
     bool linked = false;
 
-    juce::String title() const override { return "Aether"; }
+    juce::String title() const override { return "Breath"; }
     juce::String gestures() const override { return tr ("Link: both knobs move together"); }
     bool usesHistory() const override { return true; }
 
@@ -3046,7 +3046,7 @@ private:
     static constexpr int idParam = 100, idModel = 200, idInfo = 300;
     static constexpr float y0 = headerH; // the body's top
 
-    juce::String title() const override { return "Kiln Channel"; }
+    juce::String title() const override { return "Clay Channel"; }
     juce::String gestures() const override { return {}; }
 
     // geometry (design units = pixels at 100 %)
@@ -3102,7 +3102,7 @@ private:
         for (const auto p : { k::noiseReduction, k::groupBypass })
             out.push_back (custom (keyRect (p).withHeight (40.0f), idParam + p, -1, hintFor (p)));
         out.push_back (custom (juce::Rectangle<float> (16.0f, 16.0f).withCentre (at (266.0f, 601.0f)), idInfo, -1,
-                               tr ("Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation")));
+                               tr ("Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation")));
     }
 
     juce::String hintFor (int p) const
@@ -3615,7 +3615,7 @@ private:
         key (g, k::groupBypass, caps (tr ("Group bypass")));
 
         // the name and the info mark under the module
-        text (g, { column.getX(), y0 + 590.0f, column.getWidth() - 24.0f, 22.0f }, "Kiln Channel", 12.0f, true, kWhite);
+        text (g, { column.getX(), y0 + 590.0f, column.getWidth() - 24.0f, 22.0f }, "Clay Channel", 12.0f, true, kWhite);
         const auto info = juce::Rectangle<float> (13.0f, 13.0f).withCentre (at (266.0f, 601.0f));
         g.setColour (kWhite);
         g.drawEllipse (info, 1.2f);

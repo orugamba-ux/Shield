@@ -1,4 +1,4 @@
-LIBRARY lynx-asio
+LIBRARY shield-asio
 EXPORTS
     DllGetClassObject PRIVATE
     DllCanUnloadNow PRIVATE

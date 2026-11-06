@@ -9,7 +9,7 @@ Usage:
 
 The identity defaults come from the environment (MSIX_IDENTITY_NAME, MSIX_PUBLISHER, MSIX_PUBLISHER_DISPLAY: the
 repository variables, copied from Partner Center › Product identity) and fall back to the same values; MSIX_DISPLAY_NAME
-is the app name reserved in Partner Center (default "LYNX SHARE"; Start menu, taskbar and the app itself say LYNX SHARE too). --test-identity
+is the app name reserved in Partner Center (default "Shield"; Start menu, taskbar and the app itself say Shield too). --test-identity
 appends Windows' "unsigned package" OID to the publisher, so `Add-AppxPackage -AllowUnsigned` installs the package
 for a test (it can then never clash with the Store-signed one). See docs/STORE.md.
 """
@@ -20,14 +20,14 @@ import shutil
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# LYNX's identity in Partner Center (Product identity; family name KA1WARE.LYNXSHARE_sj8hjwabzpdr8, Store ID
+# Shield's identity in Partner Center (Product identity; family name KA1WARE.LYNXSHARE_sj8hjwabzpdr8, Store ID
 # 9NQRFBFDCX6N): the defaults, so a local package matches the release workflow's (whose repository variables hold
 # the same values)
 DEFAULT_NAME = "KA1WARE.LYNXSHARE"
 DEFAULT_PUBLISHER = "CN=BACBB786-A595-4AC3-9807-A70EAA268E4C"
 DEFAULT_DISPLAY = "KA1WARE"
 UNSIGNED_OID = "OID.2.25.311729368913984317654407730594956997722=1"
-APP_FILES = ("Shield.exe", "lynx-asio.dll", "onnxruntime.dll")  # (lynx-asio32.dll is for registering with 32-bit hosts: not in the package)
+APP_FILES = ("Shield.exe", "shield-asio.dll", "onnxruntime.dll")  # (shield-asio32.dll is for registering with 32-bit hosts: not in the package)
 
 
 def msix_version(version, store_build=0):
@@ -54,12 +54,12 @@ def xml_escape(text):
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", required=True)
-    ap.add_argument("--bin", required=True, help="folder with Shield.exe (and lynx-asio.dll)")
+    ap.add_argument("--bin", required=True, help="folder with Shield.exe (and shield-asio.dll)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--identity-name", default=os.environ.get("MSIX_IDENTITY_NAME") or DEFAULT_NAME)
     ap.add_argument("--publisher", default=os.environ.get("MSIX_PUBLISHER") or DEFAULT_PUBLISHER)
     ap.add_argument("--publisher-display", default=os.environ.get("MSIX_PUBLISHER_DISPLAY") or DEFAULT_DISPLAY)
-    ap.add_argument("--display-name", default=os.environ.get("MSIX_DISPLAY_NAME") or "LYNX SHARE")
+    ap.add_argument("--display-name", default=os.environ.get("MSIX_DISPLAY_NAME") or "Shield")
     ap.add_argument("--store-build", type=int, default=int(os.environ.get("MSIX_STORE_BUILD") or 0),
                     help="0..9: repackaged build of the same release (see msix_version)")
     ap.add_argument("--test-identity", action="store_true")

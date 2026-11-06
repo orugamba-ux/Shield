@@ -39,7 +39,7 @@ inline const Theme& facetTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Facet EQ";
+        x.name = "Weave EQ";
         x.base = Style::glow;
         x.pal = { Colour (0xff1f1d1c), Colour (0xff0d0c0c), Colour (0xffffc84a), Colour (0xff7fd0ff), Colour (0xd820201f), Colour (0xe80f0f0e),
                   Colour (0xff6a6560), Colour (0xfff2eee6), Colour (0xff090808), Colour (0xff35322f), Colour (0xff1a1817), Colour (0xff2c2a28),
@@ -61,7 +61,7 @@ inline const Theme& nebulaTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Nebula";
+        x.name = "Night Sky";
         x.base = Style::glow;
         x.pal = { Colour (0xff131133), Colour (0xff0c0b24), Colour (0xffbdb8ff), Colour (0xff7d78ff), Colour (0xff4a44c6), Colour (0xff4a44c6),
                   Colour (0xff6c66f0), Colour (0xffffffff), Colour (0xff1b1842), Colour (0xff060608), Colour (0xff060608), Colour (0xff2b2775),
@@ -363,7 +363,7 @@ inline const Theme& ridgeTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Ridge Strip";
+        x.name = "Highland Strip";
         x.base = Style::hardware;
         // round tp172c (slice 2): the reference's mid-grey faceplate, light legends, dark recessed meters
         //          canvas (brushed metal)                   accent (orange lamps)      second light
@@ -433,7 +433,7 @@ inline const Theme& ridge4kTheme()
     static const Theme t = []
     {
         Theme x = ridgeTheme();
-        x.name = "Ridge Strip 4K";
+        x.name = "Highland Strip 4K";
         x.pal = { Colour (0xff3b3d40), Colour (0xff2c2e31), Colour (0xfff08a24), Colour (0xffffc46a),
                   Colour (0xf0434548), Colour (0xf036383b), Colour (0xff1d1e21), Colour (0xffeeeeea),
                   Colour (0xff111214), Colour (0xffd8d8d4), Colour (0xff8a8a86), Colour (0xff55585c), Colour (0xfffafafa),
@@ -524,7 +524,7 @@ inline const Theme& kilnTheme()
     static const Theme t = []
     {
         Theme x = ridgeTheme();
-        x.name = "Kiln Channel";
+        x.name = "Clay Channel";
         x.pal = { Colour (0xff141415), Colour (0xff0a0a0b), Colour (0xfff2a33a), Colour (0xffffc46a),
                   Colour (0x00000000), Colour (0x00000000), Colour (0x00000000), Colour (0xffe8e6e0),
                   Colour (0xff070707), Colour (0xff2e2f33), Colour (0xff111214), Colour (0xff55585c), Colour (0xfff4f4f2),
@@ -597,7 +597,7 @@ inline const Theme& crestTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Crest Compressor";
+        x.name = "Spearhead Compressor";
         x.base = Style::glow;
         x.pal = { Colour (0xff1c1e24), Colour (0xff0a0b0e), Colour (0xffffb340), Colour (0xff7fe3ff), Colour (0x9c1a1c22), Colour (0xb80c0d10),
                   Colour (0xff6e6450), Colour (0xfff2e6cf), Colour (0xff07080a), Colour (0xff2c2e33), Colour (0xff111215), Colour (0xff22242a),
@@ -669,7 +669,7 @@ inline const Theme& apexTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Apex Limiter";
+        x.name = "Bulwark Limiter";
         x.base = Style::glow;
         x.pal = { Colour (0xff1d1b1e), Colour (0xff0d0c0e), Colour (0xffe0404a), Colour (0xffd8d8de), Colour (0x9c1e1c20), Colour (0xb80c0b0d),
                   Colour (0xff5a4f55), Colour (0xfff0e8ea), Colour (0xff09080a), Colour (0xff3a373b), Colour (0xff1d1b1e), Colour (0xff2a2629),
@@ -742,7 +742,7 @@ inline const Theme& prismTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Prism Multiband";
+        x.name = "Mosaic Multiband";
         x.base = Style::glow;
         x.pal = { Colour (0xff222124), Colour (0xff0f0f11), Colour (0xffffc23a), Colour (0xff8fd0ff), Colour (0x9c242326), Colour (0xb80e0e10),
                   Colour (0xff5d5a60), Colour (0xfff2efe8), Colour (0xff0a0a0b), Colour (0xff38363a), Colour (0xff1c1b1e), Colour (0xff2b2a2e),
@@ -820,7 +820,7 @@ inline const Theme& sentryTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Sentry Gate";
+        x.name = "Gatekeeper";
         x.base = Style::glow;
         x.pal = { Colour (0xff3d4560), Colour (0xff262b3d), Colour (0xff8fb4ff), Colour (0xffe8ecf6), Colour (0x9c434b66), Colour (0xb82a3043),
                   Colour (0xff6c7593), Colour (0xffeef1fa), Colour (0xff1c2030), Colour (0xffd7dced), Colour (0xff8a93ad), Colour (0xff2b3146),
@@ -867,7 +867,7 @@ inline const Theme& glowLevelerTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Glow Leveler";
+        x.name = "Hearth Leveler";
         x.base = Style::hardware;
         x.pal = { Colour (0xffd0d3d5), Colour (0xffa9adb1), Colour (0xffc8231b), Colour (0xffe8463c), Colour (0x00000000), Colour (0x00000000),
                   Colour (0xff6e7277), Colour (0xff1c1d1f), Colour (0xff1a1c1e), Colour (0xff3c3d3f), Colour (0xff050505), Colour (0xff55595d),
@@ -942,7 +942,7 @@ inline const Theme& hushTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Hush De-esser";
+        x.name = "Whisper De-esser";
         x.base = Style::glow;
         x.pal = { Colour (0xff3a3a33), Colour (0xff23231f), Colour (0xffe8b923), Colour (0xff9fd36a), Colour (0x9c3d3d36), Colour (0xb8262622),
                   Colour (0xff6b6a5c), Colour (0xffeeeadb), Colour (0xff1b1b18), Colour (0xfff5cf45), Colour (0xffb88a10), Colour (0xff2e2e29),
@@ -964,7 +964,7 @@ inline const Theme& epochTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Epoch Verb";
+        x.name = "Season Verb";
         x.base = Style::glow;
         x.pal = { Colour (0xff3c0c08), Colour (0xff2c0705), Colour (0xffffb02e), Colour (0xffff6a1f), Colour (0xff3c0c08), Colour (0xff3c0c08),
                   Colour (0xffff9a1f), Colour (0xffffffff), Colour (0xff210503), Colour (0xffff6a1f), Colour (0xffff6a1f), Colour (0xff5a1a10),
@@ -1003,7 +1003,7 @@ inline const Theme& atriumTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Atrium";
+        x.name = "Great Hall";
         x.base = Style::glow;
         x.pal = { Colour (0xff4b4c4f), Colour (0xff444548), Colour (0xff72f0f8), Colour (0xff3fc8d4), Colour (0xff38393c), Colour (0xff38393c),
                   Colour (0xff38393c), Colour (0xffffffff), Colour (0xff2a2b2d), Colour (0xff72f0f8), Colour (0xff72f0f8), Colour (0xff2b2c2f),
@@ -1044,7 +1044,7 @@ inline const Theme& foilTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Foil Plate";
+        x.name = "Iron Plate";
         x.base = Style::glow;
         x.pal = { Colour (0xff050506), Colour (0xff000000), Colour (0xffa9cdfa), Colour (0xff5d95d8), Colour (0xff21599a), Colour (0xff21599a),
                   Colour (0xff21599a), Colour (0xffffffff), Colour (0xff0d2747), Colour (0xff040405), Colour (0xff040405), Colour (0xff163d6a),
@@ -1071,7 +1071,7 @@ inline const Theme& haloTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Halo";
+        x.name = "Sunrise";
         x.base = Style::glow;
         x.pal = { Colour (0xffeeeef0), Colour (0xffb4b4b9), Colour (0xff4a4a50), Colour (0xff8a8a90), Colour (0x00ffffff), Colour (0x00ffffff),
                   Colour (0x00ffffff), Colour (0xff2e2e33), Colour (0xffd4d4d8), Colour (0xff26262a), Colour (0xff26262a), Colour (0xffc4c4c8),
@@ -1100,7 +1100,7 @@ inline const Theme& horizonTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Horizon";
+        x.name = "Savanna";
         x.base = Style::glow;
         x.pal = { Colour (0xff060709), Colour (0xff030405), Colour (0xff55f2cc), Colour (0xff38c9e8), Colour (0xff060709), Colour (0xff060709),
                   Colour (0xff55f2cc), Colour (0xffe9fff9), Colour (0xff0b1513), Colour (0xff060709), Colour (0xff55f2cc), Colour (0xff163a33),
@@ -1351,7 +1351,7 @@ inline const Theme& echoformTheme()
     // round tp172d: EchoBoy's hardware look (its role) — black face, walnut cheeks, bold white rounded outlines, red LEDs
     static const Theme t = []
     {
-        auto x = soundtoysTheme ("Echoform", Colour (0xffe8402c), Colour (0xffeeeeea), Colour (0xff0b0b0c), Colour (0xffd9d9d6), 2.0f);
+        auto x = soundtoysTheme ("Echo Drum", Colour (0xffe8402c), Colour (0xffeeeeea), Colour (0xff0b0b0c), Colour (0xffd9d9d6), 2.0f);
         x.cornerScale = 4.0f; // the original's three rounded pods
         x.hwKeys = true;
         x.cheek = 30.0f; // (the layout leaves room for them)
@@ -1386,7 +1386,7 @@ inline const Theme& spiralTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Spiral Echo";
+        x.name = "Whirlwind Echo";
         x.base = Style::glow;
         x.pal = { Colour (0xff4b63b9), Colour (0xff4359ab), Colour (0xffffffff), Colour (0xffd8e0ff), Colour (0x00000000), Colour (0x00000000),
                   Colour (0x00000000), Colour (0xffffffff), Colour (0xff34478a), Colour (0xff050508), Colour (0xff050508), Colour (0xff3a4f99),
@@ -1429,7 +1429,7 @@ inline const Theme& orbitTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Orbit";
+        x.name = "Drift";
         x.base = Style::glow;
         x.pal = { Colour (0xff2c0a0b), Colour (0xff1d0405), Colour (0xffff2f97), Colour (0xff2f86ff), Colour (0x00000000), Colour (0x00000000),
                   Colour (0x00000000), Colour (0xffffffff), Colour (0xff3d1213), Colour (0xffff2f97), Colour (0xffff2f97), Colour (0xff4a1a1c),
@@ -1458,7 +1458,7 @@ inline const Theme& latticeTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Lattice Mod";
+        x.name = "Weave Mod";
         x.base = Style::glow;
         x.pal = { Colour (0xff5b8fc6), Colour (0xff5084bc), Colour (0xffffffff), Colour (0xffdbe9f8), Colour (0xff3a3a3c), Colour (0xff3a3a3c),
                   Colour (0xff3a3a3c), Colour (0xffffffff), Colour (0xff2c2c2e), Colour (0xff4f86c0), Colour (0xff4f86c0), Colour (0xff303032),
@@ -1557,7 +1557,7 @@ inline const Theme& geminiTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Gemini Doubler";
+        x.name = "Twin Doubler";
         x.base = Style::vivid;
         x.pal = { Colour (0xff151a2c), Colour (0xff06070e), Colour (0xff4fd8ff), Colour (0xffffc95a), Colour (0x9c141a2c), Colour (0xb806070e),
                   Colour (0xff6a7a9a), Colour (0xfff0f4ff), Colour (0xff04050a), Colour (0xff3a4462), Colour (0xff10131f), Colour (0xff1e2438),
@@ -1811,7 +1811,7 @@ inline const Theme& emberTheme()
     // round tp172d: Decapitator's hardware look (its role) — black face, walnut cheeks, cream type, an orange style lamp
     static const Theme t = []
     {
-        auto x = soundtoysTheme ("Ember Saturator", Colour (0xffff7a45), Colour (0xffe9e2d0), Colour (0xff121213), Colour (0xff3c3c3e), 1.0f);
+        auto x = soundtoysTheme ("Forge Saturator", Colour (0xffff7a45), Colour (0xffe9e2d0), Colour (0xff121213), Colour (0xff3c3c3e), 1.0f);
         x.hwKeys = true;  // Punish / Thump / Steep and the five style keys
         x.cheek = 30.0f;
         x.captionScale = 1.25f;
@@ -1889,7 +1889,7 @@ inline const Theme& aetherTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Aether";
+        x.name = "Breath";
         x.base = Style::glow;
         x.pal = { Colour (0xff1e3550), Colour (0xff0b1424), Colour (0xff7fd0ff), Colour (0xffffffff), Colour (0x9c1c3048), Colour (0xb80b1424),
                   Colour (0xff7a9ac0), Colour (0xfff0f8ff), Colour (0xff07101c), Colour (0xffcfe6f5), Colour (0xff5a7a96), Colour (0xff1c2e44),
@@ -3741,7 +3741,7 @@ inline const Theme& quellTheme()
     static const Theme t = []
     {
         Theme x;
-        x.name = "Quell Denoiser";
+        x.name = "Calm Denoiser";
         x.base = Style::hardware;
         x.pal = { Colour (0xff8c9299), Colour (0xff43484e), Colour (0xffeb9a2e), Colour (0xffffc46b), Colour (0x00000000), Colour (0x00000000),
                   Colour (0xff2a2d31), Colour (0xffeef0f2), Colour (0xff0a0b0c), Colour (0xffe2e5e8), Colour (0xff5f6368), Colour (0xff0d0e10),

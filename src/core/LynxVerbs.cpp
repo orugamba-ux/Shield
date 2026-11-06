@@ -1618,34 +1618,34 @@ bool isLynxVerb (EffectKind k) noexcept
 const EffectInfo& info (EffectKind kind)
 {
     // defaults = the reference plugins' defaults (their saved normalised values)
-    static const EffectInfo epochInfo { "Epoch Verb",
+    static const EffectInfo epochInfo { "Season Verb",
         params ({ { "Mix", 1.0f }, { "Predelay", 0.25f }, { "Decay", 0.42048f }, { "Size", 1.0f }, { "Attack", 0.5f },
                   { "Bass mult", 0.623039f }, { "Bass xover", 0.381065f }, { "High shelf", 0.0f }, { "High freq", 0.5f },
                   { "Early diffusion", 1.0f }, { "Late diffusion", 1.0f }, { "Mod rate", 0.245455f }, { "Mod depth", 0.38f },
                   { "High cut", 0.590539f }, { "Low cut", 0.0f }, { "Color", 0.0f }, { "Mode", 0.0f } }) };
-    static const EffectInfo atriumInfo { "Atrium",
+    static const EffectInfo atriumInfo { "Great Hall",
         params ({ { "Mix", 1.0f }, { "Predelay", 0.02f }, { "Decay", 0.5f }, { "High cut", 0.530201f }, { "Early/late", 0.5f },
                   { "Late size", 0.5f }, { "Late cross", 1.0f }, { "Late mod rate", 0.090909f }, { "Late mod depth", 0.5f },
                   { "Bass mult", 0.333333f }, { "Bass xover", 0.090909f }, { "High mult", 0.444444f }, { "High xover", 0.530201f },
                   { "Early size", 0.029029f }, { "Early cross", 0.1f }, { "Early mod rate", 0.090909f }, { "Early mod depth", 0.0f },
                   { "Early send", 0.0f }, { "Diffusion", 1.0f }, { "Type", 0.0f }, { "Space", 0.0f }, { "Low cut", 0.0f } }) };
-    static const EffectInfo foilInfo { "Foil Plate",
+    static const EffectInfo foilInfo { "Iron Plate",
         params ({ { "Mix", 1.0f }, { "Predelay", 0.0f }, { "Decay", 0.5f }, { "Size", 0.5f }, { "Width", 0.5f },
                   { "Mod rate", 0.365345f }, { "Mod depth", 0.0f }, { "Low EQ freq", 0.343434f }, { "Low EQ gain", 0.5f },
                   { "High EQ freq", 0.494949f }, { "High EQ gain", 0.5f }, { "Type", 0.0f }, // EQ at 700 Hz / 10 kHz (round 129)
                   { "Infinite", 0.0f }, { "Low cut", 0.0f }, // round 135 (the Little Plate role)
                   { "Voicing", 0.0f }, // round 150: the measured plate voicing (off = the plate types as before)
                   { "View", 0.0f } }) }; // round 152: the editor's view (Full | Plate: the one-knob panel of the Little Plate role)
-    static const EffectInfo nebulaInfo { "Nebula",
+    static const EffectInfo nebulaInfo { "Night Sky",
         params ({ { "Mix", 0.5f }, { "Sync", 0.0f }, { "Note", 0.333333f }, { "Delay", 0.5f }, { "Warp", 0.0f },
                   { "Feedback", 0.5f }, { "Density", 0.0f }, { "Width", 1.0f }, { "Low cut", 0.0f }, { "High cut", 1.0f },
                   { "Mod rate", 0.273834f }, { "Mod depth", 0.5f }, { "Mode", 0.0f },
                   { "Clear", 0.0f } }) }; // round 129: the reference's CLEAR button (any change of the value empties the network)
-    static const EffectInfo haloInfo { "Halo",
+    static const EffectInfo haloInfo { "Sunrise",
         params ({ { "Mix", 0.5f }, { "Shift", 1.0f }, { "Feedback", 0.0f }, { "Diffusion", 0.919192f }, { "Size", 0.5f },
                   { "Low cut", 0.0f }, { "High cut", 0.530201f }, { "Mod rate", 0.1f }, { "Mod depth", 0.3f },
                   { "Reverb mode", 0.0f }, { "Shift mode", 0.0f }, { "Color", 0.0f } }) };
-    static const EffectInfo horizonInfo { "Horizon",
+    static const EffectInfo horizonInfo { "Savanna",
         params ({ { "Mix", 0.5f }, { "Width", 1.0f }, { "Echo sync", 0.0f }, { "Echo note", 0.4f }, { "Echo time", 0.15f },
                   { "Echo feedback", 0.0f }, { "Echo spread", 0.0f }, { "Echo drive", 0.125f }, { "Echo detune", 0.566667f },
                   { "Echo level", 0.0f }, { "Routing", 0.0f }, { "Decay", 0.291667f }, { "Size", 0.5f }, { "Attack", 0.5f },

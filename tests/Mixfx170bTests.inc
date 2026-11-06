@@ -167,7 +167,7 @@ TEST (mixfx170b_plugin_menus_group_by_fl_category_lynx_first)
     pc::moveToFolder (user, false, "lynx:fx:Fruity Limiter", "My chain");
     const std::vector<pc::BuiltinPlugin> builtins {
         { "lynx:fx:Compressor", "Compressor", false, false },
-        { "lynx:fx:Halo", "Halo", false, false },
+        { "lynx:fx:Sunrise", "Sunrise", false, false },
         { "lynx:fx:Fruity Compressor", "Fruity Compressor", true, true },
         { "lynx:fx:Fruity Limiter", "Fruity Limiter", true, true },
         { "lynx:fx:Reeverb 2", "Reeverb 2", true, true },
@@ -175,7 +175,7 @@ TEST (mixfx170b_plugin_menus_group_by_fl_category_lynx_first)
     };
     const auto folders = pc::withDefaultCategories (user, false, builtins);
     CHECK (folders.of.at ("lynx:fx:Compressor") == pc::lynxCategory);
-    CHECK (folders.of.at ("lynx:fx:Halo") == pc::lynxCategory);
+    CHECK (folders.of.at ("lynx:fx:Sunrise") == pc::lynxCategory);
     CHECK (folders.of.at ("lynx:fx:Fruity Compressor") == "Dynamics");
     CHECK (folders.of.at ("lynx:fx:Fruity Limiter") == "My chain"); // the user's folder wins
     CHECK (folders.of.at ("lynx:fx:Reeverb 2") == "Delay reverb");

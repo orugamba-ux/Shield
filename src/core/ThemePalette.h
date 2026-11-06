@@ -10,8 +10,11 @@
 // text stays readable. With LYNX's default accent and background it gives exactly the built-in palette.
 namespace lynx::themes
 {
-constexpr std::uint32_t defaultAccent = 0xffe5383b;     // LYNX red
-constexpr std::uint32_t defaultBackground = 0xff15161a; // the app background (token bg1)
+constexpr std::uint32_t defaultAccent = 0xffd9a55b;     // Shield gold (the hide of the shield in the icon)
+constexpr std::uint32_t defaultBackground = 0xff14171f; // dark navy, the icon's badge (token bg1)
+// The upstream look (red on near-black): the "Crimson" built-in theme, and the reference the derivation is tuned on.
+constexpr std::uint32_t crimsonAccent = 0xffe5383b;
+constexpr std::uint32_t crimsonBackground = 0xff15161a;
 
 // Every themeable token of ui/Theme.h (ARGB).
 struct Palette

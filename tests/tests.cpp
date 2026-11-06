@@ -8297,7 +8297,7 @@ TEST (driver_kind_and_shared_mode_buffer_sizes)
     CHECK (lynx::prefs::driverKind ("Windows Audio (Exclusive Mode)") == DriverKind::wasapiExclusive);
     CHECK (lynx::prefs::driverKind ("Windows Audio (Low Latency Mode)") == DriverKind::wasapiLowLatency);
     CHECK (lynx::prefs::driverKind ("ASIO") == DriverKind::asio);
-    CHECK (lynx::prefs::driverKind ("LYNX ASIO") == DriverKind::lynxAsio);
+    CHECK (lynx::prefs::driverKind ("Shield ASIO") == DriverKind::lynxAsio);
     CHECK (lynx::prefs::driverKind ("DirectSound") == DriverKind::directSound);
     CHECK (lynx::prefs::driverKind ("ALSA") == DriverKind::alsa);
     CHECK (lynx::prefs::driverKind ("JACK") == DriverKind::jack);

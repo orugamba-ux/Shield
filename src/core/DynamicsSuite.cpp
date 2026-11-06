@@ -2587,7 +2587,7 @@ private:
 
 const EffectInfo& crestInfo()
 {
-    static const EffectInfo info { "Crest Compressor",
+    static const EffectInfo info { "Spearhead Compressor",
                                    { { "Style", 0.0f }, { "Threshold", 0.7f }, { "Ratio", 0.6f }, { "Knee", 0.0f }, { "Range", 1.0f },
                                      { "Attack", 0.68f }, { "Release", 0.55f }, { "Auto release", 0.0f }, { "Hold", 0.0f },
                                      { "Lookahead", 0.0f }, { "Max lookahead", 0.0f },
@@ -2610,7 +2610,7 @@ const EffectInfo& crestInfo()
 const EffectInfo& prismInfo()
 {
     static const EffectInfo info = [] {
-        EffectInfo i { "Prism Multiband", {} };
+        EffectInfo i { "Mosaic Multiband", {} };
         static const char* names[prism::bands][prism::fieldsPerBand] {
             { "B1 threshold", "B1 ratio", "B1 range", "B1 expand", "B1 knee", "B1 attack", "B1 release", "B1 level", "B1 on", "B1 solo" },
             { "B2 threshold", "B2 ratio", "B2 range", "B2 expand", "B2 knee", "B2 attack", "B2 release", "B2 level", "B2 on", "B2 solo" },
@@ -2700,7 +2700,7 @@ const EffectInfo& prismInfo()
 
 const EffectInfo& sentryInfo()
 {
-    static const EffectInfo info { "Sentry Gate",
+    static const EffectInfo info { "Gatekeeper",
                                    { { "Style", 0.0f }, { "Threshold", 0.5f }, { "Ratio", 1.0f }, { "Range", 1.0f }, { "Attack", 0.1f },
                                      { "Release", 0.31f }, { "Hold", 0.28f }, { "Knee", 0.0f }, { "Lookahead", 0.0f },
                                      { "Lookahead on", 0.0f }, { "High pass", 0.0f }, { "Low pass", 1.0f }, { "External SC", 0.0f },

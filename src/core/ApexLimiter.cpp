@@ -461,7 +461,7 @@ int meterScale (float v) noexcept { return std::clamp ((int) std::lround (v * 5.
 
 const EffectInfo& info()
 {
-    static const EffectInfo i { "Apex Limiter",
+    static const EffectInfo i { "Bulwark Limiter",
                                 { { "Gain", 0.0f }, { "Ceiling", 1.0f - 0.1f / 30.0f }, { "Lookahead", 0.2f }, { "Release", releaseValue (150.0) },
                                   { "Style", 0.0f }, { "True Peak", 1.0f }, { "Link", 1.0f },
                                   // round 128

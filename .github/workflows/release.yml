@@ -114,8 +114,8 @@ jobs:
           name: Shield-unsigned
           path: |
             build-win/Shield.exe
-            build-win/lynx-asio.dll
-            build-win/lynx-asio32.dll
+            build-win/shield-asio.dll
+            build-win/shield-asio32.dll
             build-win/onnxruntime.dll
           if-no-files-found: error
 
@@ -166,8 +166,8 @@ jobs:
           name: Shield-signed
           path: |
             signed/Shield.exe
-            signed/lynx-asio.dll
-            signed/lynx-asio32.dll
+            signed/shield-asio.dll
+            signed/shield-asio32.dll
             signed/onnxruntime.dll
           if-no-files-found: error
 
@@ -223,9 +223,9 @@ jobs:
           $p = Start-Process bin\Shield.exe -ArgumentList '--showcase', "$PWD\pkg\$name\Demo.lynx" -Wait -PassThru
           if (-not (Test-Path "pkg\$name\Demo.lynx")) { throw "showcase did not write Demo.lynx (exit $($p.ExitCode))" }
           Copy-Item bin\Shield.exe, bin\onnxruntime.dll, LICENSE, THIRD_PARTY.md, PRIVACY.md "pkg\$name\"
-          # LYNX ASIO driver and its registration helpers (REA round 97)
-          if (Test-Path bin\lynx-asio.dll) { Copy-Item bin\lynx-asio.dll, "asio\Register LYNX ASIO.bat", "asio\Unregister LYNX ASIO.bat" "pkg\$name\" }
-          if (Test-Path bin\lynx-asio32.dll) { Copy-Item bin\lynx-asio32.dll "pkg\$name\" }  # 32-bit hosts (round 106)
+          # Shield ASIO driver and its registration helpers (REA round 97)
+          if (Test-Path bin\shield-asio.dll) { Copy-Item bin\shield-asio.dll, "asio\Register Shield ASIO.bat", "asio\Unregister Shield ASIO.bat" "pkg\$name\" }
+          if (Test-Path bin\shield-asio32.dll) { Copy-Item bin\shield-asio32.dll "pkg\$name\" }  # 32-bit hosts (round 106)
           New-Item -ItemType Directory -Force dist | Out-Null
           Compress-Archive -Path "pkg\$name" -DestinationPath "dist\$name.zip"
           Copy-Item bin\Shield.exe dist\

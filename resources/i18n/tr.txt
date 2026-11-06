@@ -1528,9 +1528,9 @@ countries: tr
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Normal mod gibi paylaşımlı, ancak Windows'tan daha kısa bir karıştırma periyodu ister. Yalnızca bazı sürücüler destekler."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield aygıtı tek başına kullanır: ASIO olmadan en düşük gecikme, ancak Shield çalarken diğer programlar susar."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Yüksek gecikmeli eski Windows ses yolu. Yalnızca diğerleri çalışmadığında kullanın."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Düşük gecikmeli sürücüler. LYNX ASIO, FL Studio ASIO ve ASIO4ALL her aygıtla çalışır; üreticinin ASIO sürücüsü kendi aygıtıyla çalışır."
-"LYNX ASIO (built in)" = "LYNX ASIO (dahili)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "Shield'in kendi ASIO sürücüsü, her aygıtla: düşük gecikmeyle çalma ve kayıt (mikrofon). “Sürücü ayarları...” paylaşımlı veya özel modu, çıkış ve giriş aygıtlarını seçer ve gecikmeyi gösterir. Diğer programlar için Shield klasöründeki “Register LYNX ASIO”yu bir kez çalıştırın."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Düşük gecikmeli sürücüler. Shield ASIO, FL Studio ASIO ve ASIO4ALL her aygıtla çalışır; üreticinin ASIO sürücüsü kendi aygıtıyla çalışır."
+"Shield ASIO (built in)" = "Shield ASIO (dahili)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "Shield'in kendi ASIO sürücüsü, her aygıtla: düşük gecikmeyle çalma ve kayıt (mikrofon). “Sürücü ayarları...” paylaşımlı veya özel modu, çıkış ve giriş aygıtlarını seçer ve gecikmeyi gösterir. Diğer programlar için Shield klasöründeki “Register Shield ASIO”yu bir kez çalıştırın."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Shield'in kendi ASIO sürücüsü, her aygıtla: düşük gecikmeyle çalma ve kayıt (mikrofon). “Sürücü ayarları...” paylaşımlı veya özel modu, çıkış ve giriş aygıtlarını seçer ve gecikmeyi gösterir. Başka programlarda kullanmak için Shield'i lynx-share.com'dan kurun (kurulum programı sürücüyü kaydeder)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Küçük arabellekler çalarken daha hızlı yanıt verir; büyükler CPU'ya daha fazla alan tanır (daha az tıkırtı)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Kayıt açıkken ses kartı girişi bir Playlist klibi olur (yukarıdaki Giriş aygıtı)."
@@ -2439,7 +2439,7 @@ countries: tr
 "Y mod" = "Y mod"
 "Y param" = "Y param"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "Tilt shelf"
 "Zero latency" = "Sıfır gecikme"
@@ -2473,7 +2473,7 @@ countries: tr
 "THRESHOLD" = "THRESHOLD"
 "ATTACK" = "ATTACK"
 "RELEASE" = "RELEASE"
-"Open Facet EQ" = "Facet EQ'yu aç"
+"Open Weave EQ" = "Weave EQ'yu aç"
 "Open Soundgoodizer" = "Soundgoodizer'ı aç"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Yaklaşık (FL Studio'nun Soundgoodizer preset'leri bu bilgisayarda bulunamadı)"
 "Target" = "Hedef"
@@ -2564,7 +2564,7 @@ countries: tr
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Şuraya gönder"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 bant|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/okt|24 dB/okt|48 dB/okt"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: tr
 "Run in a separate process (on for all plugins in Options)" = "Ayrı süreçte çalıştır (Seçenekler'de tüm plugin'ler için açık)"
 "{0} underruns (the sound broke up; red number)" = "{0} boşalma (ses kesildi; kırmızı sayı)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Gürültü bastırıcı"
 "Listen" = "Dinle"
 "Voices" = "Sesler"
@@ -3689,7 +3689,7 @@ countries: tr
 "Voicing" = "Voicing"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Plate'in kuyruğunu sonsuza dek tutar (decay en üstte): katman için içine çalın, sönmesi için kapatın"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Ritim ekosu: feedback'in her Uzunluk'ta tekrarladığı eşit aralıklı tap'lerden bir desen"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Ritim desenindeki slot'lar (ilki girişin kendisidir)"
 "How much quieter the last tap of the pattern is than the first" = "Desenin son tap'inin ilkinden ne kadar daha sessiz olduğu"
@@ -4076,7 +4076,7 @@ countries: tr
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Başlangıç değerli kontroller: şarkı başladığında sıfırlanacak (kontrol menüsü > Şarkıyı bu konumla başlat)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "şarkı başladığında bu değere sıfırlanır  [RMB] başlangıç değerini sil"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Compander"
 "Make-up" = "Make-up"
 "Soft knee" = "Soft knee"
@@ -7195,11 +7195,11 @@ countries: tr
 "Worth knowing" = "Bilmekte fayda var"
 "Samples not on this PC" = "Bu PC'de olmayan sample'lar"
 "Steps use channel colour" = "Adımlar kanal rengini kullanır"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Ana|İnce ayar"
 "E type|G type" = "E tipi|G tipi"
 "Modern console" = "Modern konsol"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Doyur|Konsol E|Konsol G|Konsol A|Konsol N|Konsol Y|Lamba|Gitar amfisi|Bas amfisi"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Drive bölümünü açar: kanal şeridinin sonunda, çıkıştan önce doyum"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "Doyum türü: yumuşak bir clipper, beş konsol kanalı, bir lamba katı veya bir gitar / bas amfisi"
@@ -7309,8 +7309,8 @@ countries: tr
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Shield çalışmaya devam edebilsin diye penceresi kapatıldı. Proje yeniden açılana kadar plugin düzgün çalışmayabilir."
 "Wheels" = "Tekerlekler"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Gürültü azaltma"
 "Group bypass" = "Grup bypass"
 "Main in" = "Ana giriş"
@@ -7337,4 +7337,4 @@ countries: tr
 "Link I/O" = "G/Ç bağla"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Ayarları bağlar: Girişi çevirmek Çıkışı ters yönde hareket ettirir, drive değişirken seviye korunur"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Giriş ve Çıkış, Grup G/Ç açık olan grubun her kanalında birlikte hareket eder"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: LYNX'in konsol kanalı. Düğmeyi sürükleyin, Alt+tık sıfırlar, sağ tık otomasyon"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: LYNX'in konsol kanalı. Düğmeyi sürükleyin, Alt+tık sıfırlar, sağ tık otomasyon"

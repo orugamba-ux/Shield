@@ -97,11 +97,11 @@ Section "!$(SecApp)" SecMain
     File "${STAGE}\THIRD_PARTY.md"
     File /nonfatal "${STAGE}\PRIVACY.md"
     File /nonfatal "${STAGE}\Demo.lynx"
-    ; LYNX ASIO (REA round 97): Shield loads it directly; the .bat files register it for other programs (administrator)
-    File /nonfatal "${STAGE}\lynx-asio.dll"
-    File /nonfatal "${STAGE}\lynx-asio32.dll" ; for 32-bit programs (REA round 106)
-    File /nonfatal "${STAGE}\Register LYNX ASIO.bat"
-    File /nonfatal "${STAGE}\Unregister LYNX ASIO.bat"
+    ; Shield ASIO (REA round 97): Shield loads it directly; the .bat files register it for other programs (administrator)
+    File /nonfatal "${STAGE}\shield-asio.dll"
+    File /nonfatal "${STAGE}\shield-asio32.dll" ; for 32-bit programs (REA round 106)
+    File /nonfatal "${STAGE}\Register Shield ASIO.bat"
+    File /nonfatal "${STAGE}\Unregister Shield ASIO.bat"
     WriteUninstaller "$INSTDIR\Uninstall.exe"
 
     Delete "$SMPROGRAMS\Shield.lnk" ; the shortcut before the v0.1.20 rename
@@ -160,26 +160,26 @@ Section "Uninstall"
     Delete "$INSTDIR\THIRD_PARTY.md"
     Delete "$INSTDIR\PRIVACY.md"
     Delete "$INSTDIR\Demo.lynx"
-    ; LYNX ASIO registered for other programs: unregister it first (Windows asks for administrator rights).
+    ; Shield ASIO registered for other programs: unregister it first (Windows asks for administrator rights).
     ; The 64-bit registration lives in the 64-bit registry view (this uninstaller is a 32-bit program).
     SetRegView 64
-    ReadRegStr $0 HKLM "SOFTWARE\ASIO\LYNX ASIO" "CLSID"
+    ReadRegStr $0 HKLM "SOFTWARE\ASIO\Shield ASIO" "CLSID"
     SetRegView 32
     ${If} $0 != ""
-    ${AndIf} ${FileExists} "$INSTDIR\lynx-asio.dll"
-        ExecShellWait "runas" "$WINDIR\Sysnative\regsvr32.exe" '/u /s "$INSTDIR\lynx-asio.dll"'
+    ${AndIf} ${FileExists} "$INSTDIR\shield-asio.dll"
+        ExecShellWait "runas" "$WINDIR\Sysnative\regsvr32.exe" '/u /s "$INSTDIR\shield-asio.dll"'
     ${EndIf}
     ; the 32-bit registration lives in the 32-bit registry view
-    ReadRegStr $0 HKLM "SOFTWARE\ASIO\LYNX ASIO" "CLSID"
+    ReadRegStr $0 HKLM "SOFTWARE\ASIO\Shield ASIO" "CLSID"
     ${If} $0 != ""
-    ${AndIf} ${FileExists} "$INSTDIR\lynx-asio32.dll"
-        ExecShellWait "runas" "$WINDIR\SysWOW64\regsvr32.exe" '/u /s "$INSTDIR\lynx-asio32.dll"'
+    ${AndIf} ${FileExists} "$INSTDIR\shield-asio32.dll"
+        ExecShellWait "runas" "$WINDIR\SysWOW64\regsvr32.exe" '/u /s "$INSTDIR\shield-asio32.dll"'
     ${EndIf}
     Delete "$INSTDIR\onnxruntime.dll"
-    Delete "$INSTDIR\lynx-asio.dll"
-    Delete "$INSTDIR\lynx-asio32.dll"
-    Delete "$INSTDIR\Register LYNX ASIO.bat"
-    Delete "$INSTDIR\Unregister LYNX ASIO.bat"
+    Delete "$INSTDIR\shield-asio.dll"
+    Delete "$INSTDIR\shield-asio32.dll"
+    Delete "$INSTDIR\Register Shield ASIO.bat"
+    Delete "$INSTDIR\Unregister Shield ASIO.bat"
     Delete "$INSTDIR\Uninstall.exe"
     RMDir "$INSTDIR"
     Delete "$SMPROGRAMS\Shield.lnk"

@@ -3515,7 +3515,7 @@ private:
 
 const EffectInfo& ridgeInfo()
 {
-    static const EffectInfo info { "Ridge Strip",
+    static const EffectInfo info { "Highland Strip",
                                    { { "Input", 0.5f }, { "HPF", 0.0f }, { "LPF", 0.0f },
                                      { "LF gain", 0.5f }, { "LF freq.", 0.40f }, { "LF bell", 0.0f },
                                      { "LMF gain", 0.5f }, { "LMF freq.", 0.43f }, { "LMF Q", 0.43f },
@@ -3556,7 +3556,7 @@ const EffectInfo& ridgeInfo()
 
 const EffectInfo& glowInfo()
 {
-    static const EffectInfo info { "Glow Leveler",
+    static const EffectInfo info { "Hearth Leveler",
                                    // round 152: a new instance starts as the reference does (the measured Opto classic
                                    // voicing, Gain 40, Peak reduction 46, Hi Freq 50)
                                    { { "Peak reduction", 0.46f }, { "Gain", 0.40f }, { "Limit", 0.0f }, { "Emphasis", 0.5f }, { "Mix", 1.0f },
@@ -3573,7 +3573,7 @@ const EffectInfo& glowInfo()
 
 const EffectInfo& hushInfo()
 {
-    static const EffectInfo info { "Hush De-esser",
+    static const EffectInfo info { "Whisper De-esser",
                                    // round 165x: 6.02 kHz on the extended law's 2 … 20 kHz scale (0.53 on the old 2 … 16 kHz)
                                    { { "Frequency", 0.4786f }, { "Threshold", 0.5f }, { "Range", 0.5f }, { "Wideband", 0.0f },
                                      { "Band detector", 0.0f }, { "Listen", 0.0f }, { "Lookahead", 1.0f }, { "Release", 0.56f },
@@ -3592,7 +3592,7 @@ const EffectInfo& hushInfo()
 
 const EffectInfo& aetherInfo()
 {
-    static const EffectInfo info { "Aether",
+    static const EffectInfo info { "Breath",
                                    { { "Air", 0.0f }, { "Air freq.", 0.62f }, { "Harmonics", 0.0f }, { "Exciter freq.", 0.56f },
                                      { "Character", 0.5f }, { "Mix", 1.0f }, { "Output", 0.5f },
                                      // issue #77 (round tp172c): the measured dynamic air model is the default (a new
@@ -3604,7 +3604,7 @@ const EffectInfo& aetherInfo()
 const EffectInfo& kilnInfo()
 {
     // round tp172c7: the reference channel's defaults (0 dB trims, the first console, 6 dB drive, noise reduction on)
-    static const EffectInfo info { "Kiln Channel",
+    static const EffectInfo info { "Clay Channel",
                                    { { "Input", 0.5f }, { "Output", 0.5f }, { "Console", 0.0f }, { "Drive", 1.0f / 3.0f },
                                      { "Noise reduction", 1.0f }, { "Group", 0.0f }, { "Group bypass", 0.0f },
                                      { "Main in", 0.5f }, { "Main out", 0.5f }, { "Link I/O", 1.0f }, { "Group I/O", 1.0f } } };
@@ -3613,7 +3613,7 @@ const EffectInfo& kilnInfo()
 
 const EffectInfo& emberInfo()
 {
-    static const EffectInfo info { "Ember Saturator",
+    static const EffectInfo info { "Forge Saturator",
                                    { { "Drive", 0.0f }, { "Style", 0.0f }, { "Tone", 0.5f }, { "Low cut", 0.0f }, { "High cut", 1.0f },
                                      { "Mix", 1.0f }, { "Output", 0.5f }, { "Auto gain", 1.0f }, { "Oversampling", 0.5f },
                                      { "Bands", 0.0f }, { "Crossover 1", 0.3266f }, { "Crossover 2", 0.6574f }, { "Crossover 3", 0.9375f },

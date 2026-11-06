@@ -7,10 +7,13 @@ TEST (theme162_default_palette_is_the_built_in_look)
     using namespace lynx::themes;
     const auto p = derivePalette (defaultAccent, defaultBackground);
     CHECK (p == defaultPalette());
-    CHECK (p.accent == 0xffe5383b && p.accentHover == 0xfff2545a && p.accentPressed == 0xffc12a30 && p.accentMuted == 0xff5c1f24);
-    CHECK (p.bg0 == 0xff0e0f12 && p.bg1 == 0xff15161a && p.bg6 == 0xff434852 && p.textPrimary == 0xffeceef2 && p.onAccent == 0xffffffff);
+    CHECK (p.accent == 0xffd9a55b && p.bg1 == 0xff14171f && p.bg0 == 0xff0d1017); // Shield gold on navy; bg0 = bg1 - (7, 7, 8)
+    // the upstream look stays exact as the Crimson theme
+    const auto c = derivePalette (crimsonAccent, crimsonBackground);
+    CHECK (c.accent == 0xffe5383b && c.accentHover == 0xfff2545a && c.accentPressed == 0xffc12a30 && c.accentMuted == 0xff5c1f24);
+    CHECK (c.bg0 == 0xff0e0f12 && c.bg1 == 0xff15161a && c.bg6 == 0xff434852 && c.textPrimary == 0xffeceef2 && c.onAccent == 0xffffffff);
     CHECK (Spec {}.isDefaultLook());
-    CHECK (workspaceColour (Spec {}) == 0xff0e0f12);
+    CHECK (workspaceColour (Spec {}) == p.bg0);
     CHECK (builtInThemes().size() >= 5 && builtInThemes()[0].accent == defaultAccent && builtInThemes()[0].background == defaultBackground);
 }
 

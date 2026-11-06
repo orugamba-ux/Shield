@@ -29,10 +29,10 @@ mkdir -p "$STAGE"
 cp "$EXE" "$STAGE/Shield.exe"
 [[ -f "$(dirname "$EXE")/onnxruntime.dll" ]] && cp "$(dirname "$EXE")/onnxruntime.dll" "$STAGE/"
 cp LICENSE THIRD_PARTY.md "$STAGE/"
-# LYNX ASIO driver (built next to Shield.exe by build-windows-zig.sh) and its registration helpers
-if [[ -f "$(dirname "$EXE")/lynx-asio.dll" ]]; then
-    cp "$(dirname "$EXE")/lynx-asio.dll" "asio/Register LYNX ASIO.bat" "asio/Unregister LYNX ASIO.bat" "$STAGE/"
-    [[ -f "$(dirname "$EXE")/lynx-asio32.dll" ]] && cp "$(dirname "$EXE")/lynx-asio32.dll" "$STAGE/"
+# Shield ASIO driver (built next to Shield.exe by build-windows-zig.sh) and its registration helpers
+if [[ -f "$(dirname "$EXE")/shield-asio.dll" ]]; then
+    cp "$(dirname "$EXE")/shield-asio.dll" "asio/Register Shield ASIO.bat" "asio/Unregister Shield ASIO.bat" "$STAGE/"
+    [[ -f "$(dirname "$EXE")/shield-asio32.dll" ]] && cp "$(dirname "$EXE")/shield-asio32.dll" "$STAGE/"
 fi
 [[ -f PRIVACY.md ]] && cp PRIVACY.md "$STAGE/"
 

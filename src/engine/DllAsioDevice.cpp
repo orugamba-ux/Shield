@@ -20,7 +20,7 @@ namespace lynx
 namespace
 {
 // LYNX ASIO's class id (asio/LynxAsio.cpp)
-constexpr const wchar_t* lynxAsioClsid = L"{E987C593-898E-4557-BFE3-4288B0228718}";
+constexpr const wchar_t* lynxAsioClsid = L"{F0E1EDBA-059B-437A-A169-AA8BA6751809}";
 
 class DllAsioDevice;
 std::atomic<DllAsioDevice*> activeDevice { nullptr }; // ASIO callbacks carry no user pointer: one open device at a time
@@ -414,8 +414,8 @@ std::unique_ptr<juce::AudioIODeviceType> makeDllAsioDeviceType (const juce::Stri
 
 std::unique_ptr<juce::AudioIODeviceType> makeBuiltInLynxAsioType()
 {
-    const auto dll = juce::File::getSpecialLocation (juce::File::currentExecutableFile).getSiblingFile ("lynx-asio.dll");
-    if (! dll.existsAsFile() || juce::WindowsRegistry::keyExists ("HKEY_LOCAL_MACHINE\\SOFTWARE\\ASIO\\LYNX ASIO"))
+    const auto dll = juce::File::getSpecialLocation (juce::File::currentExecutableFile).getSiblingFile ("shield-asio.dll");
+    if (! dll.existsAsFile() || juce::WindowsRegistry::keyExists ("HKEY_LOCAL_MACHINE\\SOFTWARE\\ASIO\\Shield ASIO"))
         return nullptr;
     return makeDllAsioDeviceType (dll.getFullPathName(), lynxAsioTypeName, lynxAsioTypeName);
 }

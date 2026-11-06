@@ -192,7 +192,7 @@ TEST (echoform_rhythm_editor_layout_round144)
                     const auto& q = *shown[j];
                     const auto overlap = p.x + 0.5f < q.x + q.w && q.x + 0.5f < p.x + p.w && p.y + 0.5f < q.y + q.h && q.y + 0.5f < p.y + p.h;
                     if (overlap)
-                        std::printf ("  Echoform: '%s' overlaps '%s'\n", p.param ? p.param : (p.display ? p.display : "-"), q.param ? q.param : (q.display ? q.display : "-"));
+                        std::printf ("  Echo Drum: '%s' overlaps '%s'\n", p.param ? p.param : (p.display ? p.display : "-"), q.param ? q.param : (q.display ? q.display : "-"));
                     CHECK (! overlap);
                 }
         }

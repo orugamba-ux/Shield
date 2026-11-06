@@ -1,4 +1,4 @@
-# Shield: a modified version of LYNX SHARE
+# Changes from LYNX SHARE
 
 Shield is a rebranded fork of [LYNX SHARE](https://github.com/Ka1-S/LYNX-SHARE), the open-source DAW by Ka1-S.
 LYNX SHARE is Copyright (C) 2026 Ka1-S and is licensed under the [GNU Affero General Public License v3.0](LICENSE).
@@ -15,7 +15,19 @@ https://github.com/orugamba-ux/Shield. The third-party components and their lice
 - **Icon.** The icon is original artwork: a leaf-shaped shield with imigongo zigzags over two crossed spears. It is
   drawn by `tools/rebrand/make_shield_icon.py`, which also makes the splash figure and the embedded logo.
 - **Built-in plugins.** Upstream's "LYNX …" plugins are now "Shield …": Shield Tune, Shield Synth, Shield Soundfont,
-  and the Shield Kick, Snare, Hat and Clap. The other plugin names are unchanged.
+  and the Shield Kick, Snare, Hat and Clap. Upstream's own effect engines have new names: Apex Limiter → Bulwark Limiter,
+  Crest Compressor → Spearhead Compressor, Prism Multiband → Mosaic Multiband, Sentry Gate → Gatekeeper,
+  Facet EQ → Weave EQ, Ridge Strip → Highland Strip, Hush De-esser → Whisper De-esser, Glow Leveler → Hearth Leveler,
+  Quell Denoiser → Calm Denoiser, Gemini Doubler → Twin Doubler, Ember Saturator → Forge Saturator,
+  Kiln Channel → Clay Channel, Aether → Breath, Epoch Verb → Season Verb, Atrium → Great Hall, Foil Plate → Iron Plate,
+  Nebula → Night Sky, Halo → Sunrise, Horizon → Savanna, Echoform → Echo Drum, Spiral Echo → Whirlwind Echo,
+  Orbit → Drift, Lattice Mod → Weave Mod. The FL Studio-named natives keep their names, because `.flp` import matches
+  on them.
+- **ASIO driver.** LYNX ASIO is now **Shield ASIO**: `shield-asio.dll` and `shield-asio32.dll`, "Register Shield ASIO.bat",
+  settings in `%APPDATA%\Shield\shield-asio.ini`, and its own class id (`{F0E1EDBA-059B-437A-A169-AA8BA6751809}`), so
+  it doesn't clash with LYNX ASIO.
+- **Theme.** The default theme is Shield gold (`#D9A55B`) on dark navy (`#14171F`). Upstream's red look is still
+  available as the built-in "Crimson" theme.
 - **Settings and data folders.** These are now `Shield` (for example `%APPDATA%\Shield` and `~/Documents/Shield/Projects`),
   so Shield and LYNX SHARE can be installed side by side.
 - **Bundle and app ids.** The macOS bundle id is `io.github.orugamba-ux.shield`, the AppStream id is
@@ -32,8 +44,9 @@ https://github.com/orugamba-ux/Shield. The third-party components and their lice
 - **Projects.** `.lynx` projects open in both apps. Projects store plugins by internal id (for example `lynxTune`), not
   by display name.
 - **Presets and themes.** LYNX presets, themes and visualizer presets load in Shield, because their file headers are
-  unchanged. Old names such as "LYNX Tune" in preset files and substitute tables are mapped to the new ones
-  (`src/core/ShieldNames.h`).
+  unchanged. Old plugin names in preset files and substitute tables ("LYNX Tune", "Apex Limiter" …) are mapped to the
+  new ones (`src/core/ShieldNames.h`). Browser favourites, folders and custom names that LYNX saved under the old
+  names don't carry over, but Shield keeps its settings in its own folder anyway.
 - **Live sessions.** Live sessions use the same protocol and invite-code format as LYNX SHARE, and still connect
   through upstream's relay (`relay.lynx-share.com`). If you run your own relay, set `LYNX_RELAY_URL`. AGPL section 13
   applies to whoever operates a modified relay.

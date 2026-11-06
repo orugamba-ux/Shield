@@ -150,7 +150,7 @@ TEST (rack170a_step_groups_clearly_apart)
 {
     using namespace lynx::themes;
     // Busy Works Beats: "too close of a color ... dramatically different" — FL's groups are grey / red-tinted
-    const auto& d = defaultPalette();
+    const auto d = derivePalette (crimsonAccent, crimsonBackground); // FL's red-tinted groups: the Crimson theme
     CHECK (d.stepOffAlt != d.stepOff);
     const auto r = [] (std::uint32_t c) { return (int) ((c >> 16) & 255); };
     const auto gch = [] (std::uint32_t c) { return (int) ((c >> 8) & 255); };

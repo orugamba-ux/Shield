@@ -1528,9 +1528,9 @@ countries: ru by kz
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Общий, как обычный режим, но запрашивает у Windows более короткий период смешивания. Поддерживается лишь некоторыми драйверами."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield использует устройство монопольно: минимальная задержка без ASIO, но другие программы молчат, пока играет Shield."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Старый аудиотракт Windows с высокой задержкой. Используйте, только если другие не работают."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Драйверы с низкой задержкой. LYNX ASIO, FL Studio ASIO и ASIO4ALL работают с любым устройством; ASIO-драйвер производителя — только со своим устройством."
-"LYNX ASIO (built in)" = "LYNX ASIO (встроенный)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "Собственный ASIO-драйвер Shield для любого устройства: воспроизведение и запись (микрофон) с низкой задержкой. «Настройки драйвера...» выбирают общий или монопольный режим, устройства вывода и ввода и показывают задержку. Для других программ один раз запустите «Register LYNX ASIO» в папке Shield."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Драйверы с низкой задержкой. Shield ASIO, FL Studio ASIO и ASIO4ALL работают с любым устройством; ASIO-драйвер производителя — только со своим устройством."
+"Shield ASIO (built in)" = "Shield ASIO (встроенный)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "Собственный ASIO-драйвер Shield для любого устройства: воспроизведение и запись (микрофон) с низкой задержкой. «Настройки драйвера...» выбирают общий или монопольный режим, устройства вывода и ввода и показывают задержку. Для других программ один раз запустите «Register Shield ASIO» в папке Shield."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Собственный ASIO-драйвер Shield, с любым устройством: воспроизведение и запись (микрофон) с низкой задержкой. «Настройки драйвера...» выбирают общий или монопольный режим, устройства вывода и ввода и показывают задержку. Чтобы использовать его в других программах, установите Shield с lynx-share.com (установщик регистрирует драйвер)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Маленький буфер быстрее отзывается на игру; большой дает процессору больше запаса (меньше щелчков)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "При включенной записи вход звуковой карты становится клипом в Playlist (устройство ввода выше)."
@@ -2439,7 +2439,7 @@ countries: ru by kz
 "Y mod" = "Y мод."
 "Y param" = "Y парам."
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "Наклонная полка"
 "Zero latency" = "Нулевая задержка"
@@ -2473,7 +2473,7 @@ countries: ru by kz
 "THRESHOLD" = "THRESHOLD"
 "ATTACK" = "ATTACK"
 "RELEASE" = "RELEASE"
-"Open Facet EQ" = "Открыть Facet EQ"
+"Open Weave EQ" = "Открыть Weave EQ"
 "Open Soundgoodizer" = "Открыть Soundgoodizer"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Приближение (пресеты Soundgoodizer из FL Studio на этом компьютере не найдены)"
 "Target" = "Цель"
@@ -2564,7 +2564,7 @@ countries: ru by kz
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Посыл на"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 полоса|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/окт|24 dB/окт|48 dB/окт"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: ru by kz
 "Run in a separate process (on for all plugins in Options)" = "Запускать в отдельном процессе (включено для всех плагинов в «Параметрах»)"
 "{0} underruns (the sound broke up; red number)" = "Опустошений буфера: {0} (звук прерывался; красное число)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Шумоподавитель"
 "Listen" = "Прослушка"
 "Voices" = "Голоса"
@@ -3689,7 +3689,7 @@ countries: ru by kz
 "Voicing" = "Окраска"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Бесконечно удерживает хвост пластины (затухание на максимуме): играйте в него для наслоения, выключите, чтобы дать ему угаснуть"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Ритмическое эхо: паттерн равномерно расставленных отводов, который обратная связь повторяет каждую «Длину»"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Ячейки ритмического паттерна (первая — сам вход)"
 "How much quieter the last tap of the pattern is than the first" = "Насколько последний отвод паттерна тише первого"
@@ -4076,7 +4076,7 @@ countries: ru by kz
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Инициализированные параметры: сбрасываются при старте песни (меню параметра > Начинать песню с этого положения)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "сброс к этому значению при старте песни  [RMB] удалить начальное значение"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Компандер"
 "Make-up" = "Компенсация"
 "Soft knee" = "Мягкое колено"
@@ -7195,11 +7195,11 @@ countries: ru by kz
 "Worth knowing" = "Полезно знать"
 "Samples not on this PC" = "Сэмплы, которых нет на этом ПК"
 "Steps use channel colour" = "Шаги в цвете канала"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Основное|Подстройка"
 "E type|G type" = "Тип E|Тип G"
 "Modern console" = "Современная консоль"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Сатурация|Консоль E|Консоль G|Консоль A|Консоль N|Консоль Y|Лампа|Гитарный усил.|Басовый усил."
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Включает секцию драйва: сатурация в конце линейки, перед выходом"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "Вид сатурации: мягкий клиппер, пять консольных каналов, ламповый каскад или гитарный / басовый усилитель"
@@ -7309,8 +7309,8 @@ countries: ru by kz
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Его окно закрыто, чтобы Shield продолжал работать. Плагин может работать неправильно, пока проект не будет открыт заново."
 "Wheels" = "Колёса"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Шумоподавление"
 "Group bypass" = "Обход группы"
 "Main in" = "Главный вход"
@@ -7337,4 +7337,4 @@ countries: ru by kz
 "Link I/O" = "Связать вход/выход"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Связывает регулировки: поворот Входа двигает Выход в обратную сторону, уровень сохраняется при смене драйва"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Вход и Выход двигаются вместе на всех каналах группы с включённым «Вход/выход группы»"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: консольный канал LYNX. Тяните ручку, Alt+клик сбрасывает, правый клик — автоматизация"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: консольный канал LYNX. Тяните ручку, Alt+клик сбрасывает, правый клик — автоматизация"

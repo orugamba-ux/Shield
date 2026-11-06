@@ -370,7 +370,7 @@ public:
         ui::ValueSpec spec;
         const auto& in = info();
         if (prm < 0 || prm >= (int) in.params.size()) return spec;
-        spec.name = trackName() + " - Facet EQ - " + utf8 (in.params[(std::size_t) prm].name);
+        spec.name = trackName() + " - Weave EQ - " + utf8 (in.params[(std::size_t) prm].name);
         spec.defaultValue = in.params[(std::size_t) prm].defaultValue;
         spec.pixelsForRange = 200.0;
         spec.toText = [prm] (double v) { return utf8 (paramText (prm, (float) v).c_str()); };
@@ -1088,7 +1088,7 @@ public:
         skin::headerBar (g, h, colour::accent);
         skin::brandMark (g, juce::Rectangle<float> (8.0f, 0.0f, 20.0f, h.getHeight()));
         skin::powerLed (g, { 36.0f, h.getCentreY() }, 7.0f, fx.enabled);
-        const auto w = skin::titleText (g, juce::Rectangle<float> (46.0f, 0.0f, 120.0f, h.getHeight()), "Facet EQ", colour::accent);
+        const auto w = skin::titleText (g, juce::Rectangle<float> (46.0f, 0.0f, 120.0f, h.getHeight()), "Weave EQ", colour::accent);
         g.setColour (colour::textSecondary);
         g.setFont (font (type::small));
         g.drawText (trackName() + "  -  " + tr ("slot {0}", { juce::String (slot + 1) }), juce::Rectangle<float> (58.0f + w, 0.0f, 300.0f, h.getHeight()),
@@ -1993,7 +1993,7 @@ void open (AudioEngine& engine, int track, int slot)
         open.erase (it);
     }
     const auto name = track == 0 ? tr ("Master") : juce::String::fromUTF8 (mixer[(std::size_t) track].name.c_str());
-    const auto title = juce::String ("Facet EQ - ") + (name.isNotEmpty() ? name : tr ("Insert {0}", { juce::String (track) })) + " ("
+    const auto title = juce::String ("Weave EQ - ") + (name.isNotEmpty() ? name : tr ("Insert {0}", { juce::String (track) })) + " ("
                        + tr ("slot {0}", { juce::String (slot + 1) }) + ")";
     open[key] = std::make_unique<FacetEqWindow> (engine, track, slot, title);
 }

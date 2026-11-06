@@ -920,7 +920,7 @@ private:
             case prefs::DriverKind::wasapiExclusive:  return tr ("Windows Audio (exclusive, lowest latency)");
             case prefs::DriverKind::directSound:      return tr ("DirectSound (legacy)");
             case prefs::DriverKind::asio:             return "ASIO";
-            case prefs::DriverKind::lynxAsio:         return tr ("LYNX ASIO (built in)");
+            case prefs::DriverKind::lynxAsio:         return tr ("Shield ASIO (built in)");
             case prefs::DriverKind::coreAudio:        return "Core Audio";
             case prefs::DriverKind::alsa:             return "ALSA";
             case prefs::DriverKind::jack:             return tr ("JACK / PipeWire");
@@ -951,13 +951,13 @@ private:
             case prefs::DriverKind::directSound:
                 return tr ("Old Windows audio path with high latency. Use it only when the others fail.");
             case prefs::DriverKind::asio:
-                return tr ("Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device.");
+                return tr ("Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device.");
             case prefs::DriverKind::lynxAsio:
                 if (platform::runningPackaged()) // the Store build: the package folder moves with every update
                     return tr ("Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. "
                                "To use it in other programs, install Shield with its setup program (the installer registers it).");
                 return tr ("Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. "
-                           "For other programs, run \"Register LYNX ASIO\" in Shield's folder once.");
+                           "For other programs, run \"Register Shield ASIO\" in Shield's folder once.");
             case prefs::DriverKind::coreAudio:
                 return tr ("macOS's own audio system: low latency with any device, shared with other programs.");
             case prefs::DriverKind::alsa:

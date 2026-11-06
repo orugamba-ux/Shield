@@ -38,12 +38,12 @@ constexpr std::string_view builtInTable = R"TABLE(
 # Valhalla DSP: the saved state is a JUCE XML block whose attributes are the plugin's normalised (0..1) VST3 values
 # [DATA, round 98]. Round 100 measured each parameter's value -> unit law and enumeration breakpoints on the official
 # demos (black-box, REA_rodada100 §0-§6) [EXEC]; LYNX's own reverbs use the same laws, so most maps are identities;
-# enumerations use "steps", and Atrium's decay (LYNX's own law) a "curve". The Mix controls are equal-power
+# enumerations use "steps", and Great Hall's decay (LYNX's own law) a "curve". The Mix controls are equal-power
 # dry / wet inside the effect (measured), so the slot mix stays at 100 %.
 [valhalla-vintageverb]
 product = ValhallaVintageVerb
 vendor = Valhalla DSP
-lynx = Epoch Verb
+lynx = Season Verb
 # [DATA] class ID from FL wrapper records of real projects
 vst3 = 7654535665657633616c68616c6c6176
 names = ValhallaVintageVerb
@@ -68,7 +68,7 @@ map = xml:ReverbMode -> Mode | steps 0:0 0.0828:0.0476 0.1245:0.0952 0.1662:0.14
 [valhalla-room]
 product = ValhallaRoom
 vendor = Valhalla DSP
-lynx = Atrium
+lynx = Great Hall
 names = ValhallaRoom
 map = xml:mix -> Mix
 map = xml:predelay -> Predelay
@@ -96,7 +96,7 @@ map = xml:type -> Type | steps 0:0 0.1662:0.0909 0.2495:0.1818 0.3328:0.2727 0.4
 [valhalla-plate]
 product = ValhallaPlate
 vendor = Valhalla DSP
-lynx = Foil Plate
+lynx = Iron Plate
 names = ValhallaPlate
 map = xml:Mix -> Mix
 map = xml:PreDelay -> Predelay
@@ -114,7 +114,7 @@ map = xml:Type -> Type | steps 0:0 0.0828:0.0909 0.1245:0.1818 0.1662:0.2727 0.2
 [valhalla-supermassive]
 product = Valhalla Supermassive
 vendor = Valhalla DSP
-lynx = Nebula
+lynx = Night Sky
 names = ValhallaSupermassive
 map = xml:Mix -> Mix
 map = xml:Delay_Ms -> Delay
@@ -133,7 +133,7 @@ map = xml:Mode -> Mode | steps 0:0 0.0828:0.0476 0.1245:0.0952 0.1662:0.1429 0.2
 [valhalla-shimmer]
 product = ValhallaShimmer
 vendor = Valhalla DSP
-lynx = Halo
+lynx = Sunrise
 names = ValhallaShimmer
 # the reference saves bare parameterN attributes (0..1); the order is its VST3 parameter list [EXEC]
 map = xml:parameter0 -> Mix
@@ -145,7 +145,7 @@ map = xml:parameter5 -> Low cut
 map = xml:parameter6 -> High cut
 map = xml:parameter7 -> Mod rate
 map = xml:parameter8 -> Mod depth
-# round 135: its four reverb modes (Mono / three stereo sizes, steps at 0.25 / 0.5 / 0.75 [EXEC]) -> Halo's same four
+# round 135: its four reverb modes (Mono / three stereo sizes, steps at 0.25 / 0.5 / 0.75 [EXEC]) -> Sunrise's same four
 map = xml:parameter9 -> Reverb mode | steps 0:0.125 0.25:0.25 0.5:0.375 0.75:0.625
 map = xml:parameter10 -> Shift mode | steps 0:0 0.25:0.25 0.45:0.5 0.65:0.75 0.85:1
 map = xml:parameter11 -> Color | steps 0:0 0.525:1
@@ -153,7 +153,7 @@ map = xml:parameter11 -> Color | steps 0:0 0.525:1
 [valhalla-futureverb]
 product = ValhallaFutureVerb
 vendor = Valhalla DSP
-lynx = Horizon
+lynx = Savanna
 names = ValhallaFutureVerb
 map = xml:Mix -> Mix
 map = xml:Width -> Width
@@ -193,7 +193,7 @@ translate = pro-r2
 [soundtoys-littleplate]
 product = Little Plate
 vendor = Soundtoys
-lynx = Foil Plate
+lynx = Iron Plate
 names = LittlePlate; Little Plate
 # round 129 (docs/PARITY.md): LYNX's plate reverb plays a plate's role (was Reeverb 2); its state is encoded: a
 # 2 s plate, 100 % wet, at the slot's dry / wet 25 % as before. Round 150: in the measured plate voicing (the
@@ -213,7 +213,7 @@ mix = 0.25
 [waves-h-delay]
 product = H-Delay
 vendor = Waves
-lynx = Echoform
+lynx = Echo Drum
 # [DATA] class ID (stereo component) and <PluginName> from real projects. Round 119: LYNX's echo (was Fruity Delay 3
 # at FL's default); the RealWorld list is translated (sync host / BPM / ms, note, time, feedback, ping-pong or
 # stereo, mix, output, filters), measured on the official trial (docs/analise/REA_rodada119.md §2). Without a
@@ -232,11 +232,11 @@ waves = SuperTap
 [soundtoys-echoboy]
 product = EchoBoy
 vendor = Soundtoys
-# round 129 (docs/PARITY.md): LYNX's multi-mode echo plays EchoBoy's role. Round 136: her states play Echoform's Tape
+# round 129 (docs/PARITY.md): LYNX's multi-mode echo plays EchoBoy's role. Round 136: her states play Echo Drum's Tape
 # voicing (the loop structures measured on the official trial, REA_rodada136 §4), recognised by the hash of the encoded
 # preset (not decoded here); any other state: round 129's tape echo, 1/4 note at the project tempo, 25 % feedback, 25 % mix
 # (round 147: in the Studio reel voicing — EchoBoy's default style, measured black-box, REA_rodada147a)
-lynx = Echoform
+lynx = Echo Drum
 preset = Mode=0.0415; Sync L=0.6248; Note L=0.4498; Feedback=0.125; Mix=0.25; Echo voicing=0.064516
 # [DATA] VST2 unique ID from real projects
 vst2 = StEB
@@ -246,8 +246,8 @@ translate = soundtoys-echoboy
 [soundtoys-primaltap]
 product = PrimalTap
 vendor = Soundtoys
-# round 129: Echoform (as EchoBoy), a darker lo-fi tape echo
-lynx = Echoform
+# round 129: Echo Drum (as EchoBoy), a darker lo-fi tape echo
+lynx = Echo Drum
 preset = Mode=0.125; Sync L=0.6248; Note L=0.4498; Feedback=0.125; Mix=0.25
 names = PrimalTap; Little PrimalTap; LittlePrimalTap
 
@@ -260,12 +260,12 @@ names = PrimalTap; Little PrimalTap; LittlePrimalTap
 [valhalla-delay]
 product = ValhallaDelay
 vendor = Valhalla DSP
-lynx = Echoform
+lynx = Echo Drum
 vst3 = 64545356614c7679616c68616c6c6164
 names = ValhallaDelay
 mix = 1
 map = xml:Mix -> Mix
-# styles: Single, Dual, Ratio, PingPong, Quad onto Echoform's order (Single, Ratio, Quad, Dual, Ping-pong)
+# styles: Single, Dual, Ratio, PingPong, Quad onto Echo Drum's order (Single, Ratio, Quad, Dual, Ping-pong)
 map = xml:DelayStyle -> Style | steps 0:0.1 0.19:0.7 0.39:0.3 0.59:0.9 0.79:0.5
 map = xml:DelayLSync -> Sync L
 map = xml:DelayLNote -> Note L
@@ -276,7 +276,7 @@ map = xml:DelayR_Ms -> Time R
 map = xml:DelaySpread -> Spread
 map = xml:DelaySpacing -> Spacing
 map = xml:DelayRatio -> Ratio
-# round 137: the quad taps and Repeat / Swell (Echoform has them since round 135w; the same on / off values)
+# round 137: the quad taps and Repeat / Swell (Echo Drum has them since round 135w; the same on / off values)
 map = xml:TapA -> Tap A
 map = xml:TapB -> Tap B
 map = xml:TapC -> Tap C
@@ -301,7 +301,7 @@ map = xml:PitchDetune -> Pitch detune
 map = xml:Ducking -> Ducking
 # round 137: Era (Past below 2/3, Present, Future at the top; measured on the demo's own value texts)
 map = xml:Era -> Era | steps 0:0 0.6662:0.5 0.9995:1
-# the 17 modes (index floor (24 v)) onto Echoform's 12 characters: Tape, HiFi, BBD, Digital, Ghost (shifter), Pitch,
+# the 17 modes (index floor (24 v)) onto Echo Drum's 12 characters: Tape, HiFi, BBD, Digital, Ghost (shifter), Pitch,
 # RevPitch (reverse), BBDuck (bucket), Clarity (clean), DuckTape (tape), PitchDuck (pitch), LoFi, Quartz (clean),
 # PhaserDDL (phaser), RichPitch (detune), ChromeTape (tape), Analog; the "duck" variants' built-in ducking is not kept
 map = xml:Mode -> Mode | steps 0:0.041667 0.0828:0.208333 0.1245:0.291667 0.1662:0.458333 0.2078:0.708333 0.2495:0.791667 0.2912:0.875 0.3328:0.291667 0.3745:0.541667 0.4162:0.041667 0.4578:0.791667 0.4995:0.125 0.5412:0.541667 0.5828:0.625 0.6245:0.958333 0.6662:0.041667 0.7078:0.375 0.7495:0.041667
@@ -309,7 +309,7 @@ map = xml:Mode -> Mode | steps 0:0.041667 0.0828:0.208333 0.1245:0.291667 0.1662
 [valhalla-freqecho]
 product = ValhallaFreqEcho
 vendor = Valhalla DSP
-lynx = Spiral Echo
+lynx = Whirlwind Echo
 vst3 = 4654535645717668616c68616c6c6166
 names = ValhallaFreqEcho
 mix = 1
@@ -325,7 +325,7 @@ map = xml:stereo -> Stereo
 [valhalla-spacemodulator]
 product = ValhallaSpaceModulator
 vendor = Valhalla DSP
-lynx = Orbit
+lynx = Drift
 vst3 = 535453564d707664616c68616c6c6173
 names = ValhallaSpaceModulator
 mix = 1
@@ -339,7 +339,7 @@ map = xml:Mode -> Mode
 [valhalla-ubermod]
 product = ValhallaUberMod
 vendor = Valhalla DSP
-lynx = Lattice Mod
+lynx = Weave Mod
 vst3 = 7554535665627672616c68616c6c6175
 names = ValhallaUberMod
 mix = 1
@@ -397,7 +397,7 @@ waves = L1; L2; L3; L3-16; L3-LL Multi; L4
 [fabfilter-pro-l]
 product = FabFilter Pro-L
 vendor = FabFilter
-lynx = Apex Limiter
+lynx = Bulwark Limiter
 names = FabFilter Pro-L; FabFilter Pro-L 2; Pro-L; Pro-L 2
 # round tp172b: a Pro-L 2 state (component "FabF", 32 values, measured black-box) is translated: gain, style, look-ahead,
 # attack, release, channel links, oversampling, true peak, dither, noise shaping, DC filter, side chain, output level
@@ -419,7 +419,7 @@ preset = Threshold=0.75; Ratio=0.0526; Auto gain=1
 [waves-cla-2a]
 product = CLA-2A
 vendor = Waves
-lynx = Glow Leveler
+lynx = Hearth Leveler
 # [DATA] class ID (stereo component) and <PluginName> from real projects
 vst3 = 4c545356324163536c612d3261207374
 waves = CLA-2A
@@ -431,7 +431,7 @@ translate = waves-cla-2a
 [waves-cla-76]
 product = CLA-76
 vendor = Waves
-lynx = Crest Compressor
+lynx = Spearhead Compressor
 waves = CLA-76
 # round 127: LYNX's style compressor fitted to the official trial at her one state (the factory "Start Me Up":
 # Input -8.7 dB, Output -16.9 dB, attack 4.3, release 4.31, all buttons, Mix 41.3 %); the RealWorld list is
@@ -449,7 +449,7 @@ preset = Threshold=0.75; Ratio=0.0526; Auto gain=1
 [fabfilter-pro-c]
 product = FabFilter Pro-C
 vendor = FabFilter
-lynx = Crest Compressor
+lynx = Spearhead Compressor
 names = FabFilter Pro-C 2; FabFilter Pro-C 3; Pro-C 2; Pro-C 3
 # LYNX's style compressor (round 108), fitted to our black-box measurements (MEASURE_fabfilter §2); a Pro-C 3 state
 # (component state "FFBS", 100 values) is translated: style, threshold, ratio, knee, range, attack, release, hold,
@@ -461,7 +461,7 @@ preset = Auto gain=1
 [fabfilter-pro-mb]
 product = FabFilter Pro-MB
 vendor = FabFilter
-lynx = Prism Multiband
+lynx = Mosaic Multiband
 names = FabFilter Pro-MB; Pro-MB
 # LYNX's 4-band dynamics (round 108, MEASURE_fabfilter §6 / §12.4): the enabled bands are laid out low → high on
 # Prism's four bands (gaps become bypassed bands), with threshold, ratio, range, mode, knee, attack / release %,
@@ -471,7 +471,7 @@ translate = pro-mb
 [fabfilter-pro-g]
 product = FabFilter Pro-G
 vendor = FabFilter
-lynx = Sentry Gate
+lynx = Gatekeeper
 names = FabFilter Pro-G; Pro-G
 # LYNX's gate / expander (round 108, MEASURE_fabfilter §7): every setting of the state is translated (style,
 # thresholds, ratios, range, attack, release, hold, knee, look-ahead, side-chain filters, wet / dry, output)
@@ -481,8 +481,8 @@ translate = pro-g
 [waves-ssl-channel]
 product = SSL E-Channel
 vendor = Waves
-lynx = Ridge Strip
-# [DATA] class ID (stereo component) and <PluginName> from real projects. Round 123: Ridge Strip's "E" voicing is the
+lynx = Highland Strip
+# [DATA] class ID (stereo component) and <PluginName> from real projects. Round 123: Highland Strip's "E" voicing is the
 # console measured black-box on the official trial (every EQ band / filter from impulse responses, the feedback
 # compressor from stairs, bursts and her takes), so the RealWorld list maps one to one (REA_rodada123.md)
 vst3 = 5354535648437353736c6368616e6e65
@@ -492,7 +492,7 @@ translate = waves-ssl-channel
 [ssl-native-channel]
 product = SSL Native Channel Strip / 4K E
 vendor = Solid State Logic
-lynx = Ridge Strip
+lynx = Highland Strip
 names = SSL Native Channel Strip 2; SSL Native Channel Strip; SSL 4K E; SSL 4K B; SSL 4K G; Vocalstrip 2; SSL Native Vocalstrip 2
 # round tp172c: a Channel Strip 2 state (the same XML form) to Ridge's Modern voicing, measured black-box on its trial
 # (E / G EQ, filters, compressor, gate); 4K G (Black) and 4K B (Brown; its stepped compressor, slice 4) to the 4K voicing
@@ -508,7 +508,7 @@ translate = ssl-vocalstrip-2
 [complete-access-strips]
 product = channel strips (Slate Virtual Mix Rack)
 vendor = Complete Access (role)
-lynx = Ridge Strip
+lynx = Highland Strip
 names = Virtual Mix Rack; VBC Rack
 
 # round tp172c6: SSL Native Drumstrip -> Ridge's gate and trims (its transient shaper, enhancers and listen-mic
@@ -516,7 +516,7 @@ names = Virtual Mix Rack; VBC Rack
 [ssl-drumstrip]
 product = Drumstrip (drum channel strip)
 vendor = Solid State Logic (Complete Access)
-lynx = Ridge Strip
+lynx = Highland Strip
 names = SSL Native Drumstrip v6; SSL Native Drumstrip; Drumstrip
 translate = ssl-drumstrip
 
@@ -525,16 +525,16 @@ translate = ssl-drumstrip
 [ssl-guitarstrip]
 product = Guitarstrip (guitar / bass channel strip)
 vendor = Solid State Logic (Complete Access)
-lynx = Ridge Strip
+lynx = Highland Strip
 names = SSL Guitarstrip; Guitarstrip
 translate = ssl-guitarstrip
 
 # round tp172c6: Slate VCC Channel -> the console's measured model (the drive and the trims read from its state);
-# tp172c7: onto Kiln Channel, LYNX's console channel (console, drive, trims, noise, group, group bypass, main gains)
+# tp172c7: onto Clay Channel, LYNX's console channel (console, drive, trims, noise, group, group bypass, main gains)
 [vcc-channel]
 product = VCC Channel (console emulation)
 vendor = Slate Digital (Complete Access)
-lynx = Kiln Channel
+lynx = Clay Channel
 names = VM VCC Channel; VCC Channel
 translate = vcc-channel
 
@@ -545,14 +545,14 @@ translate = vcc-channel
 [harrison-strips]
 product = Harrison 32Classic / MPC channel strips
 vendor = Harrison
-lynx = Ridge Strip
+lynx = Highland Strip
 names = Harrison 32C; Harrison_32ClassicChannelStrip; Harrison 32Classic; Harrison 32Classic Channel Strip; Harrison_MPCChannelStrip; Harrison MPC Channel Strip
 translate = harrison-strip
 
 [complete-access-bus-comps]
 product = bus / smart compressors (SSL Bus Compressor 2, G3, VBC, sonible smart:comp, pure:comp)
 vendor = Complete Access (role)
-lynx = Crest Compressor
+lynx = Spearhead Compressor
 names = SSL Native Bus Compressor 2; SSL G3 MultiBusComp; SSL 360 Link Bus Compressor; SSL Native X-Comp v6; SSL Fusion HF Compressor; VBC FG-Grey; VBC FG-MU; VBC FG-Red; smartcomp3; smartcomp2; purecomp; learncomp; Harrison_LookaheadCompressor; Harrison_MPCCompressor; VM FG-Stress; VM FG-Bomber
 
 [complete-access-vintage-comps]
@@ -564,37 +564,37 @@ names = VM FG-116; VM FG-116 Modern; VM FG-116 Vintage; VM FG-76; VM FG-401; VM 
 [complete-access-optos]
 product = optical levelers (Slate FG-2A, SD-3A, Custom Opto)
 vendor = Complete Access (role)
-lynx = Glow Leveler
+lynx = Hearth Leveler
 names = VM FG-2A; VM SD-3A; VM Custom Opto
 
 [complete-access-limiters]
 product = limiters (Slate FG-X 2, SSL X-Limit, sonible smart:limit, pure:limit)
 vendor = Complete Access (role)
-lynx = Apex Limiter
+lynx = Bulwark Limiter
 names = FG-X 2; FG-X; SSL X-Limit; smartlimit; purelimit; learnlimit; Bus Clipper
 
 [complete-access-eqs]
 product = EQs (Slate Infinity EQ, FG-73 / FG-N / FG-S / SD-PE1 / CS-EQ, Eiosis AirEQ, SSL X-EQ 2, sonible smart:EQ)
 vendor = Complete Access (role)
-lynx = Facet EQ
+lynx = Weave EQ
 names = Inf EQ; Infinity EQ; VM FG-73; VM FG-N; VM FG-S; VM SD-PE1; VM CS-EQ; VM CS-Lift; VM AirEQ Air; VM AirEQ Earth; Eiosis AirEQ; Eiosis AirEQ 5.1; SSL Native X-EQ 2; SSL Fusion Violet EQ; smartEQ4; smartEQ3; pureeq; learneq; Harrison_LegacyEQ; Harrison_MasteringEQ
 
 [complete-access-deessers]
 product = de-essers (SSL DeEss, Slate FG-DS 902, Eiosis E2Deesser, sonible smart:deess)
 vendor = Complete Access (role)
-lynx = Hush De-esser
+lynx = Whisper De-esser
 names = SSL DeEss; VM FG-DS 902; Eiosis E2Deesser; smartdeess; puredeess; Harrison_De-Esser
 
 [complete-access-gates]
 product = gates (SSL X-Gate, Slate Gate Classic / Drums, Harrison Spectral Gate)
 vendor = Complete Access (role)
-lynx = Sentry Gate
+lynx = Gatekeeper
 names = SSL X-Gate; VM Gate Classic; VM Gate Drums; Harrison_SpectralGate
 
 [complete-access-reverbs]
 product = reverbs (LiquidSonics Lustrous Plates / Seventh Heaven / Cinematic Rooms, Slate VerbSuite Classics, SSL FlexVerb / PlateVerb / SpringVerb, sonible smart:reverb)
 vendor = Complete Access (role)
-lynx = Foil Plate
+lynx = Iron Plate
 names = Lustrous Plates; Seventh Heaven; Seventh Heaven Professional; Cinematic Rooms; Cinematic Rooms Professional; Illusion; VerbSuite Classics; SSL Native FlexVerb; SSL PlateVerb; SSL SpringVerb; SSL GateVerb; smartreverb2; smartreverb; pureverb; learnreverb; Vocal Reverb
 preset = Decay=0.3; Mix=1
 mix = 0.25
@@ -602,14 +602,14 @@ mix = 0.25
 [complete-access-delays]
 product = delays (SSL X-Echo / X-Delay, Slate Stellar Echo SD-201, Harrison 3D Delay)
 vendor = Complete Access (role)
-lynx = Echoform
+lynx = Echo Drum
 preset = Mode=0.0415; Sync L=0.6248; Note L=0.4498; Feedback=0.125; Mix=0.25
 names = SSL Native X-Echo; SSL X-Delay; Stellar Echo SD-201; Harrison_3DDelay
 
 [complete-access-saturators]
 product = saturators (Slate Heatwave / Revival, SSL Fusion Vintage Drive / X-Saturator, Harrison Tape Saturator)
 vendor = Complete Access (role)
-lynx = Ember Saturator
+lynx = Forge Saturator
 names = Heatwave; VM Revival; SSL Fusion Vintage Drive; SSL Native X-Saturator v6; SSL Fusion Transformer; Harrison Tape Saturator
 
 [complete-access-tuners]
@@ -636,7 +636,7 @@ waves = Q10; REQ; SSLEQ
 [fabfilter-pro-q]
 product = FabFilter Pro-Q
 vendor = FabFilter
-lynx = Facet EQ
+lynx = Weave EQ
 names = FabFilter Pro-Q 2; FabFilter Pro-Q 3; FabFilter Pro-Q 4; Pro-Q 2; Pro-Q 3; Pro-Q 4
 # round 124: a Pro-Q 4 state (component state "FFBS", 600 values) is translated band by band (shape, frequency, gain,
 # Q, slope; processing mode, gain scale, output) — Facet's shapes are fitted to the official trial, so her curves
@@ -647,7 +647,7 @@ translate = pro-q4
 [waves-deesser]
 product = DeEsser
 vendor = Waves
-lynx = Hush De-esser
+lynx = Whisper De-esser
 waves = DeEsser; DeEsser Stereo
 # round 113: frequency, threshold, split / wideband, side-chain filter and monitor are translated from the RealWorld
 # list (measured on the official trial, REA_rodada113 §3c); without a readable state a gentle default (5.5 kHz,
@@ -659,7 +659,7 @@ preset = Frequency=0.4393; Threshold=0.667; Range=0.167
 [fabfilter-pro-ds]
 product = FabFilter Pro-DS
 vendor = FabFilter
-lynx = Hush De-esser
+lynx = Whisper De-esser
 names = FabFilter Pro-DS; Pro-DS
 # round 148: her two states (Single Vocal, wide band) -> Hush's measured vocal voicing (REA_rodada148 §3)
 translate = pro-ds
@@ -667,22 +667,22 @@ translate = pro-ds
 [harrison-deesser]
 product = Harrison De-Esser
 vendor = Harrison
-lynx = Hush De-esser
+lynx = Whisper De-esser
 names = Harrison De-Esser; Harrison DeEsser
 
 [slate-fresh-air]
 product = Fresh Air
 vendor = Slate Digital
-lynx = Aether
+lynx = Breath
 names = Fresh Air; FreshAir
-# round 113: its two air amounts are read from the state (freshAirAmounts); round 124: they drive Aether's dynamic
+# round 113: its two air amounts are read from the state (freshAirAmounts); round 124: they drive Breath's dynamic
 # air model, measured black-box on the official trial to match it sample for sample (REA_rodada124 §3)
 translate = fresh-air
 
 [soundtoys-decapitator]
 product = Decapitator
 vendor = Soundtoys
-lynx = Ember Saturator
+lynx = Forge Saturator
 # [DATA] VST2 unique ID from real projects
 vst2 = StDc
 names = Decapitator
@@ -695,7 +695,7 @@ translate = soundtoys-decapitator
 [fabfilter-saturn]
 product = FabFilter Saturn
 vendor = FabFilter
-lynx = Ember Saturator
+lynx = Forge Saturator
 names = FabFilter Saturn; FabFilter Saturn 2; Saturn 2
 preset = Drive=0.15
 # a Saturn 2 state ("FFBS", 951 values) sets Ember's multiband mode (round 108): up to four bands with their
@@ -753,7 +753,7 @@ mix = 1
 [waves-ns1]
 product = NS1
 vendor = Waves
-lynx = Quell Denoiser
+lynx = Calm Denoiser
 # LYNX's one-knob noise suppressor, fitted to the official trial (docs/analise/REA_rodada119.md §3); the amount is
 # read from the RealWorld list (value 229, %)
 waves = NS1
@@ -763,7 +763,7 @@ preset = Amount=0.25
 [waves-doubler]
 product = Doubler
 vendor = Waves
-lynx = Gemini Doubler
+lynx = Twin Doubler
 # LYNX's two-voice doubler, laws measured on the official trial (REA_rodada119 §4); every control of the two-voice
 # Doubler is translated from the RealWorld list (voices 3 and 4 of the four-voice one are left out)
 waves = Doubler; Doubler2; Doubler4

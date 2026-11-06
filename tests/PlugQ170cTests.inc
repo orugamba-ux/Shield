@@ -89,7 +89,7 @@ TEST (atrium_round170c_early_mod_rate_and_depth_move_the_early_taps)
         ref += (double) still[i] * still[i];
         finite = finite && std::isfinite (moving[i]);
     }
-    std::printf ("  Atrium early mod: difference %.1f dB\n", 10.0 * std::log10 ((diff + 1e-30) / (ref + 1e-30)));
+    std::printf ("  Great Hall early mod: difference %.1f dB\n", 10.0 * std::log10 ((diff + 1e-30) / (ref + 1e-30)));
     CHECK (finite);
     CHECK (diff > ref * 1e-4); // the controls now do something (were read by nothing)
     // depth 0 = the old sound, bit for bit (presets / substitutes without early modulation are unchanged)

@@ -286,7 +286,7 @@ TEST (lynxverbs100_substitutes_translate_valhalla_states)
 TEST (lynxverbs100_map_shapes_parse_and_apply)
 {
     int errors = -1;
-    const auto t = lynx::parseSubstituteTable ("[t]\nlynx = Atrium\nmap = xml:a -> Decay | curve 0:0 0.5:0.9 1:1\nmap = xml:b -> Type | steps 0:0 0.3:0.5 0.6:1\n"
+    const auto t = lynx::parseSubstituteTable ("[t]\nlynx = Great Hall\nmap = xml:a -> Decay | curve 0:0 0.5:0.9 1:1\nmap = xml:b -> Type | steps 0:0 0.3:0.5 0.6:1\n"
                                                "map = xml:c -> Mix | steps 0.5:0.2 0.4:0.1\nmap = xml:d -> Mix | curve 0:1\n", &errors);
     CHECK (t.size() == 1 && errors == 2 && t[0].params.size() == 2); // descending x and a one-point curve are refused
     CHECK (t.size() == 1 && t[0].params[0].shape == lynx::SubstituteParamMap::Shape::curve && t[0].params[1].points.size() == 3);

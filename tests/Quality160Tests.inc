@@ -261,7 +261,7 @@ TEST (q160_asio_suggestion)
     CHECK (suggestedAsioDriver ("DirectSound", laptop) == "SSL ASIO Driver 1");
     CHECK (suggestedAsioDriver ("ASIO", laptop).empty());
     CHECK (suggestedAsioDriver ("Windows Audio (Exclusive Mode)", laptop).empty());
-    CHECK (suggestedAsioDriver ("Windows Audio", { "ASIO4ALL v2", "LYNX ASIO" }) == "LYNX ASIO");
+    CHECK (suggestedAsioDriver ("Windows Audio", { "ASIO4ALL v2", "Shield ASIO" }) == "Shield ASIO");
     CHECK (suggestedAsioDriver ("Windows Audio", { "ASIO4ALL v2" }) == "ASIO4ALL v2");
     CHECK (suggestedAsioDriver ("Windows Audio", {}).empty());
 }

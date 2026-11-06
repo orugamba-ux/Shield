@@ -1528,9 +1528,9 @@ countries: es mx ar co cl pe ve
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Compartido como el modo normal, pero pide a Windows un periodo de mezcla más corto. Solo algunos drivers lo admiten."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield usa el dispositivo en exclusiva: la latencia más baja sin ASIO, pero los demás programas quedan en silencio mientras Shield suena."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Ruta de audio antigua de Windows con latencia alta. Úsala solo si las demás fallan."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers de baja latencia. LYNX ASIO, FL Studio ASIO y ASIO4ALL funcionan con cualquier dispositivo; el driver ASIO de un fabricante funciona con su propio dispositivo."
-"LYNX ASIO (built in)" = "LYNX ASIO (integrado)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "El driver ASIO propio de Shield, con cualquier dispositivo: reproducción y grabación (micrófono) con baja latencia. “Configuración del driver...” elige el modo compartido o exclusivo y los dispositivos de salida y entrada, y muestra la latencia. Para otros programas, ejecuta una vez “Register LYNX ASIO” en la carpeta de Shield."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers de baja latencia. Shield ASIO, FL Studio ASIO y ASIO4ALL funcionan con cualquier dispositivo; el driver ASIO de un fabricante funciona con su propio dispositivo."
+"Shield ASIO (built in)" = "Shield ASIO (integrado)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "El driver ASIO propio de Shield, con cualquier dispositivo: reproducción y grabación (micrófono) con baja latencia. “Configuración del driver...” elige el modo compartido o exclusivo y los dispositivos de salida y entrada, y muestra la latencia. Para otros programas, ejecuta una vez “Register Shield ASIO” en la carpeta de Shield."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "El driver ASIO propio de Shield, con cualquier dispositivo: reproducción y grabación (micrófono) con baja latencia. “Configuración del driver...” elige el modo compartido o exclusivo, los dispositivos de salida y entrada y muestra la latencia. Para usarlo en otros programas, instala Shield desde lynx-share.com (el instalador lo registra)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Los búferes más pequeños responden más rápido al tocar; los más grandes dan más margen a la CPU (menos clics)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Con la grabación activada, la entrada de la tarjeta de sonido se convierte en un clip de la Playlist (el Dispositivo de entrada de arriba)."
@@ -2439,7 +2439,7 @@ countries: es mx ar co cl pe ve
 "Y mod" = "Mod Y"
 "Y param" = "Parám. Y"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "Tilt shelf"
 "Zero latency" = "Latencia cero"
@@ -2473,7 +2473,7 @@ countries: es mx ar co cl pe ve
 "THRESHOLD" = "UMBRAL"
 "ATTACK" = "ATAQUE"
 "RELEASE" = "LIBERACIÓN"
-"Open Facet EQ" = "Abrir Facet EQ"
+"Open Weave EQ" = "Abrir Weave EQ"
 "Open Soundgoodizer" = "Abrir Soundgoodizer"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Aproximación (no se encontraron en este equipo los presets de Soundgoodizer de FL Studio)"
 "Target" = "Destino"
@@ -2564,7 +2564,7 @@ countries: es mx ar co cl pe ve
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Enviar a"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 banda|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oct|24 dB/oct|48 dB/oct"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: es mx ar co cl pe ve
 "Run in a separate process (on for all plugins in Options)" = "Ejecutar en un proceso aparte (activado para todos los plugins en Opciones)"
 "{0} underruns (the sound broke up; red number)" = "{0} underruns (el sonido se entrecortó; número en rojo)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Supresor de ruido"
 "Listen" = "Escuchar"
 "Voices" = "Voces"
@@ -3689,7 +3689,7 @@ countries: es mx ar co cl pe ve
 "Voicing" = "Voicing"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Mantiene la cola de la placa indefinidamente (el decaimiento al máximo): toca sobre ella para superponer capas, desactívalo para dejar que se desvanezca"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Eco rítmico: un patrón de taps equiespaciados que el feedback repite cada Duración"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Posiciones del patrón rítmico (la primera es la propia entrada)"
 "How much quieter the last tap of the pattern is than the first" = "Cuánto más suave es el último tap del patrón que el primero"
@@ -4076,7 +4076,7 @@ countries: es mx ar co cl pe ve
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Controles inicializados: se restablecen al empezar la canción (menú de un control > Iniciar la canción con esta posición)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "se restablece a este valor al empezar la canción  [RMB] eliminar el valor inicial"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Compander"
 "Make-up" = "Make-up"
 "Soft knee" = "Knee suave"
@@ -7195,11 +7195,11 @@ countries: es mx ar co cl pe ve
 "Worth knowing" = "Conviene saber"
 "Samples not on this PC" = "Samples que no están en este PC"
 "Steps use channel colour" = "Pasos con el color del canal"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Principal|Ajuste fino"
 "E type|G type" = "Tipo E|Tipo G"
 "Modern console" = "Consola moderna"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Saturar|Consola E|Consola G|Consola A|Consola N|Consola Y|Válvula|Ampli guitarra|Ampli bajo"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Activa la sección de drive: saturación al final del canal, antes de la salida"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "El tipo de saturación: un clipper suave, cinco canales de consola, una etapa de válvula o un amplificador de guitarra / bajo"
@@ -7309,8 +7309,8 @@ countries: es mx ar co cl pe ve
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Su ventana se cerró para que Shield siguiera funcionando. Es posible que el plugin no funcione bien hasta que vuelvas a abrir el proyecto."
 "Wheels" = "Ruedas"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Reducción de ruido"
 "Group bypass" = "Bypass del grupo"
 "Main in" = "Entrada general"
@@ -7337,4 +7337,4 @@ countries: es mx ar co cl pe ve
 "Link I/O" = "Vincular E/S"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Vincula los ajustes: girar la Entrada mueve la Salida al revés, el nivel se mantiene mientras cambia el drive"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Entrada y Salida se mueven juntas en todos los canales del grupo con E/S del grupo activada"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: el canal de consola de LYNX. Arrastra una perilla, Alt+clic la reinicia, clic derecho para automatización"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: el canal de consola de LYNX. Arrastra una perilla, Alt+clic la reinicia, clic derecho para automatización"

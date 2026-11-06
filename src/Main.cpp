@@ -6709,9 +6709,9 @@ private:
         editorCpu->out = juce::File (path);
         using K = lynx::EffectKind;
         for (const auto demo : { false, true })
-            for (const auto& c : std::vector<EditorCpuRun::Case> { { K::facetEq, "Facet EQ", 2, demo }, { K::crestCompressor, "Crest Compressor", 1, demo },
-                                                                  { K::apexLimiter, "Apex Limiter", 1, demo }, { K::prismMultiband, "Prism Multiband", 1, demo },
-                                                                  { K::epochVerb, "Epoch Verb", 0, demo }, { K::glowLeveler, "Glow Leveler", 0, demo },
+            for (const auto& c : std::vector<EditorCpuRun::Case> { { K::facetEq, "Weave EQ", 2, demo }, { K::crestCompressor, "Spearhead Compressor", 1, demo },
+                                                                  { K::apexLimiter, "Bulwark Limiter", 1, demo }, { K::prismMultiband, "Mosaic Multiband", 1, demo },
+                                                                  { K::epochVerb, "Season Verb", 0, demo }, { K::glowLeveler, "Hearth Leveler", 0, demo },
                                                                   { K::fruityLimiter, "Fruity Limiter", 0, demo }, { K::lynxTune, "Shield Tune", 0, demo } })
                 editorCpu->cases.push_back (c);
         editorCpu->done = [this] { juce::MessageManager::callAsync ([this] { editorCpu.reset(); quit(); }); };
@@ -7344,7 +7344,7 @@ private:
                                                         { "Expander threshold", 0.2198f }, { "Vocal input", 0.6792f }, { "Vocal output", 0.3938f },
                                                         { "Process order", 0.4783f }, { "De-esser", 1.0f } })
                         fx.params[(std::size_t) lynx::plugui::paramIndex (kind, param)] = value;
-                    name = "Ridge Strip (Vocal strip)";
+                    name = "Highland Strip (Vocal strip)";
                 }
                 else if (kind == lynx::EffectKind::ridgeStrip && ridgePasses == 3) // round 165: the E console, EQ to the side chain
                 {
@@ -7352,7 +7352,7 @@ private:
                                                         { "HF bell", 1.0f }, { "Ratio", 0.5f }, { "Comp. threshold", 0.4f }, { "EQ to SC", 1.0f },
                                                         { "Filter split", 1.0f }, { "Expander", 1.0f } })
                         fx.params[(std::size_t) lynx::plugui::paramIndex (kind, param)] = value;
-                    name = "Ridge Strip (E console)";
+                    name = "Highland Strip (E console)";
                 }
                 else if (kind == lynx::EffectKind::ridgeStrip) // a vocal setting, so the graphs show something
                     for (const auto& [param, value] : { std::pair<const char*, float> { "HPF", 0.3f }, { "LMF gain", 0.35f }, { "HF gain", 0.7f },
@@ -7601,7 +7601,7 @@ private:
                     if (auto stream = f.createOutputStream())
                         png.writeImageToStream (image, *stream);
                 };
-                own (eq, "Facet EQ.png", true);
+                own (eq, "Weave EQ.png", true);
                 own (lynx::makeEffectSlot (lynx::EffectKind::lynxTune), "Shield Tune.png", false);
                 {
                     // round 128: the ADVANCED page, with E bypassed and A removed on the keyboard and a created vibrato
@@ -8696,9 +8696,9 @@ private:
                 m.addItem (text, enabled, false, [this, id] { picked = id; });
             };
             menu.addSectionHeader ("Shield");
-            item (menu, 1, "Echoform");
+            item (menu, 1, "Echo Drum");
             item (menu, 2, "EQ");
-            item (menu, 3, "Halo");
+            item (menu, 3, "Sunrise");
             menu.addSectionHeader ("Misc");
             item (menu, 4, "Effector");
             item (menu, 5, "Exciter (unavailable)", false);
@@ -8729,11 +8729,11 @@ private:
             switch (step++)
             {
                 case 0: expect ("menu open", juce::String ((int) (juce::Component::getCurrentlyModalComponent() != nullptr)), "1"); break;
-                case 1: press (e); expect ("e", highlighted(), "Echoform"); break;
+                case 1: press (e); expect ("e", highlighted(), "Echo Drum"); break;
                 case 2: press (e); expect ("e again", highlighted(), "EQ"); break;
                 case 3: press (juce::KeyPress ('E', juce::ModifierKeys::shiftModifier, 'E')); expect ("E (shift)", highlighted(), "Effector"); break;
-                case 4: press (e); expect ("e wraps (skips the disabled one)", highlighted(), "Echoform"); break;
-                case 5: press (juce::KeyPress ('m', {}, 'm')); expect ("m (only a heading starts with it: no move)", highlighted(), "Echoform"); break;
+                case 4: press (e); expect ("e wraps (skips the disabled one)", highlighted(), "Echo Drum"); break;
+                case 5: press (juce::KeyPress ('m', {}, 'm')); expect ("m (only a heading starts with it: no move)", highlighted(), "Echo Drum"); break;
                 case 6: press (juce::KeyPress (juce::KeyPress::downKey)); expect ("down arrow", highlighted(), "EQ"); break;
                 case 7: press (e); expect ("e after the arrow", highlighted(), "Effector"); break;
                 case 8: press (juce::KeyPress ('t', {}, 't')); expect ("t", highlighted(), "Tree"); break;

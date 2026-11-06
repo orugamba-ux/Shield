@@ -1528,9 +1528,9 @@ countries: tw hk mo
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "與普通模式一樣共享，但向Windows請求更短的混合週期。僅部分驅動程式支援。"
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield獨佔裝置：不用ASIO時延遲最低，但Shield播放時其他程式會無聲。"
 "Old Windows audio path with high latency. Use it only when the others fail." = "舊的Windows音訊路徑，延遲較高。僅在其他方式都失敗時使用。"
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "低延遲驅動程式。LYNX ASIO、FL Studio ASIO和ASIO4ALL適用於任何裝置；廠商的ASIO驅動程式適用於其自己的裝置。"
-"LYNX ASIO (built in)" = "LYNX ASIO（內建）"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "Shield自己的ASIO驅動程式，適用於任何裝置：低延遲播放和錄音（麥克風）。「驅動程式設定...」可選擇共享或獨佔模式、輸出和輸入裝置，並顯示延遲。如需供其他程式使用，請在Shield資料夾中執行一次「Register LYNX ASIO」。"
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "低延遲驅動程式。Shield ASIO、FL Studio ASIO和ASIO4ALL適用於任何裝置；廠商的ASIO驅動程式適用於其自己的裝置。"
+"Shield ASIO (built in)" = "Shield ASIO（內建）"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "Shield自己的ASIO驅動程式，適用於任何裝置：低延遲播放和錄音（麥克風）。「驅動程式設定...」可選擇共享或獨佔模式、輸出和輸入裝置，並顯示延遲。如需供其他程式使用，請在Shield資料夾中執行一次「Register Shield ASIO」。"
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Shield自有的ASIO驅動程式，適用於任何裝置：低延遲播放與錄音（麥克風）。「驅動程式設定...」可選擇共用或獨佔模式、輸出與輸入裝置，並顯示延遲。若要在其他程式中使用，請從lynx-share.com安裝Shield（安裝程式會註冊此驅動程式）。"
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "較小的緩衝區在演奏時回應更快；較大的緩衝區給CPU更多餘量（爆音更少）。"
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "開啟錄製時，音效卡輸入會成為播放清單中的片段（即上方的輸入裝置）。"
@@ -2439,7 +2439,7 @@ countries: tw hk mo
 "Y mod" = "Y調變"
 "Y param" = "Y參數"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "即時音高"
 "Tilt shelf" = "傾斜層架"
 "Zero latency" = "零延遲"
@@ -2473,7 +2473,7 @@ countries: tw hk mo
 "THRESHOLD" = "閾值"
 "ATTACK" = "起音"
 "RELEASE" = "釋放"
-"Open Facet EQ" = "開啟Facet EQ"
+"Open Weave EQ" = "開啟Weave EQ"
 "Open Soundgoodizer" = "開啟Soundgoodizer"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "近似（此電腦上未找到FL Studio的Soundgoodizer預設集）"
 "Target" = "目標"
@@ -2564,7 +2564,7 @@ countries: tw hk mo
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "傳送到"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1個頻段|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oct|24 dB/oct|48 dB/oct"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: tw hk mo
 "Run in a separate process (on for all plugins in Options)" = "在獨立處理程序中執行（在「選項」中為所有外掛開啟）"
 "{0} underruns (the sound broke up; red number)" = "{0}次欠載（聲音斷續；紅色數字）"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "降噪器"
 "Listen" = "偵聽"
 "Voices" = "發聲數"
@@ -3689,7 +3689,7 @@ countries: tw hk mo
 "Voicing" = "音色風格"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "永久保持板式的尾音（衰減調到頂）：彈奏進去即可疊加，關閉則讓其淡出"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "節奏回聲：由均勻分佈的抽頭組成的樣式，回授每隔一個「長度」重複一次"
 "Slots in the rhythm pattern (the first one is the input itself)" = "節奏樣式中的位置（第一個是輸入本身）"
 "How much quieter the last tap of the pattern is than the first" = "樣式最後一個抽頭比第一個安靜多少"
@@ -4076,7 +4076,7 @@ countries: tw hk mo
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "已初始化的控制項：歌曲開始時重設（控制項選單 > 以此位置初始化歌曲）"
 "reset to this value when the song starts  [RMB] delete the initial value" = "歌曲開始時重設為此值  [RMB] 刪除初始值"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "壓擴器"
 "Make-up" = "補償增益"
 "Soft knee" = "軟拐點"
@@ -7195,11 +7195,11 @@ countries: tw hk mo
 "Worth knowing" = "須知"
 "Samples not on this PC" = "不在此電腦上的取樣"
 "Steps use channel colour" = "步進使用通道顏色"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "主要|微調"
 "E type|G type" = "E 型|G 型"
 "Modern console" = "現代調音台"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "飽和|控制台 E|控制台 G|控制台 A|控制台 N|控制台 Y|真空管|吉他音箱|貝斯音箱"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "開啟驅動部分：在通道條末端、輸出之前的飽和"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "飽和類型：軟削波器、五種控制台通道、真空管級或吉他 / 貝斯音箱"
@@ -7309,8 +7309,8 @@ countries: tw hk mo
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "已關閉其視窗，以便 Shield 繼續執行。在重新開啟專案之前，該外掛可能無法正常運作。"
 "Wheels" = "滾輪"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "降噪"
 "Group bypass" = "編組旁通"
 "Main in" = "主輸入"
@@ -7337,4 +7337,4 @@ countries: tw hk mo
 "Link I/O" = "連動輸入/輸出"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "連動增益：轉動輸入時輸出反向移動，改變驅動時電平保持不變"
 "Input and Output move together on every channel of the group that has Group I/O on" = "在開啟編組輸入/輸出的同編組所有通道上，輸入與輸出一起移動"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel：LYNX 的混音台通道。拖動旋鈕，Alt+點擊復位，右鍵自動化"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel：LYNX 的混音台通道。拖動旋鈕，Alt+點擊復位，右鍵自動化"

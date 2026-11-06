@@ -5971,19 +5971,16 @@ std::unique_ptr<juce::AlertWindow> MainComponent::makeAboutWindow()
     {
         About()
             : juce::AlertWindow ("Shield " JUCE_APPLICATION_VERSION_STRING,
-                                 tr ("Lightweight C++/JUCE DAW with the FL Studio workflow.\n"
-                                     "Independent implementation: no Image-Line code was copied."),
+                                 tr ("A lightweight music production studio: channel rack, piano roll, playlist and mixer.\n"
+                                     "Opens FL Studio projects. Independent implementation: no Image-Line code was copied."),
                                  juce::MessageBoxIconType::NoIcon)
         {
             addCustomComponent (&logo);
-            // Appropriate Legal Notices (GNU AGPL-3.0 sections 0, 5 and 13): Shield is a modified version of LYNX SHARE;
-            // the upstream copyright, the licence, the absence of warranty and where the source is are shown here.
-            // Kept untranslated on purpose so the legal text stays exact.
-            addTextBlock ("Shield is a modified version of LYNX SHARE.\n"
-                          "Copyright (C) 2026 Ka1-S (LYNX SHARE, https://github.com/Ka1-S/LYNX-SHARE).\n"
-                          "Modifications (C) 2026 the Shield contributors.\n\n"
-                          "Free software under the GNU Affero General Public License v3.0, WITHOUT ANY WARRANTY.\n"
-                          "Source code: https://github.com/orugamba-ux/Shield (see LICENSE and THIRD_PARTY.md).");
+            // Appropriate Legal Notices (GNU AGPL-3.0 sections 0, 5 and 13), kept as a short footer: the copyright of the
+            // work Shield is based on, the licence, the absence of warranty and where the source is. Kept untranslated
+            // on purpose so the legal text stays exact.
+            addTextBlock ("Based on LYNX SHARE by Ka1-S. Copyright (C) 2026 Ka1-S; modifications (C) 2026 the Shield contributors.\n"
+                          "GNU AGPL-3.0, WITHOUT ANY WARRANTY. Source: https://github.com/orugamba-ux/Shield");
         }
         Logo logo;
     };

@@ -20,10 +20,10 @@ TEST (picker171c_categories_are_round_170b_folders)
     const auto folders = withDefaultCategories ({}, false,
                                                 { { "lynx:fx:Fruity Limiter", "Fruity Limiter", true, true },
                                                   { "lynx:fx:Fruity Delay 3", "Fruity Delay 3", true, true },
-                                                  { "lynx:fx:Facet EQ", "Facet EQ", false, false } });
+                                                  { "lynx:fx:Weave EQ", "Weave EQ", false, false } });
     CHECK (folders.of.at ("lynx:fx:Fruity Limiter") == "Dynamics");
     CHECK (folders.of.at ("lynx:fx:Fruity Delay 3") == "Delay reverb");
-    CHECK (folders.of.at ("lynx:fx:Facet EQ") == lynxCategory);
+    CHECK (folders.of.at ("lynx:fx:Weave EQ") == lynxCategory);
 }
 
 TEST (picker171c_search_like_fl)

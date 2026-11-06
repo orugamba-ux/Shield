@@ -1528,9 +1528,9 @@ countries: id
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Bersama seperti mode normal, tetapi meminta periode mixing yang lebih pendek ke Windows. Hanya sebagian driver yang mendukungnya."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield memakai perangkat sendirian: latensi terendah tanpa ASIO, tetapi program lain senyap selama Shield memutar."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Jalur audio Windows lama dengan latensi tinggi. Gunakan hanya jika yang lain gagal."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Driver latensi rendah. LYNX ASIO, FL Studio ASIO dan ASIO4ALL bekerja dengan perangkat apa pun; driver ASIO pabrikan bekerja dengan perangkatnya sendiri."
-"LYNX ASIO (built in)" = "LYNX ASIO (bawaan)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "Driver ASIO milik Shield, untuk perangkat apa pun: pemutaran dan rekaman (mikrofon) dengan latensi rendah. \"Pengaturan driver...\" memilih mode bersama atau eksklusif, perangkat output dan input, serta menampilkan latensi. Untuk program lain, jalankan \"Register LYNX ASIO\" di folder Shield sekali saja."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Driver latensi rendah. Shield ASIO, FL Studio ASIO dan ASIO4ALL bekerja dengan perangkat apa pun; driver ASIO pabrikan bekerja dengan perangkatnya sendiri."
+"Shield ASIO (built in)" = "Shield ASIO (bawaan)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "Driver ASIO milik Shield, untuk perangkat apa pun: pemutaran dan rekaman (mikrofon) dengan latensi rendah. \"Pengaturan driver...\" memilih mode bersama atau eksklusif, perangkat output dan input, serta menampilkan latensi. Untuk program lain, jalankan \"Register Shield ASIO\" di folder Shield sekali saja."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Driver ASIO milik Shield sendiri, dengan perangkat apa pun: pemutaran dan perekaman (mikrofon) dengan latensi rendah. \"Pengaturan driver...\" memilih mode bersama atau eksklusif, perangkat output dan input, serta menampilkan latensi. Untuk memakainya di program lain, instal Shield dari lynx-share.com (installer akan mendaftarkannya)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Buffer lebih kecil merespons lebih cepat saat Anda bermain; yang lebih besar memberi CPU lebih banyak ruang (lebih sedikit klik)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Saat rekam aktif, input sound card menjadi clip Playlist (Perangkat input di atas)."
@@ -2439,7 +2439,7 @@ countries: id
 "Y mod" = "Mod Y"
 "Y param" = "Param Y"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "Tilt shelf"
 "Zero latency" = "Latensi nol"
@@ -2473,7 +2473,7 @@ countries: id
 "THRESHOLD" = "THRESHOLD"
 "ATTACK" = "ATTACK"
 "RELEASE" = "RELEASE"
-"Open Facet EQ" = "Buka Facet EQ"
+"Open Weave EQ" = "Buka Weave EQ"
 "Open Soundgoodizer" = "Buka Soundgoodizer"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Pendekatan (preset Soundgoodizer FL Studio tidak ditemukan di komputer ini)"
 "Target" = "Target"
@@ -2564,7 +2564,7 @@ countries: id
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Kirim ke"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 band|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/okt|24 dB/okt|48 dB/okt"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: id
 "Run in a separate process (on for all plugins in Options)" = "Jalankan di proses terpisah (aktif untuk semua plugin di Opsi)"
 "{0} underruns (the sound broke up; red number)" = "{0} underrun (suara putus; angka merah)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Peredam noise"
 "Listen" = "Dengarkan"
 "Voices" = "Voice"
@@ -3689,7 +3689,7 @@ countries: id
 "Voicing" = "Voicing"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Menahan tail plate selamanya (decay di puncaknya): mainkan ke dalamnya untuk melapis, matikan untuk membiarkannya memudar"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Echo ritme: pola tap berjarak sama yang diulang feedback setiap Length"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Slot dalam pola ritme (yang pertama adalah input itu sendiri)"
 "How much quieter the last tap of the pattern is than the first" = "Seberapa pelan tap terakhir pola dibanding yang pertama"
@@ -4076,7 +4076,7 @@ countries: id
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Kontrol yang diinisialisasi: di-reset saat song dimulai (menu kontrol > Inisialisasi song dengan posisi ini)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "di-reset ke nilai ini saat song dimulai  [RMB] hapus nilai awal"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Compander"
 "Make-up" = "Make-up"
 "Soft knee" = "Soft knee"
@@ -7195,11 +7195,11 @@ countries: id
 "Worth knowing" = "Perlu diketahui"
 "Samples not on this PC" = "Sampel yang tidak ada di PC ini"
 "Steps use channel colour" = "Langkah memakai warna channel"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Utama|Tweak"
 "E type|G type" = "Tipe E|Tipe G"
 "Modern console" = "Konsol modern"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Saturasi|Konsol E|Konsol G|Konsol A|Konsol N|Konsol Y|Tabung|Amp gitar|Amp bas"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Menyalakan bagian drive: saturasi di akhir strip, sebelum output"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "Jenis saturasi: clipper lembut, lima kanal konsol, tahap tabung, atau amp gitar / bas"
@@ -7309,8 +7309,8 @@ countries: id
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Jendelanya ditutup agar Shield tetap berjalan. Plugin mungkin tidak bekerja dengan benar sampai proyek dibuka lagi."
 "Wheels" = "Roda"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Pengurang derau"
 "Group bypass" = "Bypass grup"
 "Main in" = "Masukan utama"
@@ -7337,4 +7337,4 @@ countries: id
 "Link I/O" = "Tautkan I/O"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Menautkan trim: memutar Input menggerakkan Output berlawanan, level tetap saat drive berubah"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Input dan Output bergerak bersama di setiap kanal grup yang I/O grup-nya aktif"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: kanal konsol LYNX. Seret kenop, Alt+klik mereset, klik kanan untuk otomasi"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: kanal konsol LYNX. Seret kenop, Alt+klik mereset, klik kanan untuk otomasi"

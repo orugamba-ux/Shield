@@ -2587,7 +2587,7 @@ private:
 // =====================================================================================================================
 const EffectInfo& echoformInfo()
 {
-    static const EffectInfo info { "Echoform",
+    static const EffectInfo info { "Echo Drum",
                                    { { "Mix", 0.5f }, { "Style", 0.1f }, { "Sync L", 0.25f }, { "Note L", 0.45f }, { "Time L", 0.3f },
                                      { "Sync R", 0.25f }, { "Note R", 0.45f }, { "Time R", 0.3f }, { "Spread", 0.5f }, { "Spacing", 0.5f },
                                      { "Ratio", 0.6141414f }, { "Feedback", 0.35f }, { "Width", 1.0f }, { "Drive", 0.0f }, { "Age", 0.5f },
@@ -2632,7 +2632,7 @@ const EffectInfo& echoformInfo()
 
 const EffectInfo& spiralInfo()
 {
-    static const EffectInfo info { "Spiral Echo",
+    static const EffectInfo info { "Whirlwind Echo",
                                    { { "Mix", 0.5f }, { "Shift", 0.5f }, { "Delay", 0.5f }, { "Sync", 0.0f }, { "Feedback", 0.5f },
                                      { "Low cut", 0.0604027f }, { "High cut", 0.3311037f }, { "Stereo", 1.0f } } };
     return info;
@@ -2640,14 +2640,14 @@ const EffectInfo& spiralInfo()
 
 const EffectInfo& orbitInfo()
 {
-    static const EffectInfo info { "Orbit", { { "Mix", 0.5f }, { "Rate", 0.626f }, { "Depth", 0.5f }, { "Feedback", 0.5f },
+    static const EffectInfo info { "Drift", { { "Mix", 0.5f }, { "Rate", 0.626f }, { "Depth", 0.5f }, { "Feedback", 0.5f },
                                               { "Manual", 0.5f }, { "Mode", 1.0f / 11.0f } } };
     return info;
 }
 
 const EffectInfo& latticeInfo()
 {
-    static const EffectInfo info { "Lattice Mod",
+    static const EffectInfo info { "Weave Mod",
                                    { { "Mix", 0.5f }, { "Depth", 0.5f }, { "Width", 0.5f }, { "Delay", 0.01f }, { "Feedback", 0.0f },
                                      { "Spread", 0.5f }, { "Slope", 0.5f }, { "Skew", 0.5f }, { "Random", 0.0f }, { "Tap gain", 0.5f },
                                      { "Diffusion", 0.5f }, { "Diffusion size", 0.0204082f }, { "Diffusion rate", 0.049049f },

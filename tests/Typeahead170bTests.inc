@@ -6,7 +6,7 @@ TEST (typeahead170b_letters_step_through_the_items_starting_with_them)
 {
     using lynx::prefs::nextTypeAhead;
     // a categorized menu: headings and separators can't be highlighted
-    const std::vector<std::string> labels { "Shield", "Echoform", "EQ", "Halo", "", "Misc", "Effector", "exciter", "Pitch Shifter" };
+    const std::vector<std::string> labels { "Shield", "Echo Drum", "EQ", "Sunrise", "", "Misc", "Effector", "exciter", "Pitch Shifter" };
     const std::vector<bool> selectable { false, true, true, true, false, false, true, true, true };
     // "e" from nothing highlighted: the first E, then the next ones (across the headings, as one menu window), wrapping
     CHECK (nextTypeAhead (labels, selectable, -1, 'e') == 1);

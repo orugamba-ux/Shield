@@ -3889,7 +3889,7 @@ void EffectsPanel::paint (juce::Graphics& g)
     if (slot.kind == EffectKind::facetEq)
     {
         const auto button = pluginButtonBounds();
-        drawButton (button, tr ("Open Facet EQ"), Icon::settings);
+        drawButton (button, tr ("Open Weave EQ"), Icon::settings);
         const auto curve = juce::Rectangle<int> (button.getX(), button.getBottom() + 10, button.getWidth(), 120).toFloat();
         drawFacetEqCurve (g, curve, slot.params, juce::jmax (8000.0, engine.getTransport().sampleRate.load()), slot.enabled);
         return;

@@ -696,13 +696,13 @@ juce::String rendererProbeReport()
         g.setFont (theme::font (16.0f, true));
     };
     const juce::Rectangle<int> box (20, 20, 120, 24);
-    const auto rawText = changedOutside ([&] (juce::Graphics& g) { gradient (g); g.drawText ("Facet EQ", box.toFloat(), juce::Justification::centredLeft, true); }, box);
-    const auto safeText = changedOutside ([&] (juce::Graphics& g) { gradient (g); drawFilledText (g, "Facet EQ", box.toFloat(), juce::Justification::centredLeft); }, box);
+    const auto rawText = changedOutside ([&] (juce::Graphics& g) { gradient (g); g.drawText ("Weave EQ", box.toFloat(), juce::Justification::centredLeft, true); }, box);
+    const auto safeText = changedOutside ([&] (juce::Graphics& g) { gradient (g); drawFilledText (g, "Weave EQ", box.toFloat(), juce::Justification::centredLeft); }, box);
     const auto emptyPath = changedOutside ([&] (juce::Graphics& g) { gradient (g); g.fillPath (juce::Path()); }, {});
     juce::String r;
     r << "renderer probe (pixels changed outside the shape; 0 = right)\n";
-    r << "gradient drawText \"Facet EQ\": " << rawText << "\n";
-    r << "gradient drawFilledText \"Facet EQ\": " << safeText << "\n";
+    r << "gradient drawText \"Weave EQ\": " << rawText << "\n";
+    r << "gradient drawFilledText \"Weave EQ\": " << safeText << "\n";
     r << "gradient fillPath (empty path): " << emptyPath << "\n";
     r << "result=" << (safeText == 0 ? "OK" : "FAIL") << "\n";
     return r;

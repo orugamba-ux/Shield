@@ -329,5 +329,5 @@ for src in "${APP_SOURCES[@]}"; do APP_OBJECTS+=("$OUT/app/$(echo "$src" | tr / 
 
 ls -la "$OUT/Shield.exe"
 
-# LYNX ASIO driver (REA round 97), shipped next to Shield.exe
-OUT="$OUT" ZIG="$ZIG" scripts/build-lynx-asio.sh
+# Shield ASIO driver (REA round 97), shipped next to Shield.exe
+OUT="$OUT" ZIG="$ZIG" scripts/build-shield-asio.sh

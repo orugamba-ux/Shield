@@ -2160,7 +2160,7 @@ Layout kilnLayout()
     auto vu = display (126, 40, 208, 116, "vumeter");
     vu.steps = 0;
     v.push_back (vu);
-    v.push_back (label (104, 166, 252, 20, TR_NOOP ("Kiln Channel"), boxed));
+    v.push_back (label (104, 166, 252, 20, TR_NOOP ("Clay Channel"), boxed));
     v.push_back (dial (166, 230, 46, "Input", TR_NOOP ("Input"), bipolar));
     v.push_back (dial (294, 230, 46, "Output", TR_NOOP ("Output"), bipolar));
     v.push_back (toggle (204, 204, 52, 18, "Group I/O", TR_NOOP ("Group I/O")));

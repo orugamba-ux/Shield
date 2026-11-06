@@ -1313,7 +1313,7 @@ const char* shapeName (Shape s) noexcept
 const EffectInfo& info()
 {
     static const EffectInfo i = [] {
-        EffectInfo e { "Facet EQ", {} };
+        EffectInfo e { "Weave EQ", {} };
         static std::array<std::array<char, 24>, bands * fieldsPerBand> names {};
         const char* fields[] = { "Shape", "Freq", "Gain", "Q", "Slope" };
         for (int b = 0; b < bands; ++b)

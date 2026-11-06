@@ -316,7 +316,7 @@ TEST (kiln_channel_tp172c7)
     namespace k = mixsuite::kiln;
     namespace r = mixsuite::ridge;
     const auto& info = effectInfo (EffectKind::kilnChannel);
-    CHECK ((int) info.params.size() == k::count && std::string (info.name) == "Kiln Channel");
+    CHECK ((int) info.params.size() == k::count && std::string (info.name) == "Clay Channel");
     auto p = makeEffectSlot (EffectKind::kilnChannel).params;
     CHECK (p[k::noiseReduction] == 1.0f && p[k::group] == 0.0f && std::abs (k::driveDb (p[k::drive]) - 6.0) < 1e-3);
     CHECK (std::abs (k::trimDb (p[k::input])) < 1e-6 && std::abs (k::mainDb (p[k::mainOut])) < 1e-6);

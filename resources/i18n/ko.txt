@@ -1528,9 +1528,9 @@ countries: kr
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "일반 모드처럼 공유하지만 Windows에 더 짧은 믹싱 주기를 요청합니다. 일부 드라이버만 지원합니다."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield가 장치를 단독으로 사용합니다. ASIO 없이 가장 낮은 레이턴시를 얻지만, Shield가 재생하는 동안 다른 프로그램은 소리가 나지 않습니다."
 "Old Windows audio path with high latency. Use it only when the others fail." = "레이턴시가 높은 예전 Windows 오디오 경로입니다. 다른 방식이 작동하지 않을 때만 사용하세요."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "저지연 드라이버입니다. LYNX ASIO, FL Studio ASIO, ASIO4ALL은 모든 장치에서 작동하며, 제조사 ASIO 드라이버는 해당 장치에서만 작동합니다."
-"LYNX ASIO (built in)" = "LYNX ASIO(내장)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "모든 장치에서 쓸 수 있는 Shield 자체 ASIO 드라이버로, 낮은 레이턴시로 재생과 녹음(마이크)을 합니다. ‘드라이버 설정...’에서 공유/독점 모드와 입출력 장치를 선택하고 레이턴시를 확인합니다. 다른 프로그램에서 쓰려면 Shield 폴더의 ‘Register LYNX ASIO’를 한 번 실행하세요."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "저지연 드라이버입니다. Shield ASIO, FL Studio ASIO, ASIO4ALL은 모든 장치에서 작동하며, 제조사 ASIO 드라이버는 해당 장치에서만 작동합니다."
+"Shield ASIO (built in)" = "Shield ASIO(내장)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "모든 장치에서 쓸 수 있는 Shield 자체 ASIO 드라이버로, 낮은 레이턴시로 재생과 녹음(마이크)을 합니다. ‘드라이버 설정...’에서 공유/독점 모드와 입출력 장치를 선택하고 레이턴시를 확인합니다. 다른 프로그램에서 쓰려면 Shield 폴더의 ‘Register Shield ASIO’를 한 번 실행하세요."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Shield 자체 ASIO 드라이버로, 어떤 장치에서든 낮은 레이턴시로 재생과 녹음(마이크)을 할 수 있습니다. “드라이버 설정...”에서 공유 또는 독점 모드, 출력 및 입력 장치를 선택하고 레이턴시를 확인합니다. 다른 프로그램에서 사용하려면 lynx-share.com에서 Shield를 설치하세요(설치 프로그램이 드라이버를 등록합니다)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "버퍼가 작을수록 연주 반응이 빠르고, 클수록 CPU에 여유가 생깁니다(클릭 노이즈 감소)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "녹음을 켜면 사운드 카드 입력이 플레이리스트 클립이 됩니다(위의 입력 장치)."
@@ -2439,7 +2439,7 @@ countries: kr
 "Y mod" = "Y Mod"
 "Y param" = "Y 파라미터"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "라이브 피치"
 "Tilt shelf" = "틸트 셸프"
 "Zero latency" = "제로 레이턴시"
@@ -2473,7 +2473,7 @@ countries: kr
 "THRESHOLD" = "스레숄드"
 "ATTACK" = "어택"
 "RELEASE" = "릴리스"
-"Open Facet EQ" = "Facet EQ 열기"
+"Open Weave EQ" = "Weave EQ 열기"
 "Open Soundgoodizer" = "Soundgoodizer 열기"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "근사치(이 컴퓨터에서 FL Studio의 Soundgoodizer 프리셋을 찾을 수 없음)"
 "Target" = "대상"
@@ -2564,7 +2564,7 @@ countries: kr
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "보낼 대상"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1밴드|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oct|24 dB/oct|48 dB/oct"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: kr
 "Run in a separate process (on for all plugins in Options)" = "별도 프로세스에서 실행(옵션에서 모든 플러그인에 켜짐)"
 "{0} underruns (the sound broke up; red number)" = "언더런 {0}회(소리 끊김, 빨간 숫자)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "노이즈 억제"
 "Listen" = "듣기"
 "Voices" = "보이스"
@@ -3689,7 +3689,7 @@ countries: kr
 "Voicing" = "보이싱"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "플레이트 테일을 계속 유지합니다(디케이 최대). 연주하면 레이어가 쌓이고, 끄면 사라집니다"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "리듬 에코: 고른 간격의 탭 패턴을 피드백이 길이마다 반복합니다"
 "Slots in the rhythm pattern (the first one is the input itself)" = "리듬 패턴의 슬롯(첫 번째는 입력 자체)"
 "How much quieter the last tap of the pattern is than the first" = "패턴의 마지막 탭이 첫 탭보다 작은 정도"
@@ -4076,7 +4076,7 @@ countries: kr
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "초기화된 컨트롤: 송이 시작될 때 초기화됩니다(컨트롤 메뉴 > 이 위치로 송 초기화)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "송이 시작될 때 이 값으로 초기화  [RMB] 초기값 삭제"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "컴팬더"
 "Make-up" = "메이크업"
 "Soft knee" = "소프트 니"
@@ -7195,11 +7195,11 @@ countries: kr
 "Worth knowing" = "알아둘 점"
 "Samples not on this PC" = "이 PC에 없는 샘플"
 "Steps use channel colour" = "스텝에 채널 색상 사용"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "메인|조정"
 "E type|G type" = "E 타입|G 타입"
 "Modern console" = "모던 콘솔"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "새추레이트|콘솔 E|콘솔 G|콘솔 A|콘솔 N|콘솔 Y|진공관|기타 앰프|베이스 앰프"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "드라이브 섹션을 켭니다: 스트립 끝, 출력 앞의 새추레이션"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "새추레이션 종류: 소프트 클리퍼, 콘솔 채널 다섯 가지, 진공관 단, 기타 / 베이스 앰프"
@@ -7309,8 +7309,8 @@ countries: kr
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Shield가 계속 실행될 수 있도록 해당 창을 닫았습니다. 프로젝트를 다시 열 때까지 플러그인이 제대로 작동하지 않을 수 있습니다."
 "Wheels" = "휠"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "노이즈 감소"
 "Group bypass" = "그룹 바이패스"
 "Main in" = "메인 입력"
@@ -7337,4 +7337,4 @@ countries: kr
 "Link I/O" = "I/O 연결"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "트림 연결: 입력을 돌리면 출력이 반대로 움직여 드라이브를 바꿔도 레벨이 유지됩니다"
 "Input and Output move together on every channel of the group that has Group I/O on" = "그룹 I/O가 켜진 그룹의 모든 채널에서 입력과 출력이 함께 움직입니다"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: LYNX의 콘솔 채널. 노브를 드래그, Alt+클릭으로 초기화, 오른쪽 클릭으로 오토메이션"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: LYNX의 콘솔 채널. 노브를 드래그, Alt+클릭으로 초기화, 오른쪽 클릭으로 오토메이션"

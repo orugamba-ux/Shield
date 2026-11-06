@@ -1528,9 +1528,9 @@ countries: nl be
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Gedeeld zoals de normale modus, maar vraagt Windows om een kortere mixperiode. Alleen sommige drivers ondersteunen dit."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shield gebruikt het apparaat alleen: de laagste latentie zonder ASIO, maar andere programma's vallen stil terwijl Shield speelt."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Oud Windows-audiopad met hoge latentie. Gebruik het alleen als de andere niet werken."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers met lage latentie. LYNX ASIO, FL Studio ASIO en ASIO4ALL werken met elk apparaat; de ASIO-driver van een fabrikant werkt met het eigen apparaat."
-"LYNX ASIO (built in)" = "LYNX ASIO (ingebouwd)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "De eigen ASIO-driver van Shield, met elk apparaat: afspelen en opnemen (microfoon) met lage latentie. \"Driverinstellingen...\" kiest de gedeelde of exclusieve modus en de uitvoer- en invoerapparaten, en toont de latentie. Voer voor andere programma's eenmalig \"Register LYNX ASIO\" uit in de map van Shield."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers met lage latentie. Shield ASIO, FL Studio ASIO en ASIO4ALL werken met elk apparaat; de ASIO-driver van een fabrikant werkt met het eigen apparaat."
+"Shield ASIO (built in)" = "Shield ASIO (ingebouwd)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "De eigen ASIO-driver van Shield, met elk apparaat: afspelen en opnemen (microfoon) met lage latentie. \"Driverinstellingen...\" kiest de gedeelde of exclusieve modus en de uitvoer- en invoerapparaten, en toont de latentie. Voer voor andere programma's eenmalig \"Register Shield ASIO\" uit in de map van Shield."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "De eigen ASIO-driver van Shield, met elk apparaat: afspelen en opnemen (microfoon) met lage latentie. \"Driverinstellingen...\" kiest de gedeelde of exclusieve modus, de uitvoer- en invoerapparaten en toont de latentie. Om hem in andere programma's te gebruiken, installeer je Shield via lynx-share.com (het installatieprogramma registreert hem)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Kleinere buffers reageren sneller als je speelt; grotere geven de CPU meer ruimte (minder klikken)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Met opnemen aan wordt de ingang van de geluidskaart een clip in de Playlist (het invoerapparaat hierboven)."
@@ -2439,7 +2439,7 @@ countries: nl be
 "Y mod" = "Y mod"
 "Y param" = "Y param"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "Tilt shelf"
 "Zero latency" = "Geen latentie"
@@ -2473,7 +2473,7 @@ countries: nl be
 "THRESHOLD" = "THRESHOLD"
 "ATTACK" = "ATTACK"
 "RELEASE" = "RELEASE"
-"Open Facet EQ" = "Facet EQ openen"
+"Open Weave EQ" = "Weave EQ openen"
 "Open Soundgoodizer" = "Soundgoodizer openen"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Benadering (de Soundgoodizer-presets van FL Studio zijn niet gevonden op deze computer)"
 "Target" = "Doel"
@@ -2564,7 +2564,7 @@ countries: nl be
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Sturen naar"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 band|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oct|24 dB/oct|48 dB/oct"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: nl be
 "Run in a separate process (on for all plugins in Options)" = "In een apart proces draaien (aan voor alle plugins in Opties)"
 "{0} underruns (the sound broke up; red number)" = "{0} underruns (het geluid haperde; rood getal)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Ruisonderdrukker"
 "Listen" = "Luisteren"
 "Voices" = "Stemmen"
@@ -3689,7 +3689,7 @@ countries: nl be
 "Voicing" = "Voicing"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Houdt de staart van de plate eeuwig vast (de decay op het maximum): speel erin om te layeren, schakel uit om te laten uitsterven"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Ritme-echo: een patroon van gelijk verdeelde taps dat de feedback elke Lengte herhaalt"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Slots in het ritmepatroon (de eerste is de ingang zelf)"
 "How much quieter the last tap of the pattern is than the first" = "Hoeveel zachter de laatste tap van het patroon is dan de eerste"
@@ -4076,7 +4076,7 @@ countries: nl be
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Geïnitialiseerde regelaars: worden gereset wanneer de song start (menu van een regelaar > Song initialiseren met deze positie)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "gereset naar deze waarde wanneer de song start  [RMB] beginwaarde verwijderen"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Compander"
 "Make-up" = "Make-up"
 "Soft knee" = "Soft knee"
@@ -7195,11 +7195,11 @@ countries: nl be
 "Worth knowing" = "Goed om te weten"
 "Samples not on this PC" = "Samples die niet op deze pc staan"
 "Steps use channel colour" = "Stappen in de kanaalkleur"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Hoofd|Tweak"
 "E type|G type" = "E-type|G-type"
 "Modern console" = "Moderne console"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Satureren|Console E|Console G|Console A|Console N|Console Y|Buis|Gitaarversterker|Basversterker"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Zet de drive-sectie aan: saturatie aan het eind van de strip, vóór de uitgang"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "Het soort saturatie: een zachte clipper, vijf consolekanalen, een buistrap of een gitaar- / basversterker"
@@ -7309,8 +7309,8 @@ countries: nl be
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Het venster is gesloten zodat Shield kon blijven werken. De plugin werkt misschien pas weer goed als het project opnieuw wordt geopend."
 "Wheels" = "Wielen"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Ruisonderdrukking"
 "Group bypass" = "Groepsbypass"
 "Main in" = "Hoofdingang"
@@ -7337,4 +7337,4 @@ countries: nl be
 "Link I/O" = "I/O koppelen"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Koppelt de trims: Ingang draaien beweegt Uitgang andersom, het niveau blijft terwijl de drive verandert"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Ingang en Uitgang bewegen samen op elk kanaal van de groep met Groeps-I/O aan"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: het consolekanaal van LYNX. Sleep een knop, Alt+klik zet terug, rechtsklik voor automatisering"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: het consolekanaal van LYNX. Sleep een knop, Alt+klik zet terug, rechtsklik voor automatisering"

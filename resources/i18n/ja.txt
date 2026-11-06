@@ -1528,9 +1528,9 @@ countries: jp
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "通常モードと同じ共有ですが、Windowsに短いミックス周期を要求します。一部のドライバーのみ対応しています。"
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "Shieldがデバイスを独占します: ASIOなしで最低のレイテンシーですが、Shieldの再生中は他のプログラムが無音になります。"
 "Old Windows audio path with high latency. Use it only when the others fail." = "レイテンシーの大きい旧来のWindowsオーディオ経路です。他が使えない場合のみ使用してください。"
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "低レイテンシードライバー。LYNX ASIO、FL Studio ASIO、ASIO4ALLはどのデバイスでも動作し、メーカー製ASIOドライバーはそのメーカーのデバイスで動作します。"
-"LYNX ASIO (built in)" = "LYNX ASIO (内蔵)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "Shield独自のASIOドライバーで、どのデバイスでも低レイテンシーで再生と録音 (マイク) ができます。「ドライバー設定...」で共有/排他モード、出力・入力デバイスを選択し、レイテンシーを確認できます。他のプログラムで使うには、Shieldのフォルダーにある「Register LYNX ASIO」を一度実行してください。"
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "低レイテンシードライバー。Shield ASIO、FL Studio ASIO、ASIO4ALLはどのデバイスでも動作し、メーカー製ASIOドライバーはそのメーカーのデバイスで動作します。"
+"Shield ASIO (built in)" = "Shield ASIO (内蔵)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "Shield独自のASIOドライバーで、どのデバイスでも低レイテンシーで再生と録音 (マイク) ができます。「ドライバー設定...」で共有/排他モード、出力・入力デバイスを選択し、レイテンシーを確認できます。他のプログラムで使うには、Shieldのフォルダーにある「Register Shield ASIO」を一度実行してください。"
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "Shield独自のASIOドライバー。どのデバイスでも低レイテンシーで再生と録音 (マイク) ができます。「ドライバー設定...」で共有モードか排他モード、出力と入力のデバイスを選び、レイテンシーを表示します。他のプログラムで使うには、lynx-share.comからShieldをインストールしてください (インストーラーが登録します)。"
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "バッファーが小さいほど演奏への反応が速く、大きいほどCPUに余裕ができます (クリックノイズが減少)。"
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "録音がオンのとき、サウンドカードの入力 (上の入力デバイス) がプレイリストのクリップになります。"
@@ -2439,7 +2439,7 @@ countries: jp
 "Y mod" = "Y mod"
 "Y param" = "Y param"
 
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "LIVE PITCH"
 "Tilt shelf" = "チルトシェルフ"
 "Zero latency" = "ゼロレイテンシー"
@@ -2473,7 +2473,7 @@ countries: jp
 "THRESHOLD" = "スレッショルド"
 "ATTACK" = "アタック"
 "RELEASE" = "リリース"
-"Open Facet EQ" = "Facet EQを開く"
+"Open Weave EQ" = "Weave EQを開く"
 "Open Soundgoodizer" = "Soundgoodizerを開く"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "近似 (FL StudioのSoundgoodizerプリセットがこのコンピューターに見つかりません)"
 "Target" = "ターゲット"
@@ -2564,7 +2564,7 @@ countries: jp
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "送り先"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1バンド|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oct|24 dB/oct|48 dB/oct"
 "B1" = "B1"
@@ -2819,7 +2819,7 @@ countries: jp
 "Run in a separate process (on for all plugins in Options)" = "別プロセスで実行 (オプションで全プラグインに有効)"
 "{0} underruns (the sound broke up; red number)" = "{0}回のアンダーラン (音が途切れました、赤い数字)"
 
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "ノイズサプレッサー"
 "Listen" = "リッスン"
 "Voices" = "ボイス"
@@ -3689,7 +3689,7 @@ countries: jp
 "Voicing" = "ボイシング"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "プレートのテールを永続的に保持 (最大のディケイ): 演奏を重ねてレイヤーし、オフにするとフェードアウト"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "リズムエコー: 等間隔のタップのパターンを、フィードバックがLengthごとに繰り返します"
 "Slots in the rhythm pattern (the first one is the input itself)" = "リズムパターンのスロット (最初のスロットは入力自体)"
 "How much quieter the last tap of the pattern is than the first" = "パターンの最後のタップが最初のタップよりどれだけ小さいか"
@@ -4076,7 +4076,7 @@ countries: jp
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "初期化されたコントロール: ソング開始時にリセットされます (コントロールのメニュー > この位置でソングを初期化)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "ソング開始時にこの値にリセット  [RMB] 初期値を削除"
 
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "コンパンダー"
 "Make-up" = "メイクアップ"
 "Soft knee" = "ソフトニー"
@@ -7195,11 +7195,11 @@ countries: jp
 "Worth knowing" = "補足"
 "Samples not on this PC" = "この PC にないサンプル"
 "Steps use channel colour" = "ステップにチャンネルの色を使う"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "メイン|微調整"
 "E type|G type" = "Eタイプ|Gタイプ"
 "Modern console" = "モダンコンソール"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "サチュレート|コンソール E|コンソール G|コンソール A|コンソール N|コンソール Y|真空管|ギターアンプ|ベースアンプ"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "ドライブ部をオンにします: ストリップの最後、出力の前でのサチュレーション"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "サチュレーションの種類: ソフトクリッパー、5種類のコンソールチャンネル、真空管段、ギター / ベースアンプ"
@@ -7309,8 +7309,8 @@ countries: jp
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "Shield を動作させ続けるため、そのウィンドウを閉じました。プロジェクトを開き直すまで、プラグインが正しく動作しない可能性があります。"
 "Wheels" = "ホイール"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "ノイズリダクション"
 "Group bypass" = "グループバイパス"
 "Main in" = "メイン入力"
@@ -7337,4 +7337,4 @@ countries: jp
 "Link I/O" = "I/Oリンク"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "トリムを連動：入力を回すと出力が逆に動き、ドライブを変えてもレベルが保たれます"
 "Input and Output move together on every channel of the group that has Group I/O on" = "グループI/Oがオンのグループ内全チャンネルで入力と出力が一緒に動きます"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel：LYNXのコンソールチャンネル。ノブをドラッグ、Alt+クリックでリセット、右クリックでオートメーション"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel：LYNXのコンソールチャンネル。ノブをドラッグ、Alt+クリックでリセット、右クリックでオートメーション"

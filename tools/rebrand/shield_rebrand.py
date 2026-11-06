@@ -22,7 +22,7 @@ NEW_REPO = "orugamba-ux/Shield"
 # tokens hidden from every rule (format headers, protocol tags, ids)
 PROTECT = [
     # attribution to the original authors (About box, version resources, CMake, store-job note): never rebranded
-    r"modified version of LYNX SHARE", r"Ka1-S \(LYNX SHARE[^)]*\)", r"based on LYNX SHARE", r"upstream LYNX SHARE",
+    r"modified version of LYNX SHARE", r"Ka1-S \(LYNX SHARE[^)]*\)", r"[Bb]ased on LYNX SHARE", r"upstream LYNX SHARE", r"LYNX SHARE by Ka1-S",
     r"LYNX SHARE live host v1", r"LYNX SHARE live session",  # crypto AD / salt: session-compatible with LYNX
     r"LYNX preset", r"LYNX theme", r"LYNX visualizer", r"LYNX-SF-INDEX", r"LYNX-ABCDE",
     r"LYNXvp1", r"LYNX\|RComp", r"LYNX\.LYNX_8wekyb3d8bbwe", r"X-LYNX-", r"LYNX_[A-Za-z0-9_]+",
@@ -43,9 +43,29 @@ COMMON = [
     (r"Icon=lynx\b", "Icon=shield"),  # the .desktop entry FileTypes.cpp writes on Linux ("\nIcon=": no \b)
     (r"\blynx\.(png|desktop)\b", r"shield.\1"),  # Linux icon / menu entry names (the packages install these)
     (r"\b(To|From) LYNX\b", r"\1 Shield"),
+    (r"\bLYNX ASIO\b", "Shield ASIO"),  # the bundled ASIO driver (with its own CLSID: asio/LynxAsio.cpp)
+    (r"\blynx-asio", "shield-asio"),  # shield-asio.dll, shield-asio32.dll, the .def file and the build script
 ]
+ASIO_RULES = COMMON[-2:]
+# build files where only the ASIO driver is renamed (the rest of them is internal: the LYNX target, lynx_core ...)
+ASIO_FILES = ["CMakeLists.txt", "scripts/build-shield-asio.sh", "scripts/build-windows-zig.sh",
+              "asio/shield-asio.def", "asio/Register Shield ASIO.bat", "asio/Unregister Shield ASIO.bat"]
 
-RAW_RULES = [r for r in COMMON if r[0].startswith(r"\bLYNX (Tune")]
+# Shield's names for upstream's own effect engines (display names only; projects keep the internal ids such as
+# "apexLimiter", and src/core/ShieldNames.h maps the old names in files LYNX wrote). Keep in sync with ShieldNames.h.
+PLUGIN_RENAMES = {
+    "Apex Limiter": "Bulwark Limiter", "Crest Compressor": "Spearhead Compressor",
+    "Prism Multiband": "Mosaic Multiband", "Sentry Gate": "Gatekeeper", "Facet EQ": "Weave EQ",
+    "Ridge Strip": "Highland Strip", "Hush De-esser": "Whisper De-esser", "Glow Leveler": "Hearth Leveler",
+    "Quell Denoiser": "Calm Denoiser", "Gemini Doubler": "Twin Doubler", "Ember Saturator": "Forge Saturator",
+    "Kiln Channel": "Clay Channel", "Aether": "Breath", "Epoch Verb": "Season Verb", "Atrium": "Great Hall",
+    "Foil Plate": "Iron Plate", "Nebula": "Night Sky", "Halo": "Sunrise", "Horizon": "Savanna",
+    "Echoform": "Echo Drum", "Spiral Echo": "Whirlwind Echo", "Orbit": "Drift", "Lattice Mod": "Weave Mod",
+}
+PLUGIN_RULES = [(r"(?<![A-Za-z0-9_-])" + re.escape(old) + r"(?![A-Za-z0-9_-])", new) for old, new in PLUGIN_RENAMES.items()]
+COMMON += PLUGIN_RULES
+
+RAW_RULES = [r for r in COMMON if r[0].startswith(r"\bLYNX (Tune")] + PLUGIN_RULES
 
 CPP_ONLY = [
     (r'^"LYNX/', '"Shield/'),
@@ -55,10 +75,10 @@ CPP_ONLY = [
 
 CPP_EXT = {".cpp", ".h", ".inc", ".mm", ".c", ".hpp"}
 TEXT_EXT = {".txt", ".keys"}
-CPP_DIRS = ["src", "tests"]
+CPP_DIRS = ["src", "tests", "asio"]
 I18N_DIR = "resources/i18n"
 # (StorePackage.h's "LYNX" is the MSIX <Application Id>; it follows the manifest, which is rebranded too)
-CPP_SKIP = set()
+CPP_SKIP = {"src/core/ShieldNames.h"}  # the old-name -> new-name table must keep the old names
 
 STRING_RE = re.compile(r'"(?:[^"\\\n]|\\.)*"')
 
@@ -86,7 +106,7 @@ def apply(rules, s):
 
 
 def rebrand_literal(lit):
-    if "LYNX" not in lit and "lynx." not in lit and "Icon=lynx" not in lit:
+    if "LYNX" not in lit and "lynx." not in lit and "lynx-asio" not in lit and "Icon=lynx" not in lit and not any(o in lit for o in PLUGIN_RENAMES):
         return lit
     masked, saved = mask(lit)
     masked = apply(COMMON, masked)
@@ -139,15 +159,16 @@ def rebrand_text(text):
 
 
 # Packaging files (installers, desktop entries, CI): every bare "LYNX" word is the product here, except file names
-# inside the repo, version macros, the .lynx file type and the separate LYNX ASIO driver.
+# inside the repo, version macros and the .lynx file type.
 PACKAGING = [
     "scripts/package-linux.sh", "scripts/package-macos.sh", "scripts/make-installer.sh",
     "resources/installer/LYNX.nsi", "resources/LYNX.rc", "resources/msix/AppxManifest.xml.in",
     "resources/linux/shield.desktop", "resources/linux/io.github.orugamba_ux.Shield.appdata.xml",
     "resources/linux/install.sh", "resources/linux/lynx-mime.xml", ".github/workflows/release.yml",
+    "scripts/make-msix-layout.py",
 ]
 PACKAGING_PROTECT = [
-    r"project\(LYNX", r"\bLYNX(?=\.(?:ico|rc|res|manifest|nsi)\b)", r"LYNX_doc", r"LYNX ASIO", r"lynx-asio",
+    r"project\(LYNX", r"\bLYNX(?=\.(?:ico|rc|res|manifest|nsi)\b)", r"LYNX_doc",
     r"x-lynx-project", r"lynx-mime", r"\.lynx\b", r"lynx_(?!share)[a-z0-9_]+", r"Copyright \(C\) 2026 Ka1-S",
     r"juce_add_gui_app\(LYNX", r"--target LYNX\b", r"LYNX_artefacts",
 ]
@@ -179,6 +200,14 @@ def rebrand_packaging(text):
 def main():
     check = "--check" in sys.argv
     changed = []
+    for rel in ASIO_FILES:
+        p = ROOT / rel
+        old = p.read_bytes().decode("utf-8")
+        new = apply(ASIO_RULES, old)
+        if new != old:
+            changed.append(rel)
+            if not check:
+                p.write_bytes(new.encode("utf-8"))
     for rel in PACKAGING:
         p = ROOT / rel
         old = p.read_bytes().decode("utf-8")

@@ -535,10 +535,10 @@ if(LYNX_BUILD_APP AND UNIX AND NOT APPLE)
     target_link_options(LYNX PRIVATE -static-libstdc++ -static-libgcc)
 endif()
 
-# LYNX ASIO: universal ASIO driver on WASAPI (REA round 97), an in-process COM DLL registered with regsvr32
+# Shield ASIO: universal ASIO driver on WASAPI (REA round 97), an in-process COM DLL registered with regsvr32
 if(WIN32)
-    add_library(lynx-asio SHARED asio/LynxAsio.cpp asio/lynx-asio.def)
-    target_include_directories(lynx-asio PRIVATE third_party/asiosdk/common)
-    target_compile_definitions(lynx-asio PRIVATE UNICODE _UNICODE)
-    target_link_libraries(lynx-asio PRIVATE ole32 uuid avrt user32 gdi32 advapi32)
+    add_library(shield-asio SHARED asio/LynxAsio.cpp asio/shield-asio.def)
+    target_include_directories(shield-asio PRIVATE third_party/asiosdk/common)
+    target_compile_definitions(shield-asio PRIVATE UNICODE _UNICODE)
+    target_link_libraries(shield-asio PRIVATE ole32 uuid avrt user32 gdi32 advapi32)
 endif()

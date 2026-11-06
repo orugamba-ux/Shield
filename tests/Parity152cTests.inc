@@ -151,7 +151,7 @@ TEST (facet_eq_match_round152c)
         }
     mean /= cnt;
     err = std::sqrt (std::max (0.0, err / cnt - mean * mean));
-    std::printf ("  Facet EQ match: %d bands, %.2f dB rms off the wanted curve (level %.2f dB)\n", placed, err, mean);
+    std::printf ("  Weave EQ match: %d bands, %.2f dB rms off the wanted curve (level %.2f dB)\n", placed, err, mean);
     CHECK (placed >= 2 && placed <= 8 && err < 1.0);
     // amount 0 or identical spectra: nothing to do
     CHECK (matchEq (facet103::defaults(), f.data(), cur.data(), cur.data(), n, 1.0, 8, 1.0 / 6.0, changes) == 0 && changes.empty());

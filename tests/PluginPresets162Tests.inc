@@ -19,7 +19,7 @@ TEST (plugin_preset_text_round_trip_round162)
     CHECK (back->pluginName == p.pluginName && back->pluginId == p.pluginId && back->format == "VST3");
     CHECK (back->state == p.state);
     // a preset of one of LYNX's own engines is not a plugin preset (same extension, other first line)
-    CHECK (! pp::fromText ("LYNX preset 1\nengine = Facet EQ\nname = x\n").has_value());
+    CHECK (! pp::fromText ("LYNX preset 1\nengine = Weave EQ\nname = x\n").has_value());
     CHECK (! pp::fromText ("LYNX plugin preset 1\nname = no state\n").has_value());
 }
 

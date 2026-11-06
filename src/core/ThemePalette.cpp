@@ -136,7 +136,8 @@ std::uint32_t litStepColour (std::uint32_t channelColour, const Palette& palette
 
 const Palette& defaultPalette()
 {
-    return builtIn;
+    static const Palette palette = derivePalette (defaultAccent, defaultBackground); // Shield gold on navy
+    return palette;
 }
 
 const char* imageFitId (ImageFit fit)
@@ -173,7 +174,7 @@ const std::vector<Spec>& builtInThemes()
             return s;
         };
         return std::vector<Spec> {
-            make ("Shield", defaultAccent, defaultBackground), make ("Ocean", 0xff3d8bfd, 0xff12161d), make ("Emerald", 0xff2fbf71, 0xff131715),
+            make ("Shield", defaultAccent, defaultBackground), make ("Crimson", crimsonAccent, crimsonBackground), make ("Ocean", 0xff3d8bfd, 0xff12161d), make ("Emerald", 0xff2fbf71, 0xff131715),
             make ("Amber", 0xfff0a020, 0xff17150f),          make ("Violet", 0xff9d6bff, 0xff16141c), make ("Graphite", 0xffd5d8de, 0xff141414),
         };
     }();

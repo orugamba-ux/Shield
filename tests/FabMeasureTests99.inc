@@ -92,7 +92,7 @@ TEST (facet_eq_matches_measured_reference_curves)
             ++compared;
         }
     }
-    std::printf ("  Facet EQ vs measured reference: %d points, worst %.3f dB\n", compared, worst);
+    std::printf ("  Weave EQ vs measured reference: %d points, worst %.3f dB\n", compared, worst);
     CHECK (compared > 80);
 }
 

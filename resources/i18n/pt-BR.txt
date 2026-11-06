@@ -1528,9 +1528,9 @@ countries: br
 "Shared like the normal mode, but asks Windows for a shorter mixing period. Only some drivers support it." = "Compartilhado como o modo normal, mas pede ao Windows um período de mixagem menor. Só alguns drivers aceitam."
 "Shield uses the device alone: the lowest latency without ASIO, but other programs go silent while Shield plays." = "O Shield usa o dispositivo sozinho: a menor latência sem ASIO, mas os outros programas ficam mudos enquanto o Shield toca."
 "Old Windows audio path with high latency. Use it only when the others fail." = "Caminho de áudio antigo do Windows, com latência alta. Use só quando os outros falharem."
-"Low-latency drivers. LYNX ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers de baixa latência. LYNX ASIO, FL Studio ASIO e ASIO4ALL funcionam com qualquer dispositivo; o driver ASIO de um fabricante funciona com o próprio dispositivo."
-"LYNX ASIO (built in)" = "LYNX ASIO (embutido)"
-"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register LYNX ASIO\" in Shield's folder once." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para outros programas, execute \"Register LYNX ASIO\" na pasta do Shield uma vez."
+"Low-latency drivers. Shield ASIO, FL Studio ASIO and ASIO4ALL work with any device; a manufacturer's ASIO driver works with its own device." = "Drivers de baixa latência. Shield ASIO, FL Studio ASIO e ASIO4ALL funcionam com qualquer dispositivo; o driver ASIO de um fabricante funciona com o próprio dispositivo."
+"Shield ASIO (built in)" = "Shield ASIO (embutido)"
+"Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. For other programs, run \"Register Shield ASIO\" in Shield's folder once." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para outros programas, execute \"Register Shield ASIO\" na pasta do Shield uma vez."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield from lynx-share.com (the installer registers it)." = "O driver ASIO do próprio Shield, com qualquer dispositivo: reprodução e gravação (microfone) com baixa latência. \"Configurações do driver...\" escolhe o modo compartilhado ou exclusivo, os dispositivos de saída e entrada e mostra a latência. Para usá-lo em outros programas, instale o Shield pelo lynx-share.com (o instalador o registra)."
 "Smaller buffers answer faster when you play; larger ones give the CPU more room (fewer clicks)." = "Buffers menores respondem mais rápido quando você toca; maiores dão mais folga à CPU (menos estalos)."
 "With recording on, the sound card input becomes a Playlist clip (the Input device above)." = "Com a gravação ligada, a entrada da placa de som vira um clipe na Playlist (o dispositivo de entrada acima)."
@@ -2444,7 +2444,7 @@ countries: br
 "X param" = "Parâm. X"
 "Y mod" = "Mod Y"
 "Y param" = "Parâm. Y"
-# --- Facet EQ editor and Shield Tune pitch display (round 103)
+# --- Weave EQ editor and Shield Tune pitch display (round 103)
 "LIVE PITCH" = "AFINAÇÃO AO VIVO"
 "Tilt shelf" = "Tilt shelf"
 "Zero latency" = "Latência zero"
@@ -2478,7 +2478,7 @@ countries: br
 "THRESHOLD" = "LIMIAR"
 "ATTACK" = "ATAQUE"
 "RELEASE" = "RELEASE"
-"Open Facet EQ" = "Abrir o Facet EQ"
+"Open Weave EQ" = "Abrir o Weave EQ"
 "Open Soundgoodizer" = "Abrir o Soundgoodizer"
 "Approximation (FL Studio's Soundgoodizer presets were not found on this computer)" = "Aproximação (os presets do Soundgoodizer do FL Studio não foram encontrados neste computador)"
 "Target" = "Alvo"
@@ -2573,7 +2573,7 @@ countries: br
 "1x|1/2x" = "1x|1/2x"
 "Send to" = "Enviar para"
 
-# --- Dynamics suite (round 108): Crest Compressor, Prism Multiband, Sentry Gate, Ember's bands
+# --- Dynamics suite (round 108): Spearhead Compressor, Mosaic Multiband, Gatekeeper, Ember's bands
 "1 band|2|3|4" = "1 banda|2|3|4"
 "12 dB/oct|24 dB/oct|48 dB/oct" = "12 dB/oit|24 dB/oit|48 dB/oit"
 "B1" = "B1"
@@ -2831,7 +2831,7 @@ countries: br
 "Run in a separate process" = "Rodar em um processo separado"
 "Run in a separate process (on for all plugins in Options)" = "Rodar em um processo separado (ligado para todos os plugins em Opções)"
 "{0} underruns (the sound broke up; red number)" = "{0} underruns (o som falhou; número vermelho)"
-# --- Voice tools (round 119): Quell Denoiser, Gemini Doubler; Echoform's output / pairs
+# --- Voice tools (round 119): Calm Denoiser, Twin Doubler; Echo Drum's output / pairs
 "Noise suppressor" = "Supressor de ruído"
 "Listen" = "Ouvir"
 "Voices" = "Vozes"
@@ -2859,7 +2859,7 @@ countries: br
 "PITCH GRAPH" = "GRÁFICO DE AFINAÇÃO"
 "INPUT" = "ENTRADA"
 "no pitch" = "sem afinação"
-# round 128 (parity with the originals): Facet EQ
+# round 128 (parity with the originals): Weave EQ
 "Invert polarity" = "Inverter polaridade"
 "Pan: left / right" = "Pan: esquerda / direita"
 "Pan: mid / side" = "Pan: mid / side"
@@ -2873,7 +2873,7 @@ countries: br
 "Stereo placement: the band works on both channels, the left or right one, or the mid or side signal" = "Posição estéreo: a banda atua nos dois canais, só no esquerdo ou no direito, ou no sinal mid ou side"
 "Auto gain: takes back the EQ curve's overall level change so louder never fools the ear" = "Ganho automático: desfaz a mudança de volume geral da curva para o mais alto não enganar o ouvido"
 "Output level - right-click: polarity, auto gain, pan mode" = "Nível de saída - clique direito: polaridade, ganho automático, modo de pan"
-# round 128: Ember Saturator
+# round 128: Forge Saturator
 "Presence" = "Presença"
 "OFF" = "DESL."
 "Mute the band" = "Silenciar a banda"
@@ -2882,7 +2882,7 @@ countries: br
 "Band character" = "Caráter das bandas"
 "Solo / mute" = "Solo / mudo"
 
-# round 128 (parity128a): Apex Limiter and Hush De-esser parity with the references
+# round 128 (parity128a): Bulwark Limiter and Whisper De-esser parity with the references
 "Display" = "Display"
 "Channel linking" = "Link de canais"
 "Transients" = "Transientes"
@@ -3055,7 +3055,7 @@ countries: br
 "Split" = "Divisão"
 "Classic|E console" = "Clássico|Console E"
 "Modern|Classic split" = "Moderno|Clássico dividido"
-# round 124: Echoform's hybrid engine
+# round 124: Echo Drum's hybrid engine
 "Hybrid" = "Híbrido"
 "Off|Clean|Analog" = "Desligado|Limpo|Analógico"
 "Matched" = "Calibrado"
@@ -3064,7 +3064,7 @@ countries: br
 "No third-party plugins found yet ({0}). Press Find new plugins, or add folders with Plugin folders..." = "Nenhum plugin de terceiros encontrado ainda ({0}). Clique em Buscar plugins novos, ou adicione pastas em Pastas de plugins..."
 "Shield's own instruments and effects are not listed here: they are always available from the Channel Rack's + button, a mixer insert slot or the Quick-add palette (F8)." = "Os instrumentos e efeitos próprios do Shield não aparecem aqui: estão sempre disponíveis no botão + do Channel Rack, num slot de insert do mixer ou na paleta de inserção rápida (F8)."
 
-# round 135 (parity135v): the description line of LYNX's engines, Halo / Lattice modes, mix lock
+# round 135 (parity135v): the description line of LYNX's engines, Sunrise / Lattice modes, mix lock
 "Level of the unprocessed signal mixed back in" = "Nível do sinal sem processamento misturado de volta"
 "Level going into the effect" = "Nível que entra no efeito"
 "Output trim after everything else" = "Ajuste de saída depois de tudo"
@@ -3443,7 +3443,7 @@ countries: br
 "No MIDI input is open." = "Nenhuma entrada MIDI está aberta."
 "Open: {0}" = "Abertas: {0}"
 
-# round 135w: Waves roles + Echoform parity (H-Delay, ValhallaDelay, EchoBoy / PrimalTap), Gemini 4 voices, Shield Tune real-time page, RComp switches
+# round 135w: Waves roles + Echo Drum parity (H-Delay, ValhallaDelay, EchoBoy / PrimalTap), Gemini 4 voices, Shield Tune real-time page, RComp switches
 "Real-time" = "Tempo real"
 "Pitch graph|Advanced|Real-time" = "Gráfico de afinação|Avançado|Tempo real"
 "SPEED" = "VELOCIDADE"
@@ -3718,7 +3718,7 @@ countries: br
 "Voicing" = "Timbre"
 "Holds the plate's tail for ever (the decay at its top): play into it to layer, switch off to let it fade" = "Segura a cauda da placa para sempre (o decaimento no máximo): toque por cima para sobrepor, desligue para deixar sumir"
 
-# --- Round 137: Echoform Rhythm mode and Era
+# --- Round 137: Echo Drum Rhythm mode and Era
 "Rhythm echo: a pattern of evenly spaced taps that the feedback repeats every Length" = "Eco rítmico: um padrão de taps igualmente espaçados que o feedback repete a cada Duração"
 "Slots in the rhythm pattern (the first one is the input itself)" = "Posições no padrão rítmico (a primeira é a própria entrada)"
 "How much quieter the last tap of the pattern is than the first" = "Quanto o último tap do padrão é mais baixo que o primeiro"
@@ -3972,7 +3972,7 @@ countries: br
 "Drive stage" = "Estágio de drive"
 "Formant ±12 st" = "Formante ±12 st"
 "DRIVE" = "DRIVE"
-# round 136: Echoform's tape voicing
+# round 136: Echo Drum's tape voicing
 "Tape voicing" = "Voz de fita"
 "Off|Ping-pong tape|Studio tape|Studio tape hot" = "Desligado|Fita pingue-pongue|Fita de estúdio|Fita de estúdio quente"
 # round 138 (merge of rounds 135 / 136): Auto-pan's measured Rhythm voicing panel
@@ -4078,7 +4078,7 @@ countries: br
 "global" = "global"
 "Pattern events" = "Eventos do pattern"
 
-# round 147 (parity147): Prism Multiband's measured Dynamic phase
+# round 147 (parity147): Mosaic Multiband's measured Dynamic phase
 "Classic dynamic" = "Dinâmica clássica"
 "This project's Dynamic phase runs the engine it was saved with (before round 147). Click to use the measured one (Pro-MB's response)." = "A fase dinâmica deste projeto usa o motor com que foi salvo (antes da rodada 147). Clique para usar o medido (a resposta do Pro-MB)."
 "Expert >>" = "Avançado >>"
@@ -4118,7 +4118,7 @@ countries: br
 "Initialized controls" = "Controles inicializados"
 "Initialized controls: to be reset when the song starts (a control's menu > Init song with this position)" = "Controles inicializados: voltam a este valor quando a música começa (menu de um controle > Iniciar a música com esta posição)"
 "reset to this value when the song starts  [RMB] delete the initial value" = "volta a este valor quando a música começa  [RMB] apagar o valor inicial"
-# --- Round 145: Ridge Strip's Vocal strip voicing
+# --- Round 145: Highland Strip's Vocal strip voicing
 "Compander" = "Compander"
 "Make-up" = "Ganho de compensação"
 "Soft knee" = "Joelho suave"
@@ -4244,7 +4244,7 @@ countries: br
 "Button" = "Botão"
 "Check box" = "Caixa de seleção"
 "XY pad" = "Pad XY"
-# round 150 (parity150): Prism Multiband's free layout, per-band side chain, measured detector
+# round 150 (parity150): Mosaic Multiband's free layout, per-band side chain, measured detector
 "Split layout: the bands sit side by side on crossovers" = "Layout dividido: as bandas ficam lado a lado nos crossovers"
 "Free layout (as Pro-MB): each band has its own edges and slopes; the room between bands passes untouched" = "Layout livre (como o Pro-MB): cada banda tem suas próprias bordas e inclinações; o espaço entre as bandas passa intacto"
 "Old det." = "Det. antigo"
@@ -4264,7 +4264,7 @@ countries: br
 "What this band's detector hears: the plug-in's input or the external side chain (global: the External SC switch)" = "O que o detector desta banda escuta: a entrada do plug-in ou o side chain externo (global: a chave de SC externo)"
 "Measured: the reference's attack, release and soft range (a range-limited band recovers at once); classic: the detector of projects saved before round 150" = "Medido: o ataque, o release e o range suave da referência (uma banda limitada pelo range se recupera na hora); clássico: o detector dos projetos salvos antes da rodada 150"
 "LYNX|RComp" = "LYNX|RComp"
-# round 150 (parity150a): Echoform's voicings — measured stereo behaviour, EchoBoy's L/R offset
+# round 150 (parity150a): Echo Drum's voicings — measured stereo behaviour, EchoBoy's L/R offset
 "L/R offset" = "Desvio L/R"
 "Voicing stereo" = "Estéreo da voz"
 # --- Round 150b: Ember six bands, pans, measured characters; Shield Tune Send / Receive
@@ -4313,7 +4313,7 @@ countries: br
 "Offset mod" = "Mod. do deslocamento"
 "Width mod" = "Mod. da largura"
 "Beyond" = "Além"
-# round 150 (parity150a): Foil Plate's measured plate voicing
+# round 150 (parity150a): Iron Plate's measured plate voicing
 "Measured plate" = "Placa medida"
 "Thresh." = "Limiar"
 # round 152 (parity152a): Compressor ← RComp (measured vintage curve, bipolar gain-change meter), Glow ← CLA-2A (Limit, Auto makeup, Analog)
@@ -4434,7 +4434,7 @@ countries: br
 "Detector" = "Detector"
 "Hush|Vocal" = "Hush|Vocal"
 "Vocal: the measured single-vocal detector (sibilants that stand out from the voice)" = "Vocal: o detector medido de voz única (sibilantes que se destacam da voz)"
-# round 152 (parity152): Foil Plate's one-knob Plate view
+# round 152 (parity152): Iron Plate's one-knob Plate view
 "Full|Plate" = "Completo|Placa"
 # round 152 (parity152): Prism's model revision
 "Model" = "Modelo"
@@ -4447,7 +4447,7 @@ countries: br
 "Random steps" = "Passos aleatórios"
 "Full: every control of the plate; Plate: the one-knob panel of the Little Plate role (Low Cut, Decay, Mod, Mix)" = "Completo: todos os controles da placa; Placa: o painel de um botão do papel do Little Plate (Low Cut, Decay, Mod, Mix)"
 "Round 152: the reference's attack in the gain stage, its narrow Dynamic-phase bands and the 0.8-octave minimum band; round 150: projects saved before" = "Rodada 152: o ataque da referência no estágio de ganho, suas bandas estreitas em fase dinâmica e a banda mínima de 0,8 oitava; rodada 150: projetos salvos antes"
-# round 152 (parity152c): Facet EQ's spectral dynamics and EQ match
+# round 152 (parity152c): Weave EQ's spectral dynamics and EQ match
 "Density {0} %" = "Densidade {0} %"
 "reference {0} s" = "referência {0} s"
 "this track {0} s" = "esta faixa {0} s"
@@ -7351,11 +7351,11 @@ countries: br
 "Worth knowing" = "Bom saber"
 "Samples not on this PC" = "Samples que não estão neste PC"
 "Steps use channel colour" = "Passos com a cor do canal"
-# round tp172d: the Echoform / Auto-pan page switch
+# round tp172d: the Echo Drum / Auto-pan page switch
 "Main|Tweak" = "Principal|Ajuste fino"
 "E type|G type" = "Tipo E|Tipo G"
 "Modern console" = "Console moderno"
-# round tp172c6: Ridge Strip's DRIVE section
+# round tp172c6: Highland Strip's DRIVE section
 "Saturate|Console E|Console G|Console A|Console N|Console Y|Tube|Guitar amp|Bass amp" = "Saturar|Console E|Console G|Console A|Console N|Console Y|Válvula|Amp. guitarra|Amp. baixo"
 "Switches the drive section on: saturation at the end of the strip, before the output" = "Liga a seção de drive: saturação no fim do canal, antes da saída"
 "The kind of saturation: a soft clipper, five console channels, a tube stage or a guitar / bass amp" = "O tipo de saturação: um clipper suave, cinco canais de console, um estágio valvulado ou um amplificador de guitarra / baixo"
@@ -7392,8 +7392,8 @@ countries: br
 "Its window was closed so that Shield could keep running. The plugin may not work properly until the project is opened again." = "A janela dele foi fechada para que o Shield continuasse funcionando. O plugin pode não funcionar direito até o projeto ser aberto de novo."
 "Wheels" = "Rodas"
 
-# round tp172c7: Kiln Channel
-"Kiln Channel" = "Kiln Channel"
+# round tp172c7: Clay Channel
+"Clay Channel" = "Clay Channel"
 "Noise reduction" = "Redução de ruído"
 "Group bypass" = "Bypass do grupo"
 "Main in" = "Entrada geral"
@@ -7420,4 +7420,4 @@ countries: br
 "Link I/O" = "Ligar E/S"
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Liga os ajustes: girar a Entrada move a Saída ao contrário, mantendo o nível enquanto o drive muda"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Entrada e Saída se movem juntas em todos os canais do grupo com E/S do grupo ligada"
-"Kiln Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Kiln Channel: o canal de console do LYNX. Arraste um botão, Alt+clique reinicia, clique direito para automação"
+"Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: o canal de console do LYNX. Arraste um botão, Alt+clique reinicia, clique direito para automação"
