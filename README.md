@@ -9,6 +9,9 @@ Channel Rack, Piano Roll, Playlist and Mixer, with built-in instruments and effe
 
 ---
 
+**New to Shield? Start with the [user guide](docs/SHIELD_GUIDE.md):** installing, a first beat in five minutes,
+adding plugins and effects, and what every built-in effect does.
+
 ## Features
 
 - **Channel Rack:** a step sequencer with patterns, swing, cut groups and an arpeggiator. The PC keyboard plays as a piano.
