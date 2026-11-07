@@ -121,13 +121,13 @@ void apply (const themes::Spec& spec, bool save)
 
 void loadSaved()
 {
-    if (auto spec = loadFile (savedFile()))
-    {
-        state() = *spec;
-        theme::setPalette (themes::derivePalette (spec->accent, spec->background));
-        if (auto* look = dynamic_cast<theme::LookAndFeel*> (&juce::LookAndFeel::getDefaultLookAndFeel()))
-            look->refreshColours();
-    }
+    // Shield: with no saved theme the default look applies too (Shield gold on navy): ui/Theme.h's tokens start as
+    // the upstream red palette, which is now the "Crimson" theme
+    const auto spec = loadFile (savedFile());
+    state() = spec ? *spec : themes::Spec {};
+    theme::setPalette (themes::derivePalette (state().accent, state().background));
+    if (auto* look = dynamic_cast<theme::LookAndFeel*> (&juce::LookAndFeel::getDefaultLookAndFeel()))
+        look->refreshColours();
 }
 
 juce::String toJson (const themes::Spec& spec)

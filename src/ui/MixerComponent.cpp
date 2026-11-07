@@ -1154,8 +1154,8 @@ void MixerStrips::paintStudioStrip (juce::Graphics& g, int t, juce::Rectangle<in
         textcache::drawFittedText (g, label, r.reduced (3, 0), juce::Justification::centred, 1, 0.7f);
     };
     const auto emptyPill = [&g] (juce::Rectangle<int> r, bool hover) {
-        theme::fillRoundRect (g, r.toFloat(), 3.0f, hover ? colour::bg4 : colour::bg1);
-        g.setColour (colour::border);
+        theme::fillRoundRect (g, r.toFloat(), 3.0f, hover ? colour::bg4 : colour::bg1.withAlpha (0.7f));
+        g.setColour (colour::border.withAlpha (hover ? 1.0f : 0.45f));
         g.drawRoundedRectangle (r.toFloat().reduced (0.5f), 3.0f, 1.0f);
     };
 

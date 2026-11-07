@@ -8861,7 +8861,9 @@ private:
     void runSnapshot (const juce::String& prefix, const juce::String& projectPath)
     {
         juce::LookAndFeel::setDefaultLookAndFeel (&lookAndFeel);
-        // LYNX_SNAPSHOT_THEME=file.lynxtheme: the pictures in that theme (round 162d)
+        // LYNX_SNAPSHOT_THEME=file.lynxtheme: the pictures in that theme (round 162d); without it, the default look
+        // (Shield: gold on navy, as a normal start without a saved theme)
+        lynx::themeui::apply (lynx::themes::Spec {}, false);
         if (const auto themeFile = juce::SystemStats::getEnvironmentVariable ("LYNX_SNAPSHOT_THEME", {}); themeFile.isNotEmpty())
             if (const auto spec = lynx::themeui::loadFile (juce::File (themeFile)))
                 lynx::themeui::apply (*spec, false);
