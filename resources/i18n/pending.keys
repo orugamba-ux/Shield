@@ -5,3 +5,7 @@
 "A lightweight music production studio: channel rack, piano roll, playlist and mixer.\nOpens FL Studio projects. Independent implementation: no Image-Line code was copied."
 "Shield's own ASIO driver, with any device: playback and recording (microphone) at low latency. \"Driver settings...\" chooses shared or exclusive mode, the output and input devices and shows the latency. To use it in other programs, install Shield with its setup program (the installer registers it)."
 "A report holds Shield's version, your system and audio device, the crash or freeze file and the last steps, without your name, file names or projects. Shield has no report server yet, so nothing is uploaded; Help > Report a problem... opens a GitHub issue for it."
+"Studio strips"
+"Audio FX slot  [LMB] effect: show or hide its window, empty: add an effect  [RMB] slot options"
+"Built-in EQ of this insert  [LMB] edit"
+"Output of this insert  [LMB] choose where it goes"

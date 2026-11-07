@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [main, 'wip/**']
+    branches: [main, dev, 'wip/**']
   pull_request:
 
 # A newer push to the same branch cancels the older run (work branches are pushed often); main keeps every run.
@@ -104,6 +104,13 @@ jobs:
           perl -e 'alarm shift; exec @ARGV' 600 "${run[@]}" "$bin" --steppertest "$PWD/editor-pictures/steppertest.txt" || true
           tail -3 editor-pictures/steppertest.txt || true
           perl -e 'alarm shift; exec @ARGV' 1200 "${run[@]}" "$bin" --plugui "$PWD/editor-pictures" || true
+          # Shield: the whole window on the self-test's demo project (the Mixer's studio strips: ui-mixer.png and
+          # ui-mixer163-<height>.png at short heights), insert 1 selected
+          if [[ -f selftest-demo.lynx ]]; then
+            mkdir -p editor-pictures/ui
+            LYNX_SNAPSHOT_TRACK=1 perl -e 'alarm shift; exec @ARGV' 900 "${run[@]}" "$bin" --snapshot "$PWD/editor-pictures/ui/ui" "$PWD/selftest-demo.lynx" || true
+            ls editor-pictures/ui | head -50
+          fi
           ls editor-pictures | wc -l
 
       - name: Upload the editor pictures

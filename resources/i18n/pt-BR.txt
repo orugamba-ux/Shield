@@ -7421,3 +7421,7 @@ countries: br
 "Links the trims: turning Input moves Output the other way, so the level stays while the drive changes" = "Liga os ajustes: girar a Entrada move a Saída ao contrário, mantendo o nível enquanto o drive muda"
 "Input and Output move together on every channel of the group that has Group I/O on" = "Entrada e Saída se movem juntas em todos os canais do grupo com E/S do grupo ligada"
 "Clay Channel: LYNX's console channel. Drag a knob, Alt+click resets it, right-click for automation" = "Clay Channel: o canal de console do LYNX. Arraste um botão, Alt+clique reinicia, clique direito para automação"
+"Studio strips" = "Canais de estúdio"
+"Audio FX slot  [LMB] effect: show or hide its window, empty: add an effect  [RMB] slot options" = "Slot de efeito  [LMB] efeito: mostra ou oculta a janela, vazio: adiciona um efeito  [RMB] opções do slot"
+"Built-in EQ of this insert  [LMB] edit" = "EQ embutido deste insert  [LMB] editar"
+"Output of this insert  [LMB] choose where it goes" = "Saída deste insert  [LMB] escolher para onde vai"

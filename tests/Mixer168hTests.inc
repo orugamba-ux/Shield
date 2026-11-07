@@ -94,3 +94,16 @@ TEST (mixer168h_default_insert_names_follow_the_position)
     mixerops::deleteTrack (song, 2); // the tracks after it move left: still "Insert <number>"
     CHECK (song.mixer[2].name == "Insert 2" && song.mixer[4].name == "Drums" && song.mixer[16].name == "Insert 16");
 }
+
+// Shield: its own channel strips (Layout::studio), after FL's eight and never selectable from ui-options.txt
+TEST (mixer_shield_studio_strips_layout)
+{
+    using namespace lynx::mixerlayout;
+    CHECK (nameOf (Layout::studio) == "Studio strips");
+    CHECK (isStudio (Layout::studio) && ! isStudio (Layout::wide) && ! isCompact (Layout::studio) && ! isAlt (Layout::studio));
+    CHECK ((int) Layout::studio == layoutCount);   // not one of FL's drop-down items
+    CHECK (fromIndex ((int) Layout::studio) == defaultLayout && parse ("8") == defaultLayout);
+    const auto s = specOf (Layout::studio);
+    CHECK (s.stripWidth == 74 && s.gap == 4 && s.masterWidth == 86 && s.meterWidth == 4 && s.knobSize == 24);
+    CHECK (! s.verticalName && ! s.nameLow && s.stereoKnob && ! s.stackedKnobs && ! s.dbReadout && ! s.fxBadge);
+}

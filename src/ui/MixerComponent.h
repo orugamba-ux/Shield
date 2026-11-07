@@ -164,8 +164,15 @@ public:
 
     // FL's "Mixer layout" (issue #52, REA round 168h; ui-options.txt "mixerLayout", per user like FL's FXViewMode):
     // the strip widths and arrangement of every mixer view (core/MixerLayout.h).
-    static inline mixerlayout::Layout layout = mixerlayout::defaultLayout;
+    // Shield: the mixer always uses its own channel strips (Layout::studio); FL's layouts stay in the code (snapshots,
+    // tests) but are no longer offered or loaded from ui-options.txt.
+    static inline mixerlayout::Layout layout = mixerlayout::Layout::studio;
+    static bool studio() noexcept { return mixerlayout::isStudio (layout); }
     static const mixerlayout::Spec& spec() noexcept;
+    // a click on a studio strip's effect pill (`row` = the mixer slot row): the owner hands it to the effects panel
+    // (the insert is already selected). `popup` = right-click (the slot's options).
+    std::function<void (int track, int row, bool popup)> onSlotClicked;
+    std::function<void (int track)> onOutputClicked; // the studio strip's output pill
     void setLayout (mixerlayout::Layout newLayout);
     std::function<void()> onLayoutChanged; // the main window saves ui-options.txt
     int widthOf (int track) const noexcept { return stripWidthOf (track); }
@@ -178,7 +185,7 @@ public:
     juce::Rectangle<int> faderRailForSnapshot (int track) const { return faderRail (track); }
 
 private:
-    enum class Part { none, pan, stereo, fader, meter, mute, solo, route, send, header, body, add, arm, input };
+    enum class Part { none, pan, stereo, fader, meter, mute, solo, route, send, header, body, add, arm, input, fx, eq, output };
 
     void changeListenerCallback (juce::ChangeBroadcaster*) override;
     void timerCallback() override;
@@ -220,6 +227,23 @@ private:
         int armY = -1;                                  // compact layouts: the arm button's row under the fader
     };
     Rows rows() const noexcept;
+    // Studio strips (Layout::studio), top to bottom: number + icon, EQ curve, input, effect pills, sends, output, pan
+    // and stereo, read-outs, fader + meter, mute / solo, the coloured name; the routing lane stays under the strips
+    struct StudioRows
+    {
+        int header = 22, eqTop = 0, inputTop = 0, fxTop = 0, fxRows = 1, sendsTop = 0, outputTop = 0, panTop = 0,
+            readTop = 0, faderTop = 0, faderBottom = 0, buttonsTop = 0, nameTop = 0;
+    };
+    StudioRows studioRows() const noexcept;
+    static constexpr int studioRowHeight = 15, studioRowGap = 2, studioSends = 2;
+    juce::Rectangle<int> eqArea (int track) const;
+    juce::Rectangle<int> fxArea (int track, int row) const;
+    juce::Rectangle<int> sendPillArea (int track, int index) const;
+    juce::Rectangle<int> outputArea (int track) const;
+    juce::Rectangle<int> readArea (int track) const;
+    void paintStudioStrip (juce::Graphics& g, int track, juce::Rectangle<int> strip);
+    mutable int partRow = -1; // the effect row of the last partAt that found Part::fx
+    int hoverRow = -1;        // the effect row under the mouse (studio strips)
     juce::Rectangle<int> nameArea (int track) const;
     juce::Rectangle<int> iconArea (int track) const;
     int trackAt (int x) const noexcept;
@@ -324,6 +348,11 @@ public:
         repaint();
     }
     void openSlotEditor (int slot) { openEditor (slot); }
+    // A studio strip's effect pill for `row` (this panel's insert): an empty row offers the effects (as a click on an
+    // empty slot here), an effect is selected and its window shown or hidden (as a click on its name); `popup` (right
+    // click): the slot's options.
+    void clickRow (int row, bool popup);
+    void showOutputMenuNow() { showOutputMenu(); } // a studio strip's output pill
 
     // Sizes the panel for a view of `viewWidth` x `viewHeight` (round 163): when the slots and the EQ don't both fit,
     // the EQ folds to its title bar (click it to unfold); when even that doesn't fit, the panel is taller than the

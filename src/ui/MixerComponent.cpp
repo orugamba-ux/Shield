@@ -346,8 +346,74 @@ void MixerStrips::setLayout (mixerlayout::Layout newLayout)
         onLayoutChanged();
 }
 
+MixerStrips::StudioRows MixerStrips::studioRows() const noexcept
+{
+    StudioRows r;
+    const auto pitch = studioRowHeight + studioRowGap;
+    r.nameTop = laneTop() - 4 - 20;
+    r.buttonsTop = r.nameTop - 4 - 18;
+    r.eqTop = r.header + 2;
+    r.inputTop = r.eqTop + 24 + 4;
+    r.fxTop = r.inputTop + studioRowHeight + 6;
+    // under the effects: the sends, the output, the knobs (32), the read-outs (16) and at least 90 px of fader; the
+    // effect rows take what is left (at most 6: more effects show as "+N" on the last row)
+    const auto below = studioSends * pitch + 4 + studioRowHeight + 6 + 32 + 2 + 16 + 8 + 90 + 6;
+    r.fxRows = juce::jlimit (1, 6, (r.buttonsTop - r.fxTop - below) / pitch);
+    r.sendsTop = r.fxTop + r.fxRows * pitch + 4;
+    r.outputTop = r.sendsTop + studioSends * pitch + 2;
+    r.panTop = r.outputTop + studioRowHeight + 4;
+    r.readTop = r.panTop + 32 + 2;
+    r.faderTop = r.readTop + 16 + 8;
+    r.faderBottom = juce::jmax (r.faderTop + 40, r.buttonsTop - 6);
+    return r;
+}
+
+juce::Rectangle<int> MixerStrips::eqArea (int t) const
+{
+    return { stripX (t) + 4, studioRows().eqTop, stripWidthOf (t) - spec().gap - 8, 24 };
+}
+
+juce::Rectangle<int> MixerStrips::fxArea (int t, int row) const
+{
+    const auto s = studioRows();
+    return { stripX (t) + 4, s.fxTop + row * (studioRowHeight + studioRowGap), stripWidthOf (t) - spec().gap - 8, studioRowHeight };
+}
+
+juce::Rectangle<int> MixerStrips::sendPillArea (int t, int index) const
+{
+    const auto s = studioRows();
+    return { stripX (t) + 4, s.sendsTop + index * (studioRowHeight + studioRowGap), stripWidthOf (t) - spec().gap - 8, studioRowHeight };
+}
+
+juce::Rectangle<int> MixerStrips::outputArea (int t) const
+{
+    return { stripX (t) + 4, studioRows().outputTop, stripWidthOf (t) - spec().gap - 8, studioRowHeight };
+}
+
+juce::Rectangle<int> MixerStrips::readArea (int t) const
+{
+    return { stripX (t) + 4, studioRows().readTop, stripWidthOf (t) - spec().gap - 8, 16 };
+}
+
 MixerStrips::Rows MixerStrips::rows() const noexcept
 {
+    if (studio())
+    {
+        const auto s = studioRows();
+        Rows r;
+        r.header = s.header;
+        r.knobsTop = s.panTop;
+        r.knobsHeight = 32;
+        r.buttonsTop = s.buttonsTop;
+        r.buttonsHeight = 18;
+        r.faderTop = s.faderTop;
+        r.faderBottom = s.faderBottom;
+        r.readoutHeight = 0;
+        r.armY = -1;
+        r.nameTop = s.nameTop;
+        r.nameHeight = 20;
+        return r;
+    }
     const auto& sp = spec();
     const auto compact = mixerlayout::isCompact (layout);
     Rows r;
@@ -394,6 +460,8 @@ juce::Rectangle<int> MixerStrips::nameArea (int t) const
 {
     const auto r = rows();
     const auto w = stripWidthOf (t) - spec().gap;
+    if (studio()) // the coloured label at the strip's foot
+        return { stripX (t) + 2, r.nameTop, w - 4, r.nameHeight };
     if (r.nameHeight <= 0) // Extra large: the name row of the header
         return { stripX (t) + 3, 38, w - 6, 14 };
     // the name runs up the strip's left part; the right part shows the meters (as FL's)
@@ -405,6 +473,8 @@ juce::Rectangle<int> MixerStrips::iconArea (int t) const
 {
     const auto w = stripWidthOf (t) - spec().gap;
     const auto size = juce::jmin (16, w - 2);
+    if (studio()) // the header's right end (the number is in the middle, the arm button on the left)
+        return { stripX (t) + w - size - 3, 3, size, size };
     return { stripX (t) + (w - size) / 2, rows().iconY, size, size };
 }
 
@@ -421,6 +491,8 @@ juce::Rectangle<int> MixerStrips::armArea (int t) const
 
 juce::Rectangle<int> MixerStrips::inputArea (int t) const
 {
+    if (studio()) // the input row (its level bar is drawn along the row's foot)
+        return { stripX (t) + 4, studioRows().inputTop, stripWidthOf (t) - spec().gap - 8, studioRowHeight };
     // a thin level bar under the header (inserts with an input source)
     return { stripX (t) + 3, rows().header - 3, stripWidthOf (t) - spec().gap - 6, 3 };
 }
@@ -453,6 +525,8 @@ juce::Rectangle<int> MixerStrips::muteArea (int t) const
 {
     const auto r = rows();
     const auto w = stripWidthOf (t) - spec().gap;
+    if (studio()) // "M" on the left half ("S" on the right); the Master has no solo, its "M" spans the row
+        return { stripX (t) + 4, r.buttonsTop, t == 0 ? w - 8 : (w - 8) / 2 - 1, r.buttonsHeight };
     if (mixerlayout::isCompact (layout))
         return { stripX (t), r.buttonsTop, w, 16 };
     if (t == 0)
@@ -464,6 +538,11 @@ juce::Rectangle<int> MixerStrips::soloArea (int t) const
 {
     const auto r = rows();
     const auto w = stripWidthOf (t) - spec().gap;
+    if (studio())
+    {
+        const auto half = (w - 8) / 2;
+        return { stripX (t) + 4 + half + 1, r.buttonsTop, (w - 8) - half - 1, r.buttonsHeight };
+    }
     if (mixerlayout::isCompact (layout))
         return { stripX (t) + (w - 16) / 2, r.buttonsTop + 16, 16, 16 };
     return { stripX (t) + w - juce::jmin (24, w / 2), r.buttonsTop, juce::jmin (24, w / 2), r.buttonsHeight };
@@ -472,17 +551,22 @@ juce::Rectangle<int> MixerStrips::soloArea (int t) const
 juce::Rectangle<int> MixerStrips::faderArea (int t) const
 {
     const auto r = rows();
-    const auto inset = mixerlayout::isCompact (layout) ? 1 : 5;
+    const auto inset = studio() ? 4 : mixerlayout::isCompact (layout) ? 1 : 5;
     return { stripX (t) + inset, r.faderTop, stripWidthOf (t) - spec().gap - 2 * inset, r.faderBottom - r.faderTop };
 }
 
+// studio strips: the dB scale (14 px), the fader rail (18 px), then the meters, left to right (Pro Wave's order)
 juce::Rectangle<int> MixerStrips::meterArea (int t) const
 {
+    if (studio())
+        return faderRail (t).withX (faderRail (t).getRight() + 4).withWidth (spec().meterWidth * 2 + 2);
     return faderArea (t).withWidth (spec().meterWidth * 2 + 2);
 }
 
 juce::Rectangle<int> MixerStrips::faderRail (int t) const
 {
+    if (studio())
+        return faderArea (t).withTrimmedLeft (14).withWidth (18);
     return faderArea (t).withTrimmedLeft (spec().meterWidth * 2 + (mixerlayout::isCompact (layout) ? 3 : 6) + (t == 0 ? masterScaleWidth : 0));
 }
 
@@ -511,6 +595,22 @@ MixerStrips::Part MixerStrips::partAt (int t, juce::Point<int> p) const
 
     if (t > 0 && armArea (t).expanded (1).contains (p))
         return Part::arm;
+
+    if (studio())
+    {
+        if (t > 0 && inputArea (t).contains (p)) // (always: the row chooses the input)
+            return Part::input;
+        if (eqArea (t).contains (p))
+            return Part::eq;
+        for (int row = 0, count = studioRows().fxRows; row < count; ++row)
+            if (fxArea (t, row).contains (p))
+            {
+                partRow = row;
+                return Part::fx;
+            }
+        if (outputArea (t).contains (p))
+            return Part::output;
+    }
 
     if (t > 0 && t < (int) engine.getSong().mixer.size() && engine.getSong().mixer[(std::size_t) t].inputChannel >= 0
         && inputArea (t).expanded (0, 2).contains (p))
@@ -591,7 +691,14 @@ void MixerStrips::setHover (Part part, int t)
 void MixerStrips::mouseMove (const juce::MouseEvent& e)
 {
     const auto t = trackAt (e.x);
-    setHover (t >= 0 ? partAt (t, e.getPosition()) : Part::none, t);
+    const auto part = t >= 0 ? partAt (t, e.getPosition()) : Part::none;
+    // studio strips: moving between two effect pills of one strip changes the hovered row only (setHover's part and
+    // track stay the same), so that strip is repainted here
+    const auto row = part == Part::fx ? partRow : -1;
+    if (row != hoverRow && t >= 0 && t == hoverTrack && part == hoverPart)
+        repaint (stripX (t) - 2, 0, stripWidthOf (t) + 4, getHeight());
+    hoverRow = row;
+    setHover (part, t);
 }
 
 void MixerStrips::mouseExit (const juce::MouseEvent&)
@@ -674,6 +781,11 @@ void MixerStrips::paint (juce::Graphics& g)
         const auto stripHovered = hoverTrack == t;
         const auto hovered = [this, t] (Part p) { return hoverTrack == t && hoverPart == p; };
         const auto dragging = [this, t] (Part p) { return dragTrack == t && dragPart == p; };
+
+        if (studio()) // Shield's channel strips: their own drawing; the routing lane below is shared
+            paintStudioStrip (g, t, strip);
+        else
+        { // (FL layouts: the original drawing, kept as it was)
 
         // the strip is tinted with the insert's colour (FL tints whole strips, so groups read at a glance);
         // kept dark so meters, knobs and text keep their contrast
@@ -949,6 +1061,7 @@ void MixerStrips::paint (juce::Graphics& g)
                 textcache::drawFittedText (g, text, badge.toNearestInt(), juce::Justification::centred, 1, 0.7f);
             }
         }
+        } // (end of the FL layouts' drawing)
 
         // routing lane: send switch from the selected insert to this one, and its level knob
         if (selected > 0 && t != selected && selected < tracks && needs (routeArea (t).getUnion (sendArea (t))))
@@ -992,6 +1105,343 @@ void MixerStrips::paint (juce::Graphics& g)
     }
 
     paintRouting (g);
+}
+
+namespace
+{
+// The insert's built-in 3-band EQ as a small curve (studio strips): low shelf, peak and high shelf added in dB over
+// 20 Hz..20 kHz. A sketch of the response, not the exact filters (the EQ window shows those).
+float sketchEqDb (const TrackEq& eq, float hz)
+{
+    const auto lowShelf = eq.gainDb[0] / (1.0f + std::pow (hz / juce::jmax (10.0f, eq.hz[0]), 2.0f));
+    const auto highShelf = eq.gainDb[2] / (1.0f + std::pow (juce::jmax (10.0f, eq.hz[2]) / hz, 2.0f));
+    const auto octaves = std::log2 (hz / juce::jmax (10.0f, eq.hz[1]));
+    const auto halfWidth = 0.15f + 1.25f * eq.width[1]; // octaves either side
+    const auto peak = eq.gainDb[1] * std::exp (-0.5f * (octaves / halfWidth) * (octaves / halfWidth));
+    return lowShelf + peak + highShelf;
+}
+
+juce::String peakText (float gain)
+{
+    if (gain <= 1.0e-5f)
+        return juce::String::fromUTF8 ("-\xe2\x88\x9e");
+    const auto db = juce::Decibels::gainToDecibels (gain);
+    return (db > 0.05f ? "+" : "") + juce::String (db, 1);
+}
+} // namespace
+
+// One studio strip (Layout::studio), in the style of Pro Wave's channel strips: every control keeps its FL-layout
+// behaviour (the same Parts, values and menus); only the arrangement and the look differ.
+void MixerStrips::paintStudioStrip (juce::Graphics& g, int t, juce::Rectangle<int> strip)
+{
+    using namespace theme;
+    const auto& song = engine.getSong();
+    const auto& track = song.mixer[(std::size_t) t];
+    const auto& sp = spec();
+    const auto s = studioRows();
+    const auto x = strip.getX();
+    const auto w = strip.getWidth();
+    const auto isSelected = t == selected;
+    const auto inSelection = std::binary_search (selection.begin(), selection.end(), t);
+    const auto hovered = [this, t] (Part p) { return hoverTrack == t && hoverPart == p; };
+    const auto dragging = [this, t] (Part p) { return dragTrack == t && dragPart == p; };
+    const auto needs = [&g] (juce::Rectangle<int> area) { return g.clipRegionIntersects (area.expanded (3)); };
+    const auto tint = track.colour != 0 ? tame (juce::Colour (track.colour)) : (t == 0 ? colour::accent : colour::bg6);
+    const auto pill = [&g] (juce::Rectangle<int> r, juce::Colour fill, juce::Colour text, const juce::String& label, bool bold) {
+        theme::fillRoundRect (g, r.toFloat(), 3.0f, fill);
+        g.setColour (text);
+        g.setFont (font (9.5f, bold));
+        textcache::drawFittedText (g, label, r.reduced (3, 0), juce::Justification::centred, 1, 0.7f);
+    };
+    const auto emptyPill = [&g] (juce::Rectangle<int> r, bool hover) {
+        theme::fillRoundRect (g, r.toFloat(), 3.0f, hover ? colour::bg4 : colour::bg1);
+        g.setColour (colour::border);
+        g.drawRoundedRectangle (r.toFloat().reduced (0.5f), 3.0f, 1.0f);
+    };
+
+    // the plate: dark, a hairline outline; the selection in the accent
+    theme::fillRoundRect (g, strip.toFloat(), radius::sm, isSelected || inSelection ? colour::bg3 : (hoverTrack == t ? colour::bg3 : colour::bg2));
+    g.setColour (isSelected ? colour::accent.withAlpha (0.8f) : inSelection ? colour::accent.withAlpha (0.35f) : colour::border);
+    g.drawRoundedRectangle (strip.toFloat().reduced (0.5f), radius::sm, isSelected ? 1.5f : 1.0f);
+    if (headerDragged && headerDragTrack == t)
+    {
+        g.setColour (colour::accent);
+        g.drawRoundedRectangle (strip.toFloat().reduced (0.5f), radius::sm, 2.0f);
+    }
+
+    // header: record arm (left), number (middle), icon (right)
+    if (needs ({ x, 0, w, s.header }))
+    {
+        if (t > 0)
+        {
+            const auto armed = engine.isInsertArmed (t);
+            const auto r = armArea (t).toFloat().reduced (2.0f);
+            g.setColour (armed ? colour::record : hovered (Part::arm) ? colour::bg5 : colour::bg0);
+            g.fillEllipse (r);
+            g.setColour (armed ? colour::record.brighter (0.3f) : hovered (Part::arm) ? colour::textSecondary : colour::borderStrong);
+            g.drawEllipse (r, 1.0f);
+            if (track.recordSafe)
+            {
+                g.setColour (colour::textDisabled);
+                g.drawLine (r.getX() + 1.0f, r.getBottom() - 1.0f, r.getRight() - 1.0f, r.getY() + 1.0f, 1.2f);
+            }
+        }
+        g.setColour (isSelected ? colour::accent : colour::textSecondary);
+        g.setFont (font (type::caption, isSelected));
+        textcache::drawFittedText (g, t == 0 ? juce::String ("M") : juce::String (t), juce::Rectangle<int> (x, 4, w, 13), juce::Justification::centred, 1, 0.6f);
+        if (const auto icon = trackicons::iconFor (track.icon); icon != trackicons::Icon::none)
+            ui::drawTrackIcon (g, icon, iconArea (t).toFloat(), track.muted ? colour::textDisabled : colour::textPrimary.withAlpha (0.88f));
+    }
+
+    // EQ: the built-in EQ's curve (click: the EQ window)
+    if (const auto box = eqArea (t); needs (box))
+    {
+        theme::fillRoundRect (g, box.toFloat(), 3.0f, hovered (Part::eq) ? colour::bg4 : colour::bg0);
+        const auto mid = (float) box.getCentreY();
+        g.setColour (colour::border);
+        g.drawHorizontalLine ((int) mid, (float) box.getX() + 2.0f, (float) box.getRight() - 2.0f);
+        if (track.eq.active())
+        {
+            juce::Path curve;
+            const auto inner = box.toFloat().reduced (2.0f, 3.0f);
+            for (int i = 0; i <= 40; ++i)
+            {
+                const auto px = inner.getX() + inner.getWidth() * (float) i / 40.0f;
+                const auto hz = 20.0f * std::pow (1000.0f, (float) i / 40.0f);
+                const auto db = juce::jlimit (-18.0f, 18.0f, sketchEqDb (track.eq, hz));
+                const auto py = mid - db / 18.0f * inner.getHeight() * 0.5f;
+                if (i == 0)
+                    curve.startNewSubPath (px, py);
+                else
+                    curve.lineTo (px, py);
+            }
+            g.setColour (colour::accent);
+            g.strokePath (curve, juce::PathStrokeType (1.4f));
+        }
+        else
+        {
+            g.setColour (colour::textDisabled);
+            g.setFont (font (9.0f, true));
+            textcache::drawText (g, tr ("EQ"), box, juce::Justification::centred);
+        }
+    }
+
+    // input (inserts other than the Master): the source and its level along the row's foot
+    if (t > 0 && needs (inputArea (t)))
+    {
+        const auto box = inputArea (t);
+        juce::String text = tr ("Input");
+        if (track.inputChannel >= 0)
+            text = "In " + juce::String (track.inputChannel + 1) + (track.inputStereo ? "-" + juce::String (track.inputChannel + 2) : juce::String());
+        theme::fillRoundRect (g, box.toFloat(), 3.0f, hovered (Part::input) ? colour::bg4 : colour::bg1);
+        g.setColour (track.inputChannel >= 0 ? colour::textPrimary : colour::textDisabled);
+        g.setFont (font (9.5f));
+        textcache::drawFittedText (g, text, box.reduced (3, 0), juce::Justification::centred, 1, 0.7f);
+        if (track.inputChannel >= 0 && (std::size_t) t < inputLevels.size())
+        {
+            const auto level = inputLevels[(std::size_t) t];
+            const auto fill = juce::jlimit (0.0f, 1.0f, (juce::Decibels::gainToDecibels (level, -60.0f) + 60.0f) / 60.0f);
+            const auto bar = box.toFloat().removeFromBottom (2.0f).reduced (2.0f, 0.0f);
+            theme::fillRoundRect (g, bar.withWidth (bar.getWidth() * fill), 1.0f, level >= 0.99f ? colour::record : colour::meterLow);
+        }
+    }
+
+    // audio FX: one pill per slot row; more effects than rows show as "+N" on the last row
+    if (needs ({ x, s.fxTop, w, s.sendsTop - s.fxTop }))
+    {
+        // (the effects in rows past the last pill: all of them minus the ones the pills show)
+        int beyond = (int) track.effects.size();
+        for (int row = 0; row < s.fxRows; ++row)
+            if (mixerops::effectAtRow (track.effects, row) >= 0)
+                --beyond;
+        for (int row = 0; row < s.fxRows; ++row)
+        {
+            const auto box = fxArea (t, row);
+            const auto hover = hovered (Part::fx) && hoverRow == row;
+            const auto index = mixerops::effectAtRow (track.effects, row);
+            if (index >= 0)
+            {
+                const auto& slot = track.effects[(std::size_t) index];
+                const auto on = slot.enabled;
+                pill (box, on ? (hover ? colour::info.brighter (0.2f) : colour::info) : colour::bg4,
+                      on ? juce::Colours::white : colour::textDisabled, quickpick::slotName (engine, slot), false);
+            }
+            else if (row == s.fxRows - 1 && beyond > 0)
+                pill (box, colour::bg4, colour::textSecondary, "+" + juce::String (beyond), true);
+            else
+            {
+                emptyPill (box, hover);
+                if (hover)
+                    icons::draw (g, Icon::plus, box.toFloat().withSizeKeepingCentre (10.0f, 10.0f), colour::textSecondary);
+            }
+        }
+    }
+
+    // sends: where this insert sends (besides the Master), each with its level along the pill's foot
+    if (needs ({ x, s.sendsTop, w, s.outputTop - s.sendsTop }))
+    {
+        std::vector<int> targets;
+        for (int u = 1; u < (int) song.mixer.size(); ++u)
+            if (u != t && song.routes (t, u))
+                targets.push_back (u);
+        for (int i = 0; i < studioSends; ++i)
+        {
+            const auto box = sendPillArea (t, i);
+            if (i >= (int) targets.size())
+            {
+                emptyPill (box, false);
+                continue;
+            }
+            if (i == studioSends - 1 && (int) targets.size() > studioSends)
+            {
+                pill (box, colour::bg4, colour::textSecondary, "+" + juce::String ((int) targets.size() - i), true);
+                continue;
+            }
+            const auto u = targets[(std::size_t) i];
+            const auto& target = song.mixer[(std::size_t) u];
+            const auto label = juce::String::fromUTF8 ("\xe2\x86\x92 ") + (target.name.empty() ? juce::String (u) : juce::String::fromUTF8 (target.name.c_str()));
+            pill (box, colour::accent.withAlpha (0.85f), colour::onAccent, label, false);
+            const auto level = juce::jlimit (0.0f, 1.0f, faderPosition (song.routeLevel (t, u)));
+            const auto bar = box.toFloat().removeFromBottom (2.0f).reduced (3.0f, 0.0f);
+            theme::fillRoundRect (g, bar.withWidth (bar.getWidth() * level), 1.0f, colour::bg0.withAlpha (0.7f));
+        }
+    }
+
+    // output: the Master, a hardware output, or nothing
+    if (needs (outputArea (t)))
+    {
+        juce::String text = juce::String::fromUTF8 ("\xe2\x80\x94");
+        if (t == 0 || mixeroutput::isCustom (engine, t))
+            text = mixeroutput::label (engine, t, true);
+        else if (song.routes (t, 0))
+            text = tr ("Master");
+        pill (outputArea (t), hovered (Part::output) ? colour::bg5 : colour::bg4, colour::textPrimary, text, false);
+    }
+
+    // pan and stereo separation (side by side)
+    if (needs (panArea (t).getUnion (stereoArea (t))))
+    {
+        const auto knob = (float) sp.knobSize;
+        drawKnob (g, panArea (t).toFloat().withSizeKeepingCentre (knob, knob),
+                  engine.getAutomationDisplay().shown (AutomationTarget { AutomationTargetKind::mixerPan, t }, (track.pan + 1.0f) * 0.5f), true,
+                  dragging (Part::pan) ? colour::accent : colour::info, hovered (Part::pan) || dragging (Part::pan));
+        drawKnob (g, stereoArea (t).toFloat().withSizeKeepingCentre (knob - 6.0f, knob - 6.0f), (track.stereo + 1.0f) * 0.5f, true,
+                  dragging (Part::stereo) ? colour::accent : colour::knobArc, hovered (Part::stereo) || dragging (Part::stereo));
+    }
+
+    // read-outs: the fader's dB (left) and the peak since the last clear (right)
+    const auto volume = shownVolume (t); // (its automation's value while it plays: the fader moves, issue #12)
+    if (const auto box = readArea (t); needs (box))
+    {
+        const auto left = box.withWidth (box.getWidth() / 2 - 1);
+        const auto right = box.withTrimmedLeft (box.getWidth() / 2 + 1);
+        float peak = 0.0f;
+        bool clipped = false;
+        for (int ch = 0; ch < 2; ++ch)
+            if (const auto i = (std::size_t) t * 2 + (std::size_t) ch; i < levels.size())
+            {
+                peak = juce::jmax (peak, levels[i].peak);
+                clipped = clipped || levels[i].clipped;
+            }
+        theme::fillRoundRect (g, left.toFloat(), 2.0f, colour::bg0);
+        theme::fillRoundRect (g, right.toFloat(), 2.0f, clipped ? colour::meterClip.withAlpha (0.85f) : colour::bg0);
+        g.setFont (font (9.0f));
+        g.setColour (colour::textPrimary);
+        textcache::drawFittedText (g, faderToDb (volume), left, juce::Justification::centred, 1, 0.6f);
+        g.setColour (clipped ? juce::Colours::white : colour::textSecondary);
+        textcache::drawFittedText (g, peakText (peak), right, juce::Justification::centred, 1, 0.6f);
+    }
+
+    // fader: the dB scale, the rail and its cap; the meters on the right
+    {
+        const auto rail = faderRail (t);
+        const auto meters = meterArea (t);
+
+        g.setFont (font (8.0f));
+        for (const auto db : { 6, 0, -6, -12, -24, -48 })
+        {
+            const auto y = (float) rail.getBottom() - faderPosition (juce::Decibels::decibelsToGain ((float) db)) * (float) rail.getHeight();
+            g.setColour (db == 0 ? colour::textPrimary.withAlpha (0.8f) : colour::textDisabled);
+            textcache::drawText (g, juce::String (std::abs (db)), juce::Rectangle<float> ((float) rail.getX() - 14.0f, y - 5.0f, 11.0f, 10.0f),
+                                 juce::Justification::centredRight, false);
+            g.fillRect (juce::Rectangle<float> ((float) rail.getX() - 2.0f, y - 0.5f, 3.0f, 1.0f));
+        }
+
+        const auto railX = (float) rail.getCentreX();
+        const auto capY = (float) rail.getBottom() - volume * (float) rail.getHeight();
+        theme::fillRoundRect (g, { railX - 2.0f, (float) rail.getY(), 4.0f, (float) rail.getHeight() }, 2.0f, colour::bg0);
+        const auto capActive = hovered (Part::fader) || dragging (Part::fader);
+        const auto cap = juce::Rectangle<float> ((float) rail.getWidth() + 2.0f, 13.0f).withCentre ({ railX, capY });
+        theme::fillRoundRect (g, cap.translated (0.0f, 1.5f), radius::sm, juce::Colours::black.withAlpha (0.35f));
+        theme::fillRoundRect (g, cap, radius::sm, capActive ? juce::Colour (0xffffffff) : juce::Colour (0xffc9ccd2).withAlpha (track.muted ? 0.6f : 1.0f));
+        g.setColour ((dragging (Part::fader) ? colour::accent : colour::bg0).withAlpha (0.8f));
+        g.fillRect (cap.withSizeKeepingCentre (cap.getWidth() - 6.0f, 1.5f));
+
+        for (int ch = 0; ch < 2; ++ch)
+        {
+            const auto bar = juce::Rectangle<int> (meters.getX() + ch * (sp.meterWidth + 2), meters.getY(), sp.meterWidth, meters.getHeight());
+            theme::fillRoundRect (g, bar.toFloat(), 1.5f, colour::bg0);
+            const auto index = (std::size_t) t * 2 + (std::size_t) ch;
+            const auto meter = index < levels.size() ? levels[index] : meters::PeakHold {};
+            const auto h = (int) (meterPosition (meter.level) * (float) bar.getHeight());
+            juce::ColourGradient gradient (colour::meterClip, (float) bar.getX(), (float) bar.getY(), colour::meterLow, (float) bar.getX(),
+                                           (float) bar.getBottom(), false);
+            gradient.addColour (1.0 - meterPosition (juce::Decibels::decibelsToGain (0.0f)), colour::meterClip);
+            gradient.addColour (1.0 - meterPosition (juce::Decibels::decibelsToGain (-6.0f)), colour::meterMid);
+            gradient.addColour (1.0 - meterPosition (juce::Decibels::decibelsToGain (-18.0f)), colour::meterLow);
+            g.setGradientFill (gradient);
+            g.fillRect (bar.withTop (bar.getBottom() - h));
+            if (meter.peak > 0.001f)
+            {
+                const auto peakY = bar.getBottom() - (int) (meterPosition (meter.peak) * (float) bar.getHeight());
+                g.setColour (meter.peak >= 1.0f ? colour::meterClip : colour::textPrimary.withAlpha (0.85f));
+                g.fillRect (bar.getX(), juce::jmax (bar.getY(), peakY - 1), bar.getWidth(), 2);
+            }
+            if (meter.clipped)
+            {
+                g.setColour (colour::meterClip);
+                g.fillRect (bar.withHeight (4));
+            }
+        }
+        if (hovered (Part::meter))
+        {
+            g.setColour (colour::textSecondary.withAlpha (0.5f));
+            g.drawRect (meters.expanded (1), 1);
+        }
+    }
+
+    // mute and solo: square buttons
+    if (needs (muteArea (t).getUnion (soloArea (t))))
+    {
+        const auto m = muteArea (t);
+        theme::fillRoundRect (g, m.toFloat(), 3.0f, track.muted ? colour::warning : hovered (Part::mute) ? colour::bg5 : colour::bg4);
+        g.setColour (track.muted ? colour::bg0 : colour::textSecondary);
+        g.setFont (font (type::caption, true));
+        textcache::drawText (g, "M", m, juce::Justification::centred);
+        if (t > 0)
+        {
+            const auto so = soloArea (t);
+            theme::fillRoundRect (g, so.toFloat(), 3.0f, track.solo ? colour::accent : hovered (Part::solo) ? colour::bg5 : colour::bg4);
+            g.setColour (track.solo ? colour::onAccent : colour::textSecondary);
+            textcache::drawText (g, "S", so, juce::Justification::centred);
+        }
+    }
+
+    // the name: a label in the insert's colour at the foot of the strip
+    if (const auto box = nameArea (t); needs (box))
+    {
+        theme::fillRoundRect (g, box.toFloat(), 3.0f, track.muted ? tint.withMultipliedAlpha (0.45f) : tint);
+        const auto text = tint.getPerceivedBrightness() > 0.55f ? colour::bg0 : juce::Colours::white;
+        g.setColour (hovered (Part::header) ? text : text.withAlpha (0.92f));
+        g.setFont (font (type::caption, isSelected));
+        auto label = box.reduced (3, 0);
+        if (engine.insertPlaysStandIn (t)) // Online Sessions: a plugin is not installed here, its stand-in render plays
+        {
+            drawStandInTag (g, { (float) label.getX(), (float) label.getCentreY() - 6.5f, 13.0f, 13.0f });
+            label.removeFromLeft (15);
+        }
+        textcache::drawFittedText (g, juce::String::fromUTF8 (track.name.c_str()), label, juce::Justification::centred, 1, 0.7f);
+    }
 }
 
 // Wires in the lane under the strips: from the selected insert to where it sends (accent), and from the
@@ -1118,6 +1568,23 @@ void MixerStrips::mouseDown (const juce::MouseEvent& e)
     if (part == Part::input)
     {
         mixerinput::showMenu (engine, t, this);
+        return;
+    }
+
+    // studio strips: the EQ curve, an effect pill or the output pill select the insert and act on it
+    if (part == Part::fx || part == Part::eq || part == Part::output)
+    {
+        if (selected != t || selection.size() != 1)
+            setSelection ({ t }, t); // (the effects panel follows: onSelectionChanged)
+        if (part == Part::eq)
+            showTrackEq (t);
+        else if (part == Part::output)
+        {
+            if (onOutputClicked)
+                onOutputClicked (t);
+        }
+        else if (onSlotClicked)
+            onSlotClicked (t, partRow, flmods::popup (e.mods));
         return;
     }
 
@@ -1313,6 +1780,9 @@ void MixerStrips::mouseDown (const juce::MouseEvent& e)
         case Part::body:
         case Part::none:
         case Part::add:
+        case Part::fx:
+        case Part::eq:
+        case Part::output:
             return;
     }
 }
@@ -1655,6 +2125,12 @@ ui::Hint MixerStrips::hintAt (juce::Point<int> p)
         case Part::meter: h.text = name + " - " + tr ("Peak meter (left/right) with peak hold  [LMB] selects the track and clears the clip light"); break;
         case Part::route: h.text = name + " - " + tr ("Route the selected inserts to this one (drag after enabling: level). Ctrl+click: this track only, Shift: sidechain, Ctrl+Shift: sidechain only, right-click: menu"); h.hasMenu = true; break;
         case Part::add: h.text = tr ("Add a mixer insert"); break;
+        case Part::fx:
+            h.text = name + " - " + tr ("Audio FX slot  [LMB] effect: show or hide its window, empty: add an effect  [RMB] slot options");
+            h.hasMenu = true;
+            break;
+        case Part::eq: h.text = name + " - " + tr ("Built-in EQ of this insert  [LMB] edit"); break;
+        case Part::output: h.text = name + " - " + tr ("Output of this insert  [LMB] choose where it goes"); h.hasMenu = true; break;
         case Part::header:
             h.text = name + " - " + tr ("[LMB] selects  [Ctrl]+[LMB] or drag across: range  [Ctrl]+[Shift]+[LMB] adds or removes  [LMB] drag sideways reorders  [RMB] insert menu") + feeds() + latency();
             h.hasMenu = true;
@@ -2503,7 +2979,9 @@ juce::PopupMenu MixerStrips::buildMenu (int t)
                      [this] { engine.editSong ([] (Song& s) { s.compensateAutomations = ! s.compensateAutomations; }); });
         menu.addSubMenu (tr ("Plugin delay compensation"), pdc);
     }
-    menu.addSubMenu (tr ("Mixer layout"), MixerLayoutBox::menu (*this)); // as the title bar's drop-down (issue #52)
+    // (Shield: the mixer always uses its studio strips; FL's "Mixer layout" choice is not offered)
+    if (! studio())
+        menu.addSubMenu (tr ("Mixer layout"), MixerLayoutBox::menu (*this)); // as the title bar's drop-down (issue #52)
     mixeroptions::addItems (menu, engine, false);
 
     return menu;
@@ -2623,6 +3101,8 @@ void MixerStrips::timerCallback()
         {
             const auto t = (int) (i / 2);
             repaint (meterArea (t).expanded (1));
+            if (studio() && (std::abs (m.peak - before.peak) > 1e-4f || m.clipped != before.clipped))
+                repaint (readArea (t).expanded (1)); // the peak read-out
             if (const auto& sp = spec(); sp.verticalName && ! sp.nameLow && ! mixerlayout::isCompact (layout) && t > 0 && std::abs (m.level - before.level) > 1e-4f)
             {
                 const auto box = nameArea (t);
@@ -3142,6 +3622,24 @@ juce::String EffectsPanel::outputName() const
     if (track == 0 && const_cast<AudioEngine&> (engine).getDeviceManager().getCurrentAudioDevice() == nullptr)
         return tr ("(no audio device)");
     return mixeroutput::label (engine, track);
+}
+
+void EffectsPanel::clickRow (int row, bool popup)
+{
+    if (row < 0 || row >= maxEffectSlots)
+        return;
+    const auto i = effectIn (row);
+    if (i < 0)
+    {
+        showAddMenu (row); // (as a click on an empty slot: the effect lands in this row)
+        return;
+    }
+    selectedSlot = i;
+    repaint();
+    if (popup)
+        showSlotMenu (i);
+    else
+        toggleEditor (i); // (as a click on the slot's name: its window shows or hides)
 }
 
 void EffectsPanel::showOutputMenu()
@@ -5573,6 +6071,9 @@ MixerComponent::MixerComponent (AudioEngine& e)
     effectsView.setScrollBarThickness (10);
     addAndMakeVisible (effectsView);
     strips.onSelectionChanged = [this] (int track) { effects.setTrack (track); };
+    // studio strips: an effect pill or the output pill act through the effects panel (the insert is already selected)
+    strips.onSlotClicked = [this] (int, int row, bool popup) { effects.clickRow (row, popup); };
+    strips.onOutputClicked = [this] (int) { effects.showOutputMenuNow(); };
     strips.onEffectDropped = [this] (int track, EffectSlot fx) {
         strips.selectTrack (track);
         effects.setTrack (track);

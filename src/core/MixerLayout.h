@@ -35,10 +35,14 @@ enum class Layout
     wide2,      // 4
     wide3,      // 5
     wideAlt,    // 6
-    extraLarge  // 7
+    extraLarge, // 7
+    // Shield's own channel strips (in the style of Pro Wave's, fabox-os/Pro-Wave, GPL-3.0): tall strips with the
+    // insert's EQ curve, input, effect slots, sends, output, pan, read-outs, fader and meter, mute / solo and a
+    // coloured name. Not one of FL's choices: it is not in layoutCount, fromIndex or the drop-down.
+    studio      // 8
 };
 
-constexpr int layoutCount = 8;
+constexpr int layoutCount = 8; // FL's eight (the drop-down and ui-options.txt); Layout::studio comes after them
 constexpr Layout defaultLayout = Layout::wide;
 
 constexpr std::string_view nameOf (Layout l) noexcept
@@ -53,6 +57,7 @@ constexpr std::string_view nameOf (Layout l) noexcept
         case Layout::wide3: return TR_NOOP ("Wide 3");
         case Layout::wideAlt: return TR_NOOP ("Wide alt");
         case Layout::extraLarge: return TR_NOOP ("Extra large");
+        case Layout::studio: return TR_NOOP ("Studio strips");
     }
     return TR_NOOP ("Wide");
 }
@@ -137,8 +142,22 @@ inline Spec specOf (Layout l)
             s.stackedKnobs = false;
             s.knobSize = 26;
             break;
+        case Layout::studio:
+            s.stripWidth = 74;
+            s.gap = 4;
+            s.masterWidth = 86;
+            s.verticalName = false; // the name is a coloured label at the strip's foot
+            s.stereoKnob = true;
+            s.stackedKnobs = false; // pan and stereo side by side
+            s.knobSize = 24;
+            s.dbReadout = false;    // the studio strip draws its own read-outs (volume and peak)
+            s.fxBadge = false;      // the effects are listed in the strip
+            s.meterWidth = 4;
+            break;
     }
     s.nameLow = isAlt (l);
     return s;
 }
+
+constexpr bool isStudio (Layout l) noexcept { return l == Layout::studio; }
 } // namespace lynx::mixerlayout

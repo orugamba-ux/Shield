@@ -457,7 +457,7 @@ MainComponent::MainComponent (AudioEngine& e, bool restoreUserSettings)
         rackLoopStarterButton.setBounds (r.removeFromLeft (24).reduced (0, 1));
     };
     workspace.setTitleAccessory (Panel::channelRack, &rackTitleTools, rackTitleToolsWidth);
-    workspace.setTitleAccessory (Panel::mixer, &mixer.getLayoutBox(), MixerLayoutBox::width); // FL's "Mixer layout" (issue #52)
+    // (FL's "Mixer layout" drop-down, issue #52, is not shown: Shield's mixer always uses its studio strips)
     mixer.getStripsForSnapshot().onLayoutChanged = [this] {
         mixer.getLayoutBox().repaint();
         mixer.selectTrack (mixer.getStripsForSnapshot().getSelectedTrack()); // keep the selected strip in view
@@ -2069,10 +2069,8 @@ void MainComponent::loadUiSettings()
             newProjectDefaults().readKey (key.toStdString(), line.fromFirstOccurrenceOf ("=", false, false).trim().toStdString());
         else if (key == "mixerUsedOnly")
             MixerStrips::showUsedOnly = on;
-        else if (key == "mixerLayout") // FL's FXViewMode numbering (issue #52)
+        else if (key == "mixerLayout") // FL's FXViewMode numbering (issue #52): Shield always uses its studio strips
         {
-            MixerStrips::layout = mixerlayout::parse (line.fromFirstOccurrenceOf ("=", false, false).trim().toStdString());
-            mixer.getStripsForSnapshot().updateSize();
         }
         else if (key == "quantizeSongJumps")
             engine.quantizeSongJumps.store (juce::jlimit (0, 5, line.fromFirstOccurrenceOf ("=", false, false).trim().getIntValue()));
